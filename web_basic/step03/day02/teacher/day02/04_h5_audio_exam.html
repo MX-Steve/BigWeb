@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{text-align: center}
+    </style>
+</head>
+<body>
+<h4>音频播放</h4>
+<audio id="a3" src="res/bg.mp3">
+</audio>
+<label>
+    <input type="checkbox" id="cb">
+    是否播放背景音乐
+</label>
+<script>
+//    cb.onchange = function(){
+//      if(this.checked){
+//        a3.play(); //勾选，则播放
+//      }else{
+//        a3.pause();//取消勾选，则暂停
+//      }
+//    }
+    cb.onchange = function(){
+      if(this.checked){
+       //1:音量初始化0  15:46~15:49
+       a3.volume = 0;
+       //2:播放音乐
+       a3.play();
+       //3:创建定时器 0 0.1 0.2 0.3
+       var timer = setInterval(function(){
+          //4:修改音乐音量 volume += 0.1
+          a3.volume += 0.1;
+          //5:如果音量 > 0.9
+          //6:停止定时器
+          if(a3.volume>0.9){
+            clearInterval(timer);
+          }
+        },500);
+
+      }else{
+        a3.pause();//取消勾选，则暂停
+      }
+    }
+</script>
+</body>
+</html>

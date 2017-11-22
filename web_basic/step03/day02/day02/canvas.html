@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{text-align:center;}
+	</style>
+</head>
+<body>
+	<canvas id='c1' width='600' height='400' style="background:#ddd;"></canvas>	
+	<script>
+		var ctx = c1.getContext('2d');
+		ctx.fillStyle='red';
+		var left = 0,dir=1;
+		var t = setInterval(function(){
+			ctx.clearRect(0,0,600,400);
+			left +=5*dir;
+			ctx.fillRect(left,0,100,100);
+			if(left>=500){
+//				clearInterval(t);
+				dir = -1;
+			}else if(left <=0){
+				dir = 1;
+			}
+		},50);
+	</script>
+</body>
+</html>

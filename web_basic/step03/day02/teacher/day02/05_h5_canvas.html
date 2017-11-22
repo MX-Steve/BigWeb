@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{text-align: center}
+        canvas{background: #ddd}
+    </style>
+</head>
+<body>
+     <h3>canvas绘图</h3>
+     <canvas id="c3" width="500" height="400"></canvas>
+     <script>
+         //1:获取画笔
+         var ctx = c3.getContext("2d");
+         //2:设置填充样式
+         ctx.fillStyle = "#000";
+         //3:填充矩形
+         ctx.fillRect(0,0,100,80);
+         ctx.fillStyle = "red";
+         ctx.fillRect(0,320,100,80);
+         ctx.fillRect(200,160,100,80);//居中
+         ctx.fillRect(400,0,100,80);//右上
+         ctx.fillRect(400,320,100,80);//右下
+     </script>
+</body>
+</html>

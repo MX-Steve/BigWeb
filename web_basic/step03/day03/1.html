@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var i=3;
+		function fn(){
+			i*=2;
+			var i=3;
+			return function(n){
+				console.log(n*(++i));
+			}
+		}
+		var f = fn();//function(n){console.log(n*(++i));}
+		f(3);//i=4,n=3
+		fn()(3);//
+		f(4);//n=4,i=5
+		fn()(3);
+		//alter table xz_laptop add expire enum('0','1') default '0';
+	</script>
+</body>
+</html>

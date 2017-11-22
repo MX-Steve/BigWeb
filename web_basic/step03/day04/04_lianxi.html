@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            text-align: center;}
+        svg{
+            background: #ddd;}
+
+    </style>
+</head>
+<body>
+<svg width="500" height="400">
+    <rect id="r1" width="30" height="0" x="0" y="0"></rect>
+    <rect id="r2" width="30" height="0" x="100" y="0"></rect>
+</svg>
+<script>
+var h1 = 0,h2=0;
+var t1 = setInterval(function () {
+    r1.setAttribute('height',h1);
+    h1 +=10;
+    if(h1>300){
+        clearInterval(t1);
+        t1=null;
+    }
+},50)
+var t2 = setInterval(function () {
+    r2.setAttribute('height',h2);
+    h2 +=20;
+    if(h2>300){
+        clearInterval(t2);
+        t2=null;
+    }
+},50)
+
+</script>
+</body>
+</html>

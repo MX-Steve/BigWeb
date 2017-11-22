@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#c1{background:#ddd;}
+		body{text-align:center;}
+	</style>
+</head>
+<body>
+	<canvas id='c1' width='600' height='400'></canvas>
+	<script>
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.status == 200 && xhr.readyState == 4){
+				var obj = JSON.parse(xhr.responseText);
+				getPic(obj);
+			}
+		}
+		xhr.open('get','datas.php');
+		xhr.send(null);
+		function rc(){
+			var r = Math.floor(Math.random()*255);
+			var g = Math.floor(Math.random()*255);
+			var b = Math.floor(Math.random()*255);
+			return `rgb(${r},${g},${b})`;
+		}
+		function getPic(obj){
+			console.log(obj);
+			var w = 50,n=obj.length,
+					space = parseFloat((c1.width-50*2-w*n)/(n-1));
+			//console.log(space);
+			var ctx = c1.getContext('2d');
+			for(var i=0;i<obj.length;i++){
+				var item = obj[i];
+				//console.log(item.label,item.value);
+				ctx.fillStyle=rc();
+				let t = c1.height-item.value;
+				//console.log(t);
+				let l = 50 + (w+space)*(i);
+				//console.log(l);
+				ctx.fillRect(l,t,w,item.value);
+				ctx.fillStyle = '#000';
+				ctx.textBaseline = 'top';
+				ctx.font = '19px sans-serif';
+				ctx.fillText(item.value,l,c1.height-item.value-25);
+				ctx.fillText(item.label,l,c1.height-25);
+			}
+		}
+	</script>
+</body>
+</html>

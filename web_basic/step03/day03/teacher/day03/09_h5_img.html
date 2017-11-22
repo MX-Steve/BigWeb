@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{text-align: center}
+        canvas{background:#ddd}
+    </style>
+</head>
+<body>
+    <h4>canvas-变形</h4>
+    <canvas id="c3" ></canvas>
+    <script>
+     c3.width = 500;
+     c3.height = 400;
+     var ctx = c3.getContext("2d");
+     var p3 = new Image();
+     p3.src = "img/p3.png";
+     p3.onload = function(){
+      //画二架飞机
+      var deg1 = 10;
+      var deg2 = 20;
+      var timer = setInterval(
+        function(){
+          //多个飞机不同速度
+          //套路:平移+旋转+绘图+逆向旋转+逆向平移
+					ctx.save();
+          ctx.translate(100,50);
+          ctx.rotate(deg1*Math.PI/180);
+          ctx.drawImage(p3,-100,-50);
+					ctx.restore();
+//          ctx.rotate(-deg1*Math.PI/180);
+//          ctx.translate(-100,-50);
+//          deg1 += 10;
+          //第二架飞机
+					ctx.save();
+          ctx.translate(100,350);
+          ctx.rotate(deg2*Math.PI/180);
+          ctx.drawImage(p3,-100,-50);
+//          ctx.rotate(-deg2*Math.PI/180);
+//          ctx.translate(-100,-350);
+//          deg2 += 20;
+					ctx.restore();
+        },50
+      )
+
+
+     }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <h4>可以动态前进,进度条</h4>
+      <progress id="p3" value="0"></progress>
+      <script>
+       //1:创建定时器并且用变量保存
+       var time = setInterval(function(){
+        //2:获取进度条
+        var p3 = document.getElementById("p3");
+        //3:获取value值
+        var v = parseFloat(p3.value);
+        //4:计算value值+0.1
+        v += 0.1;
+        //5:将计算结果保存回value
+        p3.value = v;
+        //6:判断 > 0.9 停止定时器
+        if(v>0.9){
+          clearInterval(time);
+          alert("下载完成")
+        }
+       },500);
+      </script>
+</body>
+</html>

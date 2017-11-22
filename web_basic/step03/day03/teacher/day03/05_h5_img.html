@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{text-align: center}
+        canvas{background:#ddd}
+    </style>
+</head>
+<body>
+    <h4>canvas-path</h4>
+    <canvas id="c3" ></canvas>
+    <script>
+     c3.width = 500;
+     c3.height = 400;
+     var ctx = c3.getContext("2d");
+     var p3 = new Image();//创建图片对象
+     p3.src = "img/p3.png";//发送异步请求下载图片
+     p3.onload = function(){
+ctx.drawImage(p3,0,0);//左上角
+ctx.drawImage(p3,500-p3.width,0);//右上角
+ctx.drawImage(p3,0,400-p3.height);//左下角
+ctx.drawImage(p3,500-p3.width,400-p3.height);//右下角
+ctx.drawImage(p3,500/2-400/2,400/2-200/2,400,200);//居中
+
+     }
+
+    </script>
+</body>
+</html>

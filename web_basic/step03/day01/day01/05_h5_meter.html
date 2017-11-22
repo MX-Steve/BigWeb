@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <h4>刻度尺</h4>
+      薪水 <meter id="m3" value="0" min="0" max="100000" optimum="99999" low="20000" high="80000"></meter>
+      <script>
+      //1:创建定时器
+      var time = setInterval(function(){
+        //2:获取刻度尺
+        var m3 = document.getElementById("m3");
+        //3:获取value 值
+        var v = parseInt(m3.value);
+        //4:加500
+        v += 500;
+        //5:保存回value
+        m3.value = v;
+        //6:大于100000 停止
+        if(v>100000){clearInterval(time)}
+      },50);
+
+      </script>
+</body>
+</html>

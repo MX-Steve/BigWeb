@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            text-align: center;}
+        svg{
+            background: #ddd;}
+
+    </style>
+</head>
+<body>
+<svg id="s2" width="500" height="400">
+
+</svg>
+<script>
+    function rn(max,min) {
+        return parseInt(Math.random()*(max-min+1)+min);
+    }
+    function rc(max,min) {
+        return `rgb(${rn(max,min)},${rn(max,min)},${rn(max,min)})`;
+    }
+    for(var i=0;i<30;i++){
+        var circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        circle.setAttribute('r',rn(40,10));
+        circle.setAttribute('fill',rc(255,80));
+        circle.setAttribute('cx',rn(460,40));
+        circle.setAttribute('fill-opacity',Math.random());
+        circle.setAttribute('cy',rn(360,40));
+        s2.appendChild(circle);
+        circle.onclick=function () {
+            var item = this;
+                        var opacity = item.getAttribute('fill-opacity');
+                        var r = parseFloat(item.getAttribute('r'));
+                        item.onclick=null;
+                        var t = setInterval(function () {
+                            r+=1;
+                            opacity-=0.05;
+                            item.setAttribute('r',r);
+                            item.setAttribute('fill-opacity',opacity);
+                            if(opacity<=0){
+                                item.remove();
+                                clearInterval(t);
+                                t=null;
+                            }
+                        },200)
+                    }
+                }
+            //    var cs = document.getElementsByTagNameNS('http://www.w3.org/2000/svg','circle');
+//    for(let i=0;i<cs.length;i++){
+//        var item = cs[i];
+//        item.onclick=function () {
+//            var item = this;
+//            console.log(item);
+//            var opacity = item.getAttribute('fill-opacity');
+//            var r = parseFloat(item.getAttribute('r'));
+//            var t = setInterval(function () {
+//                r+=1;
+//                opacity-=0.05;
+//              item.setAttribute('r',r);
+//              item.setAttribute('fill-opacity',opacity);
+//              if(opacity<=0){
+//                  item.remove();
+//                  clearInterval(t);
+//                  t=null;
+//              }
+//            },200)
+//            item.onclick=null;
+//        }
+//    }
+</script>
+</body>
+</html>

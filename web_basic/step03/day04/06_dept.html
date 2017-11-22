@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            text-align: center;}
+        svg{
+            background: #ddd;}
+
+    </style>
+</head>
+<body>
+<svg id="s2" width="500" height="400">
+</svg>
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('get','dept.php',true);
+    function rc() {
+        var r = Math.floor(Math.random()*255+1);
+        var g = Math.floor(Math.random()*255+1);
+        var b = Math.floor(Math.random()*255+1);
+        return `rgb(${r},${g},${b})`;
+    }
+    xhr.onreadystatechange=function () {
+        if(xhr.status==200 && xhr.readyState == 4){
+            var str = xhr.responseText;
+            var obj = JSON.parse(str);
+//            var html = '';
+//            for(var i=0;i<obj.length;i++){
+//                var item = obj[i];
+//                var height = item.price;
+//                var width = 500/(2*obj.length+1);
+//                var x = 2*i*width +width;
+//                var y = 400-height;
+//                html +=`<rect height="${height}" width="${width}" x="${x}" y="${y}"></rect>`;
+//            }
+//            s2.innerHTML = html;
+            for(var i=0;i<obj.length;i++){
+                var m = obj[i];
+                var rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+                rect.setAttribute('width',50);
+                rect.setAttribute('height',m.price);
+                rect.setAttribute('x',100*i);
+                rect.setAttribute('y',400-m.price);
+                rect.setAttribute('fill',rc());
+                s2.appendChild(rect);
+
+            }
+        }
+    }
+    xhr.send(null);
+</script>
+</body>
+</html>

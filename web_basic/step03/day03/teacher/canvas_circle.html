@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			text-align:center;
+		}
+		canvas{
+			background:#ddd;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="c1" width="600" height="400"></canvas>
+	<script>
+		var ctx = c1.getContext('2d');
+		ctx.beginPath();
+		ctx.lineWidth=2;
+		ctx.moveTo(50,50);
+		ctx.lineTo(40,60);
+		ctx.moveTo(50,50);
+		ctx.lineTo(60,60);
+		ctx.moveTo(50,50);
+		ctx.lineTo(50,350);
+		ctx.lineTo(550,350);
+		ctx.lineTo(540,340);
+		ctx.moveTo(550,350);
+		ctx.lineTo(540,360);
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.lineWidth=5;
+		ctx.strokeStyle='#666';
+		ctx.arc(300,200,100,0,2*Math.PI);
+		ctx.stroke();
+		let start = -90;
+		let end = -90;
+		let t = setInterval(function(){
+			ctx.beginPath();
+			ctx.strokeStyle = 'red';
+			ctx.arc(300,200,100,start*Math.PI/180,end*Math.PI/180);
+			end +=5;
+			ctx.stroke();
+			if(end>=360){
+				clearInterval(t);
+				t = null;
+				console.log(1);
+			}
+		},50);
+	</script>
+</body>
+</html>

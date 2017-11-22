@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>地理定位——geolocation</h3>
+    <button id="btn"> 读取地理信息</button>
+    <script>
+
+        btn.onclick = function () {
+            window.navigator
+                .geolocation
+                .getCurrentPosition(succCB,errCB);
+        }
+        //如果定位成功，会执行该函数
+        function succCB(pos) {
+            console.log("定位时间：",pos.timestamp);
+            console.log("定位维度：",pos.coords.latitude);
+            console.log("定位经度：",pos.coords.longitude);
+            console.log("定位海拔：",pos.coords.altitude);
+            console.log("定位速度：",pos.coords.speed);
+        }
+        //如果定位失败，会执行该函数
+        function errCB(err) {
+            console.log(err.code);
+            console.log(err.message);
+        }
+    </script>
+</body>
+</html>

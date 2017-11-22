@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{text-align: center}
+        canvas{background:#ddd}
+    </style>
+</head>
+<body>
+    <h4>canvas-变形</h4>
+    <canvas id="c3" ></canvas>
+    <script>
+     c3.width = 500;
+     c3.height = 400;
+     var ctx = c3.getContext("2d");
+     var p3 = new Image();
+     p3.src = "img/p3.png";
+     p3.onload = function(){
+       ctx.translate(250,200);
+       ctx.drawImage(p3,0,0);
+       ctx.rotate(15*Math.PI/180);//要旋转角度有累加
+       ctx.drawImage(p3,0,0);
+       ctx.rotate(15*Math.PI/180);
+       ctx.drawImage(p3,0,0);
+     }
+
+
+    </script>
+</body>
+</html>

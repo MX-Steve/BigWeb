@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{text-align: center  }
+        video{background: #ddd}
+    </style>
+</head>
+<body>
+    <h4>视频播放</h4>
+    <video id="v3" controls poster="res/play.png"
+           preload="metadata" muted
+    >
+        <source src="res/birds.mp4">
+        <source src="res/birds.wav">
+        <source src="res/birds.ogg">
+        您的浏览器版本太低，请升级
+    </video>
+<script>
+    var v3 = document.getElementById("v3");
+    v3.playbackRate = 3;
+</script>
+</body>
+</html>

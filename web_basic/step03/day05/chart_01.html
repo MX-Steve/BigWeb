@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box" style="height: 600px;height:400px;"></div>
+<script src="js/echarts.js"></script>
+<script>
+var myChart = echarts.init(document.getElementById('box'));
+// 指定图表的配置项和数据
+var option = {
+    title: {
+        text: '销售统计'
+    },
+    tooltip: {},
+    legend: {
+        data:['统计信息']
+    },
+    //直角坐标系中的横轴，通常默认为类型
+    xAxis: {
+        data: []
+    },
+    yAxis: {},//可以省略，随着data的数值改变
+    series: [{
+        name: '统计信息',
+        type: 'pie',//柱状图
+        roseType:"angle",
+        data: [
+                {value:234,name:'三星'},
+                {value:214,name:'华为'},
+                {value:274,name:'苹果'},
+                {value:134,name:'小米'},
+                {value:160,name:'锤子'}
+              ]
+    }]
+};
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
+</script>
+</body>
+</html>

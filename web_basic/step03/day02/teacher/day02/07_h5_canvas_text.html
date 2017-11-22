@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{text-align: center}
+        canvas{background: #ddd}
+    </style>
+</head>
+<body>
+     <h3>canvas绘图</h3>
+     <canvas id="c3" width="500" height="400"></canvas>
+     <script>
+        var str = "abcxyz";
+        var ctx = c3.getContext("2d");
+        ctx.font = "19px sans-serif";
+        ctx.textBaseline = "top";
+        ctx.fillText(str,0,0);
+        //左上角 右上角 左下角 右下角 居中
+        //左右移动文字 17:55--17:58
+        //获取文本宽度
+         var w = ctx.measureText(str).width;
+         ctx.fillText(str,500-w,0);
+     </script>
+</body>
+</html>
