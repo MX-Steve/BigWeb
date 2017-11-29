@@ -1,0 +1,29 @@
+1.访问器属性：
+	何时：如果使用自定义的验证规则，保护属性时
+	四大特性
+		set:function(val){
+			验证val
+				通过，才将val赋值给受保护的数据属性
+		}
+		==>实际的属性值存在哪里？	
+			解决：使用闭包，封装一个受保护的局部变量
+		
+		命名属性：数据属性和访问器属性
+
+
+
+		内部属性：只能在内部使用，不能用.访问的属性
+				__proto__
+				class类型名
+				extensible:标识一个对象是否可扩展新属性,默认值为true
+
+2、保护结构——防篡改：防止对已经创建的对象中的属性进行重新配置
+	3个级别
+	1.禁止添加新属性--阻止扩展==>每个对象内都有一个属性：extensible:true;
+		Object.preventExtensions(obj);==>将extensible改为false；
+	2.密封--不能添加、不能删除
+		Object.seal(obj);==>将extensible改为false；将configurable设置为false
+	3.冻结：在兼具密封的基础上，进一步禁止修改所有属性的值
+		冻结一个对象：Object.freeze(obj);
+		判断一个对象是否被冻结：Object.isFrozen(obj);
+		何时：希望一个对象中的属性值，一旦创建，不可改变时，就要冻结对象

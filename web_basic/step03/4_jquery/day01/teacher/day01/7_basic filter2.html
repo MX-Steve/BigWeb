@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <title>...</title>
+ <style>
+		ul{list-style:none}
+		li{
+			float:left;
+			display:inline-block;
+			width:60px;height:60px;
+			line-height:60px; text-align:center;
+			font-size:1.5em;
+			border:1px solid #000;
+		}
+/*		li:first-child{ border-radius:15px 0 0 15px;}*/
+/*		li:last-child{border-radius:0 15px 15px 0;}*/
+/*		li:not(:last-child){border-right:0;}*/
+
+	table{border-collapse:collapse;}
+	thead th{border-bottom:3px solid #000}
+/*	tbody tr:not(:last-child) td{*/
+/*		border-bottom:1px solid #000*/
+/*	}*/
+/*	tbody tr:nth-child(2n){background:lightblue}*/
+ </style>
+</head>
+<body>
+  <h1>实现按钮组效果</h1>
+<!-- 	ul#btns.btn-group>li.btn.btn-default -->
+	<ul id="btns" class="btn-group">
+		<li class="btn btn-default">|&lt;</li>
+		<li class="btn btn-default">▷</li>
+		<li class="btn btn-default">||</li>
+		<li class="btn btn-default">&gt;|</li>
+	</ul>	
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		$("li:first")
+			.css("border-radius","15px 0 0 15px");
+		$("li:last")
+			.css("border-radius","0 15px 15px 0");
+		$("li:gt(0)").css("border-left",0);
+	</script>
+	<div style="clear:both"></div>
+
+	<h1>实现表格隔行变色效果</h1>
+<!-- 	table>(thead>tr>th*4)+(tbody>tr*3>td*4)	 -->
+<table>
+<thead>
+	<tr>
+		<th>#</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>User Name</th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<td>1</td><td>旭</td><td>赵</td><td>@大旭</td>
+	</tr>
+	<tr>
+		<td>2</td><td>东</td><td>张</td><td>@东哥</td>
+	</tr>
+	<tr>
+		<td>3</td><td>涛</td><td>程</td><td>@涛哥</td>
+	</tr>
+</tbody>
+</table>
+	<script>
+		$("tbody>tr:gt(0)>td")
+			.css("border-top","1px solid #000");
+		$("tbody>tr:odd")
+			.css("background","lightblue")
+	</script>
+</body>
+</html>

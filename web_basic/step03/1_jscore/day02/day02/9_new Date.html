@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var orderDate=1508403564391;//从服务器收到的
+
+
+
+
+
+			orderDate=new Date(orderDate);
+			        //读取当前操作系统所在时区
+							//将毫秒数+/-时差的毫秒数
+							//转为日期对象
+			console.log(orderDate);
+			
+			var now=new Date();
+			var birth=new Date("        ");
+			var ms=now-birth;
+			var days=ms/1000/3600/24;
+			console.log(days);
+
+			var max=Number.MAX_VALUE;
+			console.log(max);
+			var years=max/1000/3600/24/365;
+			console.log(years);
+		</script>
+	</body>
+</html>

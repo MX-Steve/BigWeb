@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="studentList">
+<!-- <li>${s.sname}: ${s.m},${s.c},${s.e}</li> -->
+		</ul>
+		<script>
+var students=[
+	{sname:"范冰冰",m:89,c:65,e:95},
+	{sname:"杨幂",m:85,c:59,e:89},
+	{sname:"黑胖子",m:180,c:180,e:180}
+];
+var html="";
+//for(var i=0;i<students.length;i++){
+//	var s=students[i];
+for(var s of student){
+ html+=`<li>${s.sname}: ${s.m},${s.c},${s.e}</li>`;
+}
+studentList.innerHTML=html;
+var arr=[1,2,3,4,5];
+//for(var i=0;i<arr.length;i++){
+for(var n of arr){
+	//console.log(n*2);
+	n*=2;
+	//arr[i]*=2;
+}
+console.log(arr);
+		</script>
+	</body>
+</html>

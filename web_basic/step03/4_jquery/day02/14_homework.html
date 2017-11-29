@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+  a { text-decoration: none;  color: #000;  line-height: 2em; }
+ul { list-style:none;  padding: 0 0 0 20px; }
+.affix { float: left;  border: 1px solid #aaa;  width: 150px; }
+.affix  .active  a{ color: #e4393c;  font-weight: bold; }
+.container { float: left;  width: 550px;  min-height: 400px;  border: 1px solid #aaa; }
+.container .box { display: none;  min-height: 300px;  }
+.container .box.active { display: block; }
+
+	</style>
+ </head>
+ <body>
+  <h1>练习：查找元素&操作元素</h1>
+	<h3>使用附加导航(affix)实现内容切换</h3>
+
+	<div class="affix">
+		<ul>
+			<li><a data-toggle="item" href="#my-order">我的订单</a></li>
+			<li class="active"><a data-toggle="item" href="#user-setting">用户设置</a></li>
+			<li><a data-toggle="item" href="#account-security">账户安全</a></li>
+		</ul>
+	</div>
+
+	<div class="container">
+		<div id="my-order" class="box" style="background:#fee">我的订单的详细内容</div>
+		<div id="user-setting" class="box active" style="background:#efe">用户设置的详细内容</div>
+		<div id="account-security" class="box" style="background:#eef">账户安全的详细内容</div>
+	</div>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+//为class为affix下的ul绑定单击事件，只允许data-toggle属性为item的元素触发事件
+$(".affix>ul").on("click","[data-toggle=item]",e=>{
+	e.preventDefault();
+	var $tar=$(e.target);//获得目标元素$tar
+	//如果$tar的父元素的class不是active
+	if(!$tar.parent().is(".active")){
+		//给$tar的父元素添加class active
+		$tar.parent().addClass("active")
+		//再给$tar的父元素的其余兄弟清除class active
+		.siblings().removeClass("active");
+		//获得$tar的href属性值保存在id中
+		var id=$tar.attr("href");//e.target.href;
+		//用id查询对应的容器div，为其添加class active,再为除div之外的其余兄弟移除class active
+		$(id).addClass("active")
+					.siblings().removeClass("active");
+	}
+})
+	</script>
+ </body>
+</html>

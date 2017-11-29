@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function Student(fullName){
+			this.firstName;
+			this.lastName;
+			Object.defineProperty(this,'fullName',{
+				get:this.getFullName,
+				set:this.setFullName,
+				enumerable:true
+			});
+			this.fullName=fullName;
+		}
+		Student.prototype={
+			getFullName(){
+				return this.firstName+"."+this.lastName
+			},
+			setFullName(val){
+				var arr = val.split(/\.|\s/);
+				this.firstName = arr[0];
+				this.lastName = arr[1];
+			}
+		}
+		/*
+		var lilei = {
+			firstName:'Lei',
+			lastName:'Li'
+		}
+		Object.defineProperty(lilei,"fullName",{
+			get(){
+				return this.firstName+"."+this.lastName
+			},
+			set(val){
+				var arr = val.split(/\.|\s/);
+				this.firstName = arr[0];
+				this.lastName = arr[1];
+			},
+			enumerable:true
+		});
+		*/
+		var lilei = new Student('lei.li');
+		console.dir(lilei);
+	</script>
+</body>
+</html>

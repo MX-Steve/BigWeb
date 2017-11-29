@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .blue{background: blue}
+        .green{background: green}
+        .dark{background: black}
+    </style>
+</head>
+<body>
+<select name="" id="list">
+    <option value="blue" selected>蔚蓝天空</option>
+    <option value="green">芭比公主</option>
+    <option value="dark">暗黑主体</option>
+</select>
+<script>
+    list.onchange = function () {
+        console.log(this.value);
+        localStorage['color'] = this.value;
+    }
+</script>
+</body>
+</html>

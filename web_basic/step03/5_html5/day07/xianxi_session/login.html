@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#">
+    用户名<input type="text" name="uname" id="uname">
+    <br>
+    密码 <input type="password" name="upwd" id="upwd">
+    <button id="btn" type="button">登录</button>
+</form>
+<script>
+    btn.onclick = function () {
+
+        var uname = document.getElementById("uname").value;
+        var upwd = document.getElementById("upwd").value;
+        sessionStorage['uname'] = uname;
+        sessionStorage['upwd'] = upwd;
+        setTimeout(function () {
+            location.href = "index.html";
+        },3000)
+    }
+</script>
+</body>
+</html>

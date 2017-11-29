@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        canvas{
+            background: #ddd;
+        }
+
+    </style>
+</head>
+<body>
+    <canvas id="dd"></canvas>
+    <canvas id="ss"></canvas>
+    <script>
+        (function(){
+            class can{
+                constructor(id,w,h){
+                    this.widths=w;
+                    this.height=h;
+                    this.id=document.getElementById(id);
+										this.move = 0;
+                    this.color();
+                    this.setDom();
+                    this.line();
+
+                }
+
+                line(){
+                    this.id.onclick=e=>{
+											this.move++;
+											console.log(this.move);
+                     function a(min,max){
+											 return parseInt((Math.random()*max-min+1)+min)
+										 }//a:返回随机数函数
+                        var e = this;
+                           var ctx = this.id.getContext("2d");
+                           console.log(this.color());
+                           ctx.beginPath();
+                           ctx.strokeStyle=this.color();
+                       // console.log(this.id.color());
+                        ctx.moveTo(a(0,this.widths),a(0,this.height));
+                        ctx.lineTo(a(0,this.widths),a(0,this.height));
+                        ctx.stroke();
+                    }
+                }
+                color(){
+                   function a(min,max){return parseInt((Math.random()*max-min+1)+min)};
+                    var r = a(0,255);
+                    var g = a(0,255);
+                    var b = a(0,255);
+                    return `rgb(${r},${g},${b})`
+                }
+                setDom(){
+                    function a(min,max){return parseInt((Math.random()*max-min+1)+min)};
+                    this.id.width =this.widths;
+                    this.id.height= this.height;
+                    var ctx = this.id.getContext("2d");
+                    ctx.fillStyle = this.color();
+                    ctx.fillRect(0,0,this.widths,this.height);
+                    var pool = "ASDFGHJKLQWERTYIUUY12334432";
+                    for(var i=0;i<4;i++){
+                            var c = pool [a(0,pool.length)];
+                            //随机文字
+                            var fs = a(18,40);//随机旋转字体大小
+                            var deg = a(-45,45);//随机角度
+                        var bg = this.color();
+                            ctx.font = fs+"px SimHei";
+                            ctx.fillStyle = bg;
+                            ctx.textBaseline = "top";
+                            ctx.save(); //保存当前状态
+                          ctx.translate(30*i+15,15);//平移原点
+                        ctx.rotate(deg*Math.PI/180);//旋转
+                        ctx.fillText(c,-10,-15);  //绘制文本
+                            ctx.restore();
+                    }
+
+                }
+            }
+            window["can"]=can;
+        })()
+            var a = new can("dd",120,30);
+        var b = new can("ss",120,30);
+        console.log(b.color());
+    </script>
+</body>
+</html>

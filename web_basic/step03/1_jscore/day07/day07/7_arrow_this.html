@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn1">2楼</button>
+		<script>
+			var lilei={
+				sname:"Li Lei",
+				friends:["Jack","Rose","Tom","Jerry"],
+				intr(){
+					this.friends.forEach(
+						//function(elem){...this...}.bind(this)
+						elem=>{
+							console.log(this);//window
+							console.log(
+								this.sname+" 认识 "+elem)
+						}
+					)
+				}
+			}
+			lilei.intr();
+
+			//this->window
+			btn1.onclick=e=>{
+				//this->window
+				//alert("欢迎来到"+this.innerHTML);
+				//e.target->btn1
+				alert("欢迎来到"+e.target.innerHTML);
+			}
+			//单击btn1时,会自动执行btn1.onclick()
+		</script>
+	</body>
+</html>

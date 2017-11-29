@@ -1,0 +1,170 @@
+<!doctype html>
+
+ <head>
+  <meta charset="UTF-8">
+	<title></title>
+	<style>
+		body,div,ul,li{
+			margin: 0;padding: 0;
+		}
+		ul,li{
+			list-style:none;
+		}
+		ul{
+			width: 1500px;
+			height: 500px;
+			margin: auto;
+			border: 1px solid red;
+		}
+		li{
+			width: 200px;
+			height: 300px;
+			float:left;
+			border:15px solid blue;
+			
+		}
+		li:not(:first-child){
+			margin-left:-15px ;
+		}
+		span{
+			display:inline-block;
+			width: 200px;
+			height: 20px;
+			background: red;
+			transition:all 2s;
+			position: absolute;
+
+		}
+
+		#ss{
+			width: 200px;
+			height: 200px;
+			background: red;
+		}
+		#cc{
+			position: absolute;
+			background: #ddd;
+			left:0;
+			right:0;
+			top:0;
+			bottom:0;
+			margin: auto;
+		}
+	</style>
+ </head>
+ <body>
+		<ul id="ddd">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div id="ss"></div>
+		<span id="dd"></span>
+	<canvas id="cc" width="1200" height="1300"></canvas>
+		<script>
+//				var li =	document.getElementById("ddd").children;
+//				class ee{
+//					constructor(id,dd){
+//						this.id = document.getElementById(id);          v 
+//						this.li = this.id.children;
+//						this.move();
+//						this.span = document.getElementById(dd);
+//					}
+//						move(){this.id.onmouseover=(e)=>{
+//							var x = e.clientX;
+//							var y = e.clientY;
+//							console.log(x,y)
+//							this.span.style.left=x+"px";
+//							this.span.style.top=(y+300)+"px";
+//						}}
+//				}
+//		
+//				var ctx=cc.getContext("2d");
+//			ctx.save();
+//			ctx.translate(100,200);
+//			ctx.beginPath();
+//			ctx.arc(0,0,50,0,2*Math.PI);
+//			ctx.fill();
+//      ctx.restore();
+//			ctx.beginPath();
+//			ctx.arc(0,0,50,0,2*Math.PI);
+//			ctx.fill();
+//			var p3 = new Image();
+//			var deg = 0;
+//			p3.src= "p3.png";
+//		setInterval(function(){
+//		deg++;
+//		ctx.save();
+//			ctx.translate(200,150)
+//			ctx.rotate(deg*Math.PI/180);
+//			ctx.drawImage(p3,-100,-50);
+//			ctx.restore();
+//		
+//		},10)
+			var ctx = cc.getContext("2d");
+//			var y = 0 ;
+//			
+//			setInterval(function(){
+//				
+//					
+//					if(y<1200)y++;
+//					if(y>=1200)y=0;
+//				ctx.clearRect(0,0,1200,1200);
+//				ctx.beginPath();
+//						ctx.arc(300,y,20,0,2*Math.PI);
+//				ctx.beginPath();
+//				ctx.arc(550,y,20,0,2*Math.PI);
+//		ctx.arc(600,y,20,0,2*Math.PI);
+//
+//
+//				ctx.arc(100,y,20,0,2*Math.PI);
+//				ctx.fillStyle="white";
+//				ctx.fill(); 
+//				},10)
+				var arr = [];
+				for(var i = 0;i<80;i++){
+					var x = Math.random()*1200;
+					var y = Math.random()*1300;
+					var a = [x,y];
+					arr.push(a);
+				}
+				var x = arr[0][0];
+				var y = arr[0][1];
+				arr.forEach(function(e,i,arr){
+				var aa = new Image();
+					aa.src="index.ico";
+					/*aa.onload = function(){
+						e[1]+=1;
+						if(e[1]>=1290)e[1]=0;
+						ctx.drawImage(aa,e[0],e[1]);
+						ctx.clearRect(e[0]-30,e[1]-30,100,100)
+							//ctx.clearRect(0,0,1200,1300);
+								//ctx.beginPath();
+							//	ctx.arc(e[0],e[1],20,0,2*Math.PI);
+							///	ctx.fillStyle="white";
+						//		ctx.fill(); 
+					}
+					*/
+				function a(){
+
+						e[1]+=1;
+						if(e[1]>=1290)e[1]=0;
+						ctx.drawImage(aa,e[0],e[1]);
+						ctx.clearRect(e[0]-30,e[1]-30,62,32)
+							//ctx.clearRect(0,0,1200,1300);
+								//ctx.beginPath();
+							//	ctx.arc(e[0],e[1],20,0,2*Math.PI);
+							///	ctx.fillStyle="white";
+						//		ctx.fill(); 
+						requestAnimationFrame(a);
+					}
+					
+				requestAnimationFrame(a);
+				
+				})
+			
+		</script>
+ </body>
+</html>

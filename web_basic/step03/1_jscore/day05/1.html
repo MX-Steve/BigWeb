@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		"use strict";
+		var eric = {
+			id:1001,
+			name:'zhangs',
+			salary:12000
+		}
+		console.dir(eric);
+		Object.defineProperty(eric,"id",{
+			writable:false
+		});
+		Object.defineProperty(eric,"name",{
+			configurable:false
+		});
+		Object.defineProperty(eric,"salary",{
+			enumerable:false
+		});
+		var attrs = Object.getOwnPropertyDescriptor(eric,'id');
+		console.dir(attrs);
+		//eric.salary=20000;
+	</script>
+</body>
+</html>

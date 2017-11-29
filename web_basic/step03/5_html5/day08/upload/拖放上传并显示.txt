@@ -1,0 +1,29 @@
+拖动上传文件：
+	1.拖动api
+		源对象：ondragstart,ondrag,ondragend
+		目标对象：ondragenter,ondragover,ondragleave,ondrop
+		#阻止页面(document)默认行为
+		$(document).on(drop:function(e){e.preventDefault();});
+		//拖动离开，拖动释放，拖动进入，拖动悬停
+		
+		<div id="box"></div>
+		var files = e.dataTransfer.files
+		files.length;
+
+	2.图片预览
+		#fileReader
+		#URL.createObjectURL.files[0]//读取图片信息，1个文件
+		<div id=preview>
+
+	3.ajax
+		#post
+		a.修改请求头：目标：将上传的内容转换为二进制数据流
+		xhr.setRequestHeader('X-Requested-With',"XMLHttpRequest");
+		b.创建一个对象，FormData,防止文件
+		c.上传图片对象
+			var fd = new FormData();
+			fd.append('mypic',fileList[0]);
+			fd.append('uname','tom');
+			xhr.send(fd);
+
+	4.php

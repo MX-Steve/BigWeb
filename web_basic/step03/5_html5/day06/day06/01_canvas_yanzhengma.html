@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{text-align:center;}
+		#c1{background:#ddd;}
+	</style>
+</head>
+<body>
+	<h3>canvas验证码</h3>
+	<h4>生成环境中的验证码都是服务器端技术生成，不是客户端技术生成</h4>
+	
+	<canvas id="c1"></canvas>
+
+	<script>
+        //1.创建变量保存宽度和高度
+		var w = 120,h = 30;
+        c1.width = w;
+        c1.height = h;
+        //2.填充背景颜色
+		function rn(min,max) {
+			return Math.floor(Math.random()*(max-min)+min);
+        }
+        function rc(min,max) {
+			var r = rn(min,max);
+			var g = rn(min,max);
+			var b = rn(min,max);
+			return `rgb(${r},${g},${b})`;
+        }
+		var ctx = c1.getContext('2d');
+		ctx.fillStyle = rc(180,230);
+		ctx.fillRect(0,0,w,h);
+		//3.绘制随机数字、字符
+		var pool = 'abcdefghijklmnopqrstvuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567';
+		for(var i=0;i<pool.length;i++){
+		    var c = pool[rn(0,pool.length)];
+		    var fs = rn(18,40);
+		    var deg = rn(-45,45);
+		    var bg = rc(80,180);
+		    ctx.font = fs + "px SimHei";
+		    ctx.fillStyle = bg;
+		    ctx.textBaseline  = 'top';
+		    //保存当前状态
+		     ctx.save();
+		     //1.平移原点
+			ctx.translate(30*i+15,15);
+			 //2.旋转
+			ctx.rotate(deg*Math.PI/180);
+			 //3.绘制文本
+			ctx.fillText(c,-10,-15);
+		     //恢复之前状态
+		     ctx.restore();
+		}
+		//4.绘制干扰线6
+		//5.绘制干扰点50
+	</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="number" id="input">
+<button id="btn">开始计算累加和</button>
+<br>
+<div id="box"></div>
+<script>
+    btn.onclick = function () {
+        var num = input.value;
+        var w2 = new Worker('js/z.js');
+        w2.postMessage(num);
+        w2.onmessage = function (e) {
+            console.log("接收到的和为："+e.data);
+            box.innerHTML = e.data;
+        }
+    }
+</script>
+</body>
+</html>

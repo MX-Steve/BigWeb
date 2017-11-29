@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0 minimum-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" href="../images/logo.ico">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="../basic/css/base.css">
+    <link rel="stylesheet" href="../basic/css/hfstyle.css">
+    <link rel="stylesheet" href="../basic/css/index.css">
+    <title>悦桔商城欢迎您</title>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!--<style>-->
+        <!--div{-->
+        <!--border: 1px solid red;-->
+        <!--}-->
+    <!--</style>-->
+</head>
+<body>
+    <!--顶部 header-->
+    <div id="header">
+        <div class="container header">
+            <ul class="mes-l">
+                <div class="topmsg ">
+                    <div class="menu-hd">
+                        <a href="login.html">亲，请登录</a>
+                        <a href="register.html.html">免费注册</a>
+                    </div>
+                </div>
+            </ul>
+            <ul class="mes-r">
+                <div class="topmsg home">
+                    <div class="menu-hd">
+                        <a href="index.html">商城首页</a>
+                    </div>
+                </div>
+                <div class="topmsg myCenter">
+                    <div class="menu-hd">
+                        <a href="#">
+                            <i class="am-icon-user am-icon-fw"></i>
+                            个人中心
+                        </a>
+                    </div>
+                </div>
+                <div class="topmsg cart">
+                    <div class="menu-hd">
+                        <a href="#" id="mc-menu-hd">
+                            <i class="am-icon-shopping-cart am-icon-fw"></i>
+                            <span>购物车</span>
+                            <strong id="cartNum" class="n">0</strong>
+                        </a>
+                    </div>
+                </div>
+                <div class="topmsg favorite">
+                    <div class="menu-hd">
+                        <a href="#" >
+                            <i class="am-icon-heart am-icon-fw"></i>
+                            <span>收藏夹</span>
+                        </a>
+                    </div>
+                </div>
+            </ul>
+        </div>
+        <!--搜索框-->
+        <div class="nav white">
+            <div class="logo">
+                <img src="../images/logo.png" alt="">
+            </div>
+            <div class="logoBig">
+                <li>
+                    <img src="../images/logobig.png" alt="">
+                </li>
+            </div>
+            <div class="search-bar pr">
+                <form>
+                    <input type="text" placeholder="搜索商品" id="searchInput" autocomplete="off">
+                    <input type="submit" id="topSearch" class="btn btn-danger btn-lg" value="搜索">
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--轮播图-->
+    <div class="banner">
+        <div id="adv" class="carousel" data-ride="carousel">
+            <ul class="carousel-inner slides">
+                <li class="item active banner1">
+                    <a href="#">
+                    <img src="../images/ad1.jpg">
+                    </a>
+                </li>
+                <li class="item banner2">
+                    <a href="#">
+                        <img src="../images/ad2.jpg">
+                    </a>
+                </li>
+                <li class="item banner3">
+                    <a href="#">
+                        <img src="../images/ad3.jpg">
+                    </a>
+                </li>
+                <li class="item banner4">
+                    <a href="#">
+                        <img src="../images/ad4.jpg">
+                    </a>
+                </li>
+            </ul>
+            <a href="#adv" class="carousel-control left" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a href="#adv" class="carousel-control right" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+            <ul class="carousel-indicators">
+                <li data-slide-to="0" data-target="#adv" class="active"></li>
+                <li data-slide-to="1" data-target="#adv"></li>
+                <li data-slide-to="2" data-target="#adv"></li>
+                <li data-slide-to="3" data-target="#adv"></li>
+            </ul>
+        </div>
+    </div>
+    <!--导航栏-->
+    <div class="shop-nav">
+        <div class="slideAll has-feedback">
+            <div class="long-title">
+                <span class="all-goods">全部分类</span>
+            </div>
+            <div class="nav-cont">
+                <ul>
+                    <li class="index"><a href="index.html">首页</a>|</li>
+                    <li><a href="#">闪购 </a>|</li>
+                    <li><a href="#">限时抢</a>|</li>
+                    <li><a href="#">团购</a>|</li>
+                    <li><a href="#">大包装</a></li>
+                </ul>
+                <div class="nav-extra">
+                    <i class="am-icon-user-secret am-icon-md nav-user"></i>
+                    <b></b>
+                    我的福利
+                </div>
+            </div>
+            <!--侧边导航栏-->
+            <div class="navfull">
+                <div class="nav-content">
+                    <div class="category">
+                        <ul class="category-list">
+                            <li class="relative first">
+                                <div class="category-info">
+                                    <h3 class="category-name has-feedback">
+                                        <i><img src="../images/cake.jpg"></i>
+                                        <a class="ml" title="点心">点心/蛋糕</a>
+                                    </h3>
+                                    <em>></em>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div class="category-info">
+                                    <h3 class="category-name has-feedback">
+                                        <i><img src="../images/cookies.jpg"></i>
+                                        <a class="ml" title="饼干膨化">饼干/膨化</a>
+                                    </h3>
+                                    <em>></em>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div class="category-info">
+                                    <h3 class="category-name has-feedback">
+                                        <i><img src="../images/meat.jpg"></i>
+                                        <a class="ml" title="熟食、肉类">熟食/肉类</a>
+                                    </h3>
+                                    <em>></em>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div class="category-info">
+                                    <h3 class="category-name has-feedback">
+                                        <i><img src="../images/bamboo.jpg"></i>
+                                        <a class="ml" title="素食卤味">素食/卤味</a>
+                                    </h3>
+                                    <em>></em>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div class="category-info">
+                                    <h3 class="category-name has-feedback">
+                                        <i><img src="../images/nut.jpg"></i>
+                                        <a class="ml" title="坚果、炒货">坚果/炒货</a>
+                                    </h3>
+                                    <em>></em>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div class="category-info">
+                                    <h3 class="category-name has-feedback">
+                                        <i><img src="../images/candy.jpg"></i>
+                                        <a class="ml" title="糖果、蜜饯">糖果/蜜饯</a>
+                                    </h3>
+                                    <em>></em>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div class="category-info">
+                                    <h3 class="category-name has-feedback">
+                                        <i><img src="../images/chocolate.jpg"></i>
+                                        <a class="ml" title="巧克力">巧克力</a>
+                                    </h3>
+                                    <em>></em>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div class="category-info">
+                                    <h3 class="category-name has-feedback">
+                                        <i><img src="../images/fish.jpg"></i>
+                                        <a class="ml" title="海味">海味/河鲜</a>
+                                    </h3>
+                                    <em>></em>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div class="category-info">
+                                    <h3 class="category-name has-feedback">
+                                        <i><img src="../images/tea.jpg"></i>
+                                        <a class="ml" title="花茶">果茶/花茶</a>
+                                    </h3>
+                                    <em>></em>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div class="category-info">
+                                    <h3 class="category-name has-feedback">
+                                        <i><img src="../images/package.jpg"></i>
+                                        <a class="ml" title="品牌礼包">品牌/礼包</a>
+                                    </h3>
+                                    <em>></em>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="../bootstrap-3.3.7/js/jquery-1.11.3.js"></script>
+<script src="../bootstrap-3.3.7/js/bootstrap.js"></script>
+<script src="../bootstrap-3.3.7/js/bootlint.js"></script>
+<script>
+    bootlint.showLintReportForCurrentDocument([]);
+</script>
+</body>
+</html>

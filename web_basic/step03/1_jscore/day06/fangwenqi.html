@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		class Emp{
+			constructor(age){
+				Object.defineProperties(this,{
+					_age:{writable:true}
+				});
+				this.age = age;
+				Object.seal(this);
+			}
+			//静态方法
+			static findEmpById(){
+				console.log("按id查找员工！");
+			}
+			//get 和 set 和构造函数的原型对象平级
+			get age(){return this._age;}
+			set age(val){
+				if(val >=18 && val<=65){
+					this._age = val;
+				}else{
+					throw new RangeError("年龄必须介于18-65之间");
+				}
+			}
+		}
+		var eric = new Emp(21);
+		//错误栈：最底层是最早触发的
+		console.dir(eric);
+		Emp.findEmpById();
+	</script>
+</body>
+</html>

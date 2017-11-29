@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+    var str="No zuo no die,No can no bibi";
+           //01     78    14     21
+    var i=-1;
+    do{
+      i=str.toLowerCase()
+           .indexOf("no".toLowerCase(),i+1);
+      if(i!=-1)
+        console.log("在位置 "+i+" 发现敏感词");//0
+      else
+        break;
+    }while(true);
+  </script>
+ </body>
+</html>

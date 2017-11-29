@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var father = {
+			bal:1000000000,
+			car:'infiniti'
+		};
+		var child = Object.create(father,{
+			'phone':{
+				value:'iphone7',//另外三个是falsedefineProperties
+				writable:true,
+				enumerable:true,
+				configurable:true
+			}
+		});//创建一个child，继承father
+		console.dir(child);
+	</script>
+</body>
+</html>

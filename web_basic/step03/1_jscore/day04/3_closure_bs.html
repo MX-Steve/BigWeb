@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function fun(){
+				var n=999;
+				nAdd=function(){n++};
+				return function(){
+					console.log(n);
+				}
+			}
+			var get=fun
+		</script>
+	</body>
+</html>

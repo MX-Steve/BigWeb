@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+    var url="http://tedu.cn/imgs/logo.png";
+    var i=url.lastIndexOf("/");
+    var filename=url.slice(i+1);
+    i=url.lastIndexOf(".");
+    var ext=url.slice(i);
+    console.log(filename,ext);//logo.png .png
+  </script>
+ </body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>//hoist
+			//var a;
+
+			//console.log(a);//undefined
+			let a=10;
+			console.log(a);//10
+
+			function fun(){//hoist
+				//var a;
+
+				//console.log(a);//undefined
+				let a=100;
+				console.log(a);//100
+			}
+			fun();
+			console.log(a);//10
+		</script>
+		
+
+	</body>
+</html>

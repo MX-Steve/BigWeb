@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- saved from url=(0084)http://code.tarena.com.cn/WEBCode/wfd1708/09_JAVASCRIPTCORE/day06/4_constructor.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		
+		<title></title>
+	</head>
+	<body>
+		<script>
+"use strict";
+function Emp(id,ename,salary,age){//外层函数
+	this.id=id;
+	this.ename=ename;
+	this.salary=salary;
+/*
+	java中共有属性、私有属性
+	public / private
+*/
+	var _age;//undefined//受保护的变量
+	Object.defineProperties(this,{
+		id:{ writable:false},
+		ename:{},
+		salary:{enumerable:false},
+
+		age:{
+			get(){return _age;},//内层函数
+			set(val){//内层函数
+				if(val>=18&&val<=65)
+					_age=val;
+				else
+					throw new RangeError("年龄必须介于18~65之间");
+			},
+			enumerable:true,
+			//configurable:false
+		}
+	});
+	this.age=age;
+	//结构保护
+//	Object.preventExtensions(this);
+	Object.seal(this);
+}
+/*
+	静态方法：直接用构造函数调用的方法
+*/
+var eric=new Emp(1001,"Eric",12000,25);
+//eric.family='beijing';
+//eric.id=1002;
+//delete eric.ename;
+//eric.age=-2;
+//delete eric.age;
+for(var key in eric){
+	console.log(key+":"+eric[key]);
+}
+		</script>
+	
+</body></html>

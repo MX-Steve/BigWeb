@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+//如果String的原型对象的trim的类型不是function
+if(typeof String.prototype.trim!="function")
+	//向?添加trim函数
+	String.prototype.trim=function(){
+		document.write("调用自定义的trim()<br>");
+		//返回当前字符串替换开头和结尾的空字符后的结果
+		return this.replace(/^\s+|\s+$/g,"");
+	}
+
+			var str=" Hello world ";
+			document.write("<h1>"+str.trim()+"</h1>");
+		</script>
+	</body>
+</html>

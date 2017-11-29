@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="c1"></canvas>
+<script>
+    var progress = 0;//所有图片的加载进度
+
+    //示例：解决问题：多图片加载
+    var imgBg = new Image();
+    imgBg.src = "head_img/bg.jpg";
+    imgBg.onload = function () {
+        progress +=25;
+        if(progress == 100){
+            startDraw();
+        }
+    }
+    var play = new Image();
+    play.src="head_img/play.png";
+    play.onload=function () {
+        progress +=25;
+        if(progress == 100){
+            startDraw();
+        }
+    }
+    var disc = new Image();
+    disc.src="head_img/disc.png";
+    disc.onload=function () {
+        progress +=25;
+        if(progress == 100){
+            startDraw();
+        }
+    }
+    var pause = new Image();
+    pause.src="head_img/pause.png";
+    pause.onload=function () {
+        progress +=25;
+        if(progress == 100){
+            startDraw();
+        }
+    }
+    function startDraw() {
+        //1.设置画布的宽度和高度
+        var w = imgBg.width;
+        var h = imgBg.height;
+        c1.width = w;
+        c1.height = h;
+        var ctx = c1.getContext('2d');
+        ctx.drawImage(imgBg,0,0);
+        ctx.beginPath();
+        ctx.arc(w/2,h/2,120,0,2*Math.PI);
+        ctx.fill();
+        ctx.drawImage(disc,w/2-90,h/2-90,180,180);
+        ctx.drawImage(play,w/2-50,h/2-50,100,100);
+    }
+    c1.onclick = function (e) {
+        var w = imgBg.width;
+        var h = imgBg.height;
+        var x = e.offsetX;
+        var y = e.offsetY;
+        var btnsx = (w-100)/2;
+        var btnex = w/2+100/2;
+        var btnsy = (h-100)/2;
+        var btney = h/2+100/2;
+        if(x>btnsx && x<btnex && y>btnsy && y<btney){
+            console.log(1111);
+        }
+    }
+</script>
+</body>
+</html>

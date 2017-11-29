@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	"use strict"
+		//实现一个js类型，既包含公有属性、又包含私有属性
+		function Emp(id,name,age,salary){
+			//public==>this.添加的属性都是公有属性
+			this.id=id;
+			this.name=name;
+			this.age=age;
+			this.salary=salary;
+			//private
+			var _age;//=>局部变量等效于private
+			
+				//配置属性的特性：
+			Object.defineProperties(
+					this,{
+						id:{//只读
+							writable:false,
+							configurable:false
+						},
+						name:{
+							writable:false,
+							configurable:false
+						},
+						salary:{//不可遍历
+							enumerable:false,
+							configurable:false
+						},
+						age:{//添加访问器属性，保护局部变量_age
+							set:function(val){
+								if(val<18 || val>65){
+									throw new Error("年龄必须介于18-65之间");
+								}else{
+									_age = val;
+								}
+							},
+							get:function(){
+								return _age;
+							},
+							enumerable:true,
+							configurable:true
+						}
+					}
+			);
+
+			this.age=age;
+			//防篡改
+			//防扩展
+			//1.Object.preventExtensions(this);
+			//防扩展、禁删除
+			Object.seal(this);
+		}
+		var emp = new Emp(1001,'eric',25,10000);
+		
+		//emp.age = 67;//报错
+//		delete emp.age;
+		console.log(emp.id,emp.name,emp.age,emp.salary);
+		var CONF = {
+			ID:123,
+			PORT:201706
+		}
+		Object.freeze(CONF);
+		//CONF.ID1=12;
+		//delete CONF.ID;
+	</script>
+</body>
+</html>

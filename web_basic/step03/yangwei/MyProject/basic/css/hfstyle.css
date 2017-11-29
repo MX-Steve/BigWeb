@@ -1,0 +1,183 @@
+@charset "utf-8";
+.am-container{
+    padding-left: 0;
+    padding-right:0;
+}
+@media screen and (min-width: 640px){
+    .am-container .header{
+        padding-right: 40px;
+        padding-left: 21px;
+    }
+}
+.header{
+    display: none;
+    max-width:1000px;
+    margin: 0 auto;
+    font-size: 12px;
+}
+@media screen and (min-width: 640px){
+    .header{
+        display: block;
+        height: 35px;
+    }
+}
+@media screen and (min-width: 640px){
+    .mes-l{
+        float: left;
+    }
+}
+@media screen and (min-width: 640px){
+    .mes-r{
+        float: right;
+    }
+}
+
+@media screen and (min-width: 640px){
+    .mes-l .topmsg{
+        height: 35px;
+        padding: 0 6px;
+        line-height: 35px;
+    }
+}
+@media screen and (min-width: 640px){
+    .mes-r .topmsg{
+        float: left;
+        height: 35px;
+        padding: 0 6px;
+        line-height: 35px;
+    }
+}
+a{
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+}
+a:hover, a:visited,a:link{
+    text-decoration: none;
+    outline: none;
+}
+/*搜索*/
+.nav.white{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    margin: 0 auto;
+    background-color: #fff;
+}
+@media screen and (min-width: 640px){
+    .nav.white{
+        padding-left:0;
+        padding-right: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+        position: relative;
+        top: 0px;
+    }
+}
+.logo{
+    float: left;
+    height: 41px;
+    width: 70px;
+    margin: 6px auto;
+}
+.logo img{
+    width: 100%;
+}
+@media screen and (min-width: 1025px){
+    .nav .logo{
+        display: none;
+    }
+}
+@media screen and (min-width: 640px){
+    .nav .logo{
+        display: none;
+    }
+}
+.logoBig{
+    display: none;
+}
+@media screen and (min-width: 640px){
+    .nav.white .logoBig{
+        float: left;
+        display: block;
+        height: 56px;
+        width: 115px;
+        margin: 0 auto;
+        margin-left: 5%;
+    }
+}
+@media screen and (min-width: 1025px) {
+    .nav.white .logoBig{
+        float: left;
+        display: block;
+        height: 90px;
+        width: 200px;
+        margin-left: 0px;
+    }
+}
+
+
+@media screen and (min-width: 640px){
+    .nav.white .logoBig img{
+        width: 100%;
+    }
+}
+.search-bar{
+    height: 41px;
+    margin: 8px 20px 0 75px;
+}
+.search-bar form{
+    border: 2px solid #F03726;
+    max-width: 670px;
+}
+.search-bar input{
+    padding-left: 5px;
+    height: 32px;
+    width:78%;
+    font-size: 12px;
+    border: none;
+    outline: none;
+}
+
+@media screen and (min-width: 640px){
+    .search-bar input{
+        height: 46px;
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 1025px){
+    .search-bar input{
+        height: 46px;
+    }
+}
+@media only screen and (min-width: 640px){
+    .search-bar{
+        padding-left: 5%;
+        height: 51px;
+        margin: 0 50px 0 120px;
+    }
+}
+@media only screen and (min-width: 1028px){
+    .search-bar{
+        margin: 0 auto;
+        height: 90px;
+        padding: 20px 70px 0 230px;
+    }
+}
+#topSearch{
+    width: 20%;
+    border: none;
+    height: 32px;
+    float: right;
+    background:#F03726 none repeat scroll 0% 0% ;
+    cursor: pointer;
+    border-radius: 0px 0px;
+}
+@media only screen and (min-width: 640px){
+    #topSearch{
+        height: 47px;
+        font-size: 18px;
+    }
+}

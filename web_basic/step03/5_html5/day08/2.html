@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<style>
+		.blue{
+			background:blue;
+			color:#fff;
+		}
+		.pink{
+			background:pink;
+			color:#fff;
+		}
+		.yellow{
+			background:yellow;
+			color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<h1>用户中心</h1>
+	<script>
+		var my = localStorage.getItem('myStyle');
+		if(my){
+			document.body.className = my;
+		}
+		//只要localstorage中的数据发生变化，就会立即触发onstorage事件
+		window.onstorage = function(){
+            var my = localStorage.getItem('myStyle');
+            document.body.className = my;
+		}
+	</script>
+</body>
+</html>

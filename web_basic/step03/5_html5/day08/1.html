@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.blue{
+			background:blue;
+			color:#fff;
+		}
+		.pink{
+			background:pink;
+			color:#fff;
+		}
+		.yellow{
+			background:yellow;
+			color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<select name="" id="list">
+		<option value="blue">blue</option>
+		<option value="pink">pink</option>
+		<option value="yellow">yellow</option>
+	</select>
+	<a href="2.html">去用户中心</a>
+
+	<script>
+		list.onchange  = function(){
+			var val = this.value;
+			localStorage.setItem('myStyle',val);
+			document.body.className = val;
+		}
+		var my = localStorage.getItem('myStyle');
+		if(my){
+			document.body.className = my;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+功能模块二:商品分页显示
+
+完成此功能需要程序
+1:data/product_list.php
+ 获取参数pno将数据库中数据查询出来并且并且js
+ a:获取用户指定页码(1 2 3)
+ b:查询当前页内容?
+ c:查询总记录
+ d:将结果发送 json
+2:product_list.html
+  显示数据
+  300  动态创建数据8行 <tr>
+3:js/product_list.js
+  中间人:发送ajax请求php获取数据->显示html
+
+
+  expects parameter 1 to be mysqli_result, boolean
+  SQL语句拼写错误
+  Unknown column 'price1' in 'field
+  未知列 price1
+
+
+  列名拼写错误
+  解决方案:
+  每一条sql语句执行之后
+  if(mysqli_error($conn)){
+     echo mysqli_error($conn);
+  }
+
+  #-------------------------
+  添加新功能:为产品列中每一条记录,添加列
+  expire 失效 enum('1','0')
+  '0' 表示状态正常
+  '1' 表示状态失效
+  操作:
+  1:向产品表中添加一条
+  ALTER TABLE xz_laptop ADD
+  expire enum('0','1') default '0';
+  2:php查询失效数值
+  sql = "expire";
+  3:js 判断如果expire 不再显示 删除/更新/详细信息按钮
+
+分页条:
+默认  [1][2][3]       {6}
+     [1][2][3][4][5]
+     [3][4][5][6][7]
+
+
+
+
+
+
+
+
+
+
+
+
+
+

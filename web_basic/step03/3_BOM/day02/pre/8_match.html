@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <script src="ajax.js"></script>
+  <script>
+    var str="No zuo no die,No can no bibi";
+    var arr=str.match(/no/ig);//No,no,No,no
+    console.log(arr);
+
+    //用ajax请求sina.html
+    ajax("get","sina.html","","text")
+    .then(function(html){//onreadystatechange
+      //查找HTML中所有有效的http连接
+      var as=html.match(
+        /<a [^>]*href="http[^"]+"/ig
+      );
+      //console.log(as);
+      //遍历as中每个a
+      for(var i=0;i<as.length;i++){
+        //查找a中href的位置index
+        var index=as[i].indexOf("href");
+        //选取a中从index+6到倒数第2个字符的子字符串，保存回as中当前位置
+        as[i]=as[i].slice(index+6,-2+1);
+      }
+      console.log(as[i]);
+    })
+
+  </script>
+ </body>
+</html>

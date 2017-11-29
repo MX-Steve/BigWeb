@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+    var str="No zuo no die,No can no bibi";
+    var arr=str.match(/no/ig);
+      //null
+    str=str.replace(/no/ig,"**");
+    console.log(str);
+    console.log(
+      "共替换"+
+      (arr!=null?arr.length:0)
+      +"处"
+    );
+  </script>
+ </body>
+</html>

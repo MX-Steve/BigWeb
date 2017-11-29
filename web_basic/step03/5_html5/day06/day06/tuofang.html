@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#trash{
+			width:300px;
+			height:300px;
+			margin:0 auto;
+			background:#ddd;
+			line-height:300px;
+			text-align:center;
+		}
+	</style>
+</head>
+<body>
+	<h3>拖动元对象可能触发事件3</h3>
+	<div id="box">
+		<img src="upload/15113321463764.jpg" id='p1' alt="">
+		<img src="upload/15113321463764.jpg" id='p2' alt="">
+		<img src="upload/15113321463764.jpg" id='p3' alt="">
+	</div>
+	<div id="trash">垃圾桶</div>
+	<script>
+	//拖动事件的原对象可能触发的事件
+	var list = document.querySelectorAll("#box img");
+//	循环每一个对象，绑定三个事件
+	for(var i=0;i<list.length;i++){
+		var p = list[i];
+		var id = p.id;
+		p.ondragstart = function(){console.log('start');
+			ids = this.id;
+		}
+		p.ondrag =  function(){console.log('on...');}
+		p.ondragend = function(){console.log('end');}
+	}
+//	拖动事件的目标对象，可能触发的事件4
+		trash.ondragenter = function(){
+			console.log('enter');
+		}
+		trash.ondragover = function(e){
+			e.preventDefault();
+			console.log('over');
+		}
+		trash.ondragleave = function(){
+			console.log('leave');
+		}
+		trash.ondrop = function(){
+			var img = document.getElementById(ids);
+			box.removeChild(img);
+			console.log('drop');
+		}
+
+	/*
+		p3.ondragstart = function(){console.log('start');}
+		p3.ondrag =  function(){console.log('on...');}
+		p3.ondragend = function(){console.log('end');}
+		trash.ondragenter = function(){
+			console.log('enter');
+		}
+		trash.ondragover = function(e){
+			e.preventDefault();
+			console.log('over');
+		}
+		trash.ondragleave = function(){
+			console.log('leave');
+		}
+		trash.ondrop = function(){
+			console.log('drop');
+		}
+		*/
+	</script>
+</body>
+</html>

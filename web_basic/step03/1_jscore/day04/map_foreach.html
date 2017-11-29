@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		"use strict"
+		var arr = [1,2,3,4,5];
+		arr.forEach(function(elem,i,arr){
+			arr[i] = elem*2;
+		})
+		//console.dir(arr);
+		var arr1 = arr.map(function(elem){
+			return elem*2;
+		});
+		//console.dir(arr1);
+		//console.dir(arr);
+		var emp = {
+			id:1001,
+			ename:'eric',
+			price:2000
+		}
+		var attrs = Object.getOwnPropertyDescriptor(emp,"id");//获得
+		console.dir(attrs);
+		Object.defineProperty(emp,'id',{//设置
+			enumerable:false,
+			writable:false,
+			configurable:false,
+		});
+		//emp.id = 1002;
+		for(var key in emp){
+			console.log(key+":"+emp[key]);
+		}
+		//delete emp.id;
+		console.dir(emp);
+		Object.defineProperties(emp,{
+			'ename':{//直接量自动生成的属性，特性值为true，但是新属性，特性值为false
+				writable:false,
+				configurable:false
+			},
+			"price":{
+				writable:false,
+				enumerable:false,
+				configurable:false
+			},
+			gender:{
+				value:"male",
+				enumerable:true
+				/*
+					writable:false,
+					enumerable:false,
+					configurable:false
+				*/
+			}
+		});
+		//emp.price=30000;
+		var attrs = Object.getOwnPropertyDescriptor(emp,"gender");//获得
+		console.dir(attrs);
+	</script>
+</body>
+</html>

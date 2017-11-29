@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//1. 外层函数包裹受保护的变量和内层函数
+			function factory(){
+				var i=1;
+				//2. 外层函数返回内层函数对象到外部
+				return function(){	
+					console.log(i++);
+				}
+			}
+			//3. 调用外层函数，获得内层函数对象
+			var icbc=factory();
+			//icbc:function(){(icbc的i=1)
+				//console.log(i++);
+			//}
+			icbc();//1
+			icbc();//2
+			i=1;
+			icbc();//3
+			icbc();//4
+
+			var abc=factory();
+			//abc:function(){(abc的i=1)
+				//console.log(i++);
+			//}
+			abc();//1
+		</script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#btn{
+				width:100px; height:50px;
+				border:1px solid red;
+				background:#ddd;
+				cursor:pointer;
+				line-height:25px; 
+				text-align:center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn" onclick="show()">刮刮卡</div>
+		<script>
+function show(){
+	//一等奖:Mac笔记本 0.001
+	//二等奖:小米手机  0.01
+	//三等奖:蓝牙音响  0.1
+	//参与奖:扇子      99
+	var r=Math.random();
+	btn.innerHTML=
+		r<0.001?"一等奖:<br>Mac笔记本":
+		r<0.01?"二等奖:<br>小米手机":
+		r<0.1?"三等奖:<br>蓝牙音响":
+		       "参与奖:<br>扇子";
+}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <ul id="ulScores">
+    <li>65</li><li>78</li><li>85</li>
+    <li>60</li>
+    <li>73</li>
+    <li>90</li>
+  </ul>
+  <script>
+    var html=ulScores.innerHTML;
+    console.log(html);
+    html=html.replace(/^\s*<li>|<\/li>\s*$/g,"");
+    console.log(html);
+    var scores=html.split(/<\/li>\s*<li>/);
+    console.log(scores);
+    scores.sort(function(a,b){return b-a});
+    console.log(scores);
+    html="<li>"+scores.join("</li><li>")+"</li>";
+    console.log(html);
+    ulScores.innerHTML=html;
+
+    var stmt="we two who and who";
+    //鄙视: 将每个单词首字母改为大写
+    var words=stmt.split(" ");
+    console.log(words);
+    for(var i=0;i<words.length;i++){
+      var w=words[i];
+      words[i]=w[0].toUpperCase()+w.slice(1);
+    }
+    stmt=words.join(" ");
+    console.log(stmt);
+    //作业: 用正则+replace，一句话实现该功能！
+  </script>    
+ </body>
+</html>

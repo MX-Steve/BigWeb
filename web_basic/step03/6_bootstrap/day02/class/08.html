@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,
+           initial-scale=1">
+    <meta http-equiv="x-UA-Compatible" content="IE=edge">
+    <title>bootstrap_按</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        div{border:1px solid #ff0}
+    </style>
+</head>
+<body>
+<h4>bootstrap 基础样式</h4>
+<h3>栅格</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">col-xs-6</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">col-sm-6</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">col-md-6</div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">col-lg-6</div>
+    </div>
+    <div class="dropdown">
+        <!--<a data-toggle="dropdown" data-qiehuan="xiala" href="#">触发元素</a>-->
+        <a data-qiehuan="xiala" href="#">触发元素</a>
+        <ul class="dropdown-menu">
+            <li>苹果1</li>
+            <li>苹果2</li>
+            <li>苹果3</li>
+        </ul>
+    </div>
+    <hr>
+    <div class="dropdown">
+        <!--<a  data-qiehuan="xiala" href="#">触发元素</a>-->
+        <a data-toggle="dropdown" class="btn btn-success" href="#">
+            产品大全
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header">水果类</li>
+            <li>苹果2</li>
+            <li>苹果3</li>
+            <li class="dropdown-header">婴童类</li>
+            <li>奶粉</li>
+            <li>尿不湿</li>
+        </ul>
+    </div>
+</div>
+
+
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/bootlint.js"></script>
+<script>
+    bootlint.showLintReportForCurrentDocument([]);
+</script>
+<script>
+    $("[data-qiehuan='xiala']").click(function (e) {
+        e.preventDefault();
+        $(this).siblings('.dropdown-menu').toggle();
+    });
+</script>
+</body>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="css/bootstrap.css"/>
+  <style>
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>可见性选择器</h1>
+
+  <div id="d1" style="display: none">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, aspernatur magnam mollitia asperiores sequi provident quis consequatur! Sapiente, dolores, nisi, nulla itaque maxime deleniti quas sit recusandae nam aliquam exercitationem!</div>
+  <div id="d2" style="visibility: hidden">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum esse vitae soluta. Officiis, reprehenderit, praesentium magni quasi voluptas similique libero at repudiandae consequuntur aliquam numquam possimus ipsum aut cum error.</div>
+  <div id="d3" style="opacity: 0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, quod, aspernatur! Beatae, eveniet quibusdam qui aliquid temporibus cupiditate veniam molestiae fugiat quaerat maiores voluptatibus tenetur aperiam modi ratione dolorem adipisci.</div>
+  <input id="d4" type="hidden" name="aa" value="bb"/>
+
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  console.log( $('.container>:hidden') )
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+		<link rel="stylesheet" href="../css/jquery-ui.css">
+    <style>
+      input.error{
+        box-shadow: 0 0 10px red;
+      }
+      label.error{
+        background-image:url(../imgs/err.png);
+        color:red;
+        background-repeat:no-repeat;
+        background-position:left;
+        background-size: 25px 25px;
+        padding-left:25px;
+        margin-left:10px;
+        font-style: italic;
+      }
+/*      div.error{*/
+/*        box-shadow: 0 0 10px red;*/
+/*        display:none;*/
+/*      }*/
+/*      div.error>label.error{*/
+/*        display:block;*/
+/*        margin-left:1em;*/
+/*        color:red;*/
+/*        font-style: italic;*/
+/*      }*/
+    </style>
+  </head>
+  <body>
+    <form id="form1">
+      <p>
+        <label>用户名: 
+        <input id="uname" name="uname">(必填，2个以上字符)
+        </label>
+      </p>
+      <p>
+        <label>密码: 
+        <input id="upwd1" name="upwd1" type="password">(必填，6~8位数字)
+        </label>
+      </p>
+      <p>
+        <label>确认密码: 
+        <input name="upwd2" type="password">(必填，必须和密码保持一致)
+        </label>
+      </p>
+      <p>
+        <label>电子邮件: 
+        <input id="email" name="email">(必填，但必须符合电子邮件)
+        </label>
+      </p>
+      <p>
+        <label>生日: 
+        <input id="birth" name="birth" readonly>(选填，但必须符合日期格式，且已满18岁)
+        </label>
+      </p>
+      <p>
+        <label>个人主页: 
+        <input id="url" name="url">(选填，但必须符合URL格式)
+        </label>
+      </p>
+      <p>
+        <label>QQ: 
+        <input id="qq" name="qq">(选填，但必须由5~11位数字组成)
+        </label>
+      </p>
+      <p>
+        <label>手机号: 
+        <input id="mobile" name="mobile">(选填，但必须符合中国手机号格式)
+        </label>
+      </p>
+      <p>
+        <label for="newsletter">我想接收来自网站的推荐消息: </label>
+        <input type="checkbox" id="newsletter" name="newsletter">
+      </p>
+      <fieldset>
+        <label>
+          <input type="checkbox" value="旅游" name="topic">旅游
+        </label>
+        <label>
+          <input type="checkbox" value="体育" name="topic">体育
+        </label>
+        <label>
+          <input type="checkbox" value="娱乐" name="topic">娱乐
+        </label>
+        <label for="topic" class="error" style="display:none"></label>
+      </fieldset>
+      <p>
+        <label><input name="agree" type="checkbox">同意</label>
+      </p>
+      <div class="error">请按以下规则修改表单: </div>
+      <p>
+        <input type="submit" value="注册">
+      </p>
+    </form>
+    <script src="../js/jquery-3.2.1.js"></script>
+		<script src="../js/jquery-ui.js"></script>
+		<script src="../js/jquery-ui-i18n.js"></script>
+    <script src="../js/jquery.validate.js"></script>
+    <script src="../js/messages_zh.js"></script>
+    <script>
+			$("[name=birth]").datepicker({
+				changeMonth:true,
+				changeYear:true,
+				dateFormat:"yy年mm月dd日 D",
+				minDate:"-65Y",maxDate:"-18Y"
+			})
+			.datepicker(
+				"option", $.datepicker.regional["zh-CN"]
+			);
+			$.validator.addMethod("mobile",val=>{
+				//val:自动获得文本框中要验证的值
+				if(val.trim().length!=0)
+					return /^1[34578]\d{9}$/.test(val);
+				else return true;
+			},"手机号格式不正确!");
+			$("#form1").validate({
+				submitHandler(form){
+					//form:当前表单对象
+					$.ajax({
+						type:"post",
+						url:"submit.php",
+						data:$(form).serialize()
+					}).then(()=>{
+						alert("注册成功!");
+						form.reset();
+					})
+				},
+				rules:{
+					uname:{
+						required:true,//必填
+						minlength:2, //最小长度2
+						remote:"vali.php"//?uname=xxx
+								 //返回"true"/"false"
+					},
+					upwd1:{
+						required:true,
+						minlength:6,
+						maxlength:8,
+						digits:true //必须是数字
+					},
+					upwd2:{ equalTo:"#upwd1" },
+					email:{
+						required:true,
+						email:true,//必须符合电子邮件格式
+						remote:"vali.php"//?email=xxx
+					},
+					birth:"date",//{
+						//date:true//必须符合日期格式
+					//}
+					url:"url",
+					qq:{ digits:true, rangelength:[5,11] },
+					agree:"required",
+					mobile:"mobile"
+				},
+				messages:{
+					uname:{
+						required:"用户名不能为空!",
+						remote:"用户名已被占用!"
+					},
+					upwd1:{required:"密码不能为空!"},
+					upwd2:{ equalTo:"两次密码不一致!" },
+					email:{
+						required:"邮箱不能为空!",
+						email:"邮箱格式不正确!",
+						remote:"该邮箱已被占用!"
+					},
+					birth:"日期格式不正确!",
+					url:"网址格式不正确!",
+					agree:"必须接受网站协议!"
+				}
+			})
+    </script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 id="info"></h3>
+<script>
+    sessionStorage.removeItem('uname');
+    sessionStorage.removeItem('upwd');
+    info.innerHTML = "您已经退出登录，3s钟后回到首页";
+    setTimeout(function () {
+
+        location.href = 'index.html'
+    },3000)
+</script>
+</body>
+</html>

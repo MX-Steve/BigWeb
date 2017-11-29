@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function conn(){    //.then  .catch
+				return new Promise((success,fail)=>{
+					var err=Math.random()<0.3;
+					if(!err){
+						console.log("连接成功!"); 
+						success();
+					}else fail("连接失败!");
+				});
+			}
+			function query(){   //.then  .catch
+				return new Promise((success,fail)=>{
+					var err=Math.random()<0.3;
+					if(!err){
+						console.log("查询完成!");
+						success();
+					}else fail("查询失败!");
+				});
+			}
+			function response(){        //.then  .catch
+				return new Promise((success,fail)=>{
+					var err=Math.random()<0.3;
+					if(!err){
+						console.log("返回响应!");
+						success();
+					}else fail("返回响应失败!");
+				});
+			}
+			conn()
+			.then(function(){//->success
+				return query()
+			})
+			.then(()=>response())
+			.catch(err=>console.error(err));
+		</script>	
+	</body>
+</html>

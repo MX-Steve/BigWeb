@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            position: relative;
+            width:1000px;
+            height:600px;
+            perspective: 100px;
+        }
+        .box{
+            position: absolute;
+            width:500px;
+            height:300px;
+            border:1px solid #ddd;
+            transform:rotateY(0deg);
+            transform-style: preserve-3d;
+        }
+        .page {
+            position:absolute;
+            top:50px;
+            left:200px;
+            width:100px;
+            height:200px;
+            border:2px solid red;
+
+        }
+        .page1{
+            transform:translate3D(0,0,50px);
+            background:#f0f;
+        }
+        .page2{
+            transform:rotateY(90deg) translateZ(50px);
+            background:#00f;
+        }
+        .page3{
+            transform:rotateY(180deg) translate3D(0,0,50px);
+            background: #ff0;
+        }
+        .page4{
+            transform:rotateY(270deg) translate3D(0,0,50px);
+            background:#2A3F54;
+        }
+    </style>
+</head>
+<body>
+    <h3>3d练习</h3>
+    <div class="container">
+        <div class="box">
+            <div class="page page1">图片1</div>
+            <div class="page page2">图片2</div>
+            <div class="page page3">图片3</div>
+            <div class="page page4">图片4</div>
+        </div>
+    </div>
+</body>
+</html>

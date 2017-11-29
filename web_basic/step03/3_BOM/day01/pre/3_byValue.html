@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+    var a=5;
+    var b=a;//将a中的值，复制一个副本给b
+    b++;
+    console.log(a);
+    console.log(b);
+
+    var card=10;//全局card
+    function pay(card){//局部card
+               // 10
+      card-=3;//局部card
+      console.log("余额"+card);//局部card
+    }
+    pay(card);//全局card
+      // 10
+    console.log("余额"+card);//全局card
+  </script>
+ </body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>在当前显示区范围内实现点不到的小方块</title>
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<style>
+		div{position:fixed;width:100px;height:100px;
+			background-image:url(img/xiaoxin.gif);
+      background-size:100%;
+		}
+	</style>
+	
+ </head>
+ <body>
+	<div id="pop"></div>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script src="js/jquery-ui.js"></script>
+  <script>
+		$("#pop").draggable();
+//var offsetX,offsetY,canMove=false;
+//pop.onmousedown=e=>{//启动拖拽
+//	canMove=true;
+//	offsetX=e.offsetX; offsetY=e.offsetY;
+//}
+////移动过程中
+//window.onmousemove=e=>{
+//	if(canMove){
+//		var top=e.clientY-offsetY;
+//		var left=e.clientX-offsetX;
+//		pop.style.cssText=
+//			"top:"+top+"px;left:"+left+"px";
+//	}
+//}
+////停止拖拽
+//pop.onmouseup=()=>canMove=false;
+////移出窗口时，关闭开关
+//window.onmouseout=()=>canMove=false;
+	</script>
+ </body>
+</html>

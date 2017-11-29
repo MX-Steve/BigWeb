@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>.....</title>
+  <meta charset="utf-8"/>
+  <style>
+  </style>
+ </head>
+ <body>
+	<form>
+		用户名:<input disabled></br>
+		密码:<input type="password" disabled></br>
+		<input type="checkbox">我同意本站的使用条款<br>
+		<input type="submit" value="提交注册信息" disabled/>
+	</form>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		$("form>:checkbox").click(e=>{
+			//e.target  checked=false, 其余disabled=true
+			//e.target  checked=true, 其余disabled=false
+			var $tar=$(e.target);
+			$tar.siblings(":input").prop(
+				"disabled",!$tar.prop("checked")
+			);
+			//DOM:.siblings.disabled=!tar.checked 
+		});
+	</script>
+ </body>
+</html>

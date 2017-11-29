@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+    //公安=>GA
+    //公共安全=>GGAQ
+    //民警=>MJ
+    //派出所=>PCS
+    var str="派出所的公安民警负责维护公共安全秩序";
+    str=str.replace(
+      /公安|公共安全|派出所|民警/g
+      ,
+      function(kword){//kword:本次找到的关键词
+        return kword=="公安"?"GA":
+           kword=="公共安全"?"GGAQ":
+               kword=="民警"?"MJ":
+                             "PCS";
+      }
+    );
+    console.log(str);
+  </script>
+ </body>
+</html>

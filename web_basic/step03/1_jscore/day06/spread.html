@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var arr = [
+			[1,2,3,4],
+			[1,2,3,4],
+			[1,2,3,4],
+			[1,2,3,4]
+		]
+		//将笔试题：将二维数组转化为一维数组
+		//es5:
+		arr=Array.prototype.concat.apply([],arr);//apply必须抢，自己调用自己也要抢
+		//[].concat(apply(arr))==>apply可以将数组拆散
+		//[].concat([1,2,3,4],[1,2,3,4],...);
+		//[1,2,3,4,1,2,3,4,...]
+		console.log(arr);
+		//es6:
+		arr = [].concat(...arr);
+		console.log(arr);
+	</script>
+</body>
+</html>

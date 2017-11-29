@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<style>
+		.ui-autocomplete{ width:800px; }
+		.ui-autocomplete a{
+			text-decoration:none;
+			display:inline-block; float:left; width:600px;
+			overflow:hidden;
+			white-space:nowrap;
+			text-overflow:ellipsis;
+		}
+		.ui-autocomplete span{
+			display:inline-block; float:right;
+		}
+	</style>
+ </head>
+ <body>
+  <h1>jQueryUI：Widgets —— Autocomplete</h1>
+	
+	搜索：<input type="text" name="search">
+<!--
+<ul>
+	<li>
+		<a href="product_details.html?lid=${lid}">
+			${label}
+		</a>
+		<span>销量:${sold_count}</span>
+	</li>
+</ul>
+-->
+
+
+<!--
+	<form action="9.php">
+	芳龄：<input type="text" name="age" autocomplete="off">
+	<input type="submit">
+	</form>
+-->
+	<script src="js/jquery-3.2.1.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script>
+		$("input")
+		.autocomplete({
+			source:"data/4_searchHelper.php"
+		})
+		//自定义帮助列表中每一项的格式
+		.autocomplete("instance")
+			//当加载每一项时自动触发
+			._renderItem=function($ul,item){
+				//$ul: 整个帮助列表的ul
+				//item: 服务器端发来的结果集中的每一个对象
+				//要做的是: 将结果集中每个item对象格式化为$ul中的每个li
+			var $li=$(`
+				<li>
+					<a href="product_details.html?lid=${item.lid}" title="${item.label}">
+						${item.label}
+					</a>
+					<span>销量:${item.sold_count}</span>
+				</li>
+			`).appendTo($ul);
+			return $li;//必须返回新建的$li对象
+		};
+
+	</script>
+ </body>
+</html>

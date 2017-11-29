@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .ok{color:green}
+    .err{color:red}
+    .hidden{display:none}
+  </style>
+ </head>
+ <body>
+ <form>
+    密码:<input id="upwd" type="password">
+    <span id="msgUpwd" class="hidden">必须6位数字</span><br>
+    生日:<input id="birth" type="password">
+    <span id="msgBirth" class="hidden">必须符合日期格式</span><br>
+    身份证号:<input id="pid">
+    <span id="msgPid" class="hidden">必须符合身份证号格式规范</span><br>
+    手机号:<input id="mobile">
+    <span id="msgMobile" class="hidden">必须符合手机号格式规则</span><br>
+    邮箱:<input id="email">
+    <span id="msgEmail" class="hidden">必须符合邮箱格式规则</span><br>
+    qq:<input id="qq">
+    <span id="msgQQ" class="hidden">必须符合qq号格式规范</span><br>
+    <input type="button" value="提交">
+  </form>
+  <script>
+    //当密码框获得焦点时
+    upwd.onfocus=function(){
+      msgUpwd.className="";
+      msgUpwd.innerHTML="必须6位数字";
+    };
+    //当密码框失去焦点时
+    upwd.onblur=function(){
+      //验证密码的格式
+      var i=upwd.value.search(/^\d{6}$/);
+      if(i!=-1){//如果验证通过
+        msgUpwd.innerHTML="格式正确!";
+        msgUpwd.className="ok";
+      }else{//否则
+        msgUpwd.innerHTML="必须6位数字";
+        msgUpwd.className="err";
+      }
+    }
+    //当密码框输入内容时
+    upwd.onkeyup=function(){
+      //验证密码的格式
+      var i=upwd.value.search(/^\d{6}$/);
+      if(i!=-1){//如果验证通过
+        msgUpwd.innerHTML="格式正确!";
+        msgUpwd.className="ok";
+      }else{//否则
+        msgUpwd.innerHTML="必须6位数字";
+        msgUpwd.className="err";
+      }
+    }
+  </script>
+ </body>
+</html>

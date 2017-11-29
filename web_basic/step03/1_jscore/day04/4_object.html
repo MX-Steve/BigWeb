@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//创建一个学生lilei: 
+				//姓名: Li Lei
+				//年龄: 11
+				//自我介绍: 
+			var lilei={
+				sname:"Li lei",
+				sage:11,
+				intr:function(){
+				//console.log("I'm "+sname+", I'm "+sage);
+				//没加.的变量，只能在作用域链中找
+				//无权自动进入对象内查找
+				//只有用.允许引擎进入对象中查找时，才能进入对象
+					console.log(
+						"I'm "+this.sname+", I'm "+this.sage);
+				}
+			}
+			var hmm={
+				sname:"Han Meimei",
+				sage:12,
+				intr:function(){
+					console.log(
+						"I'm "+this.sname+", I'm "+this.sage);
+				}
+			}
+			console.log(lilei.sage);
+			lilei.intr();
+			lilei.sage++;
+			console.log(lilei.sage);
+			lilei.intr();
+			for(var key in lilei){
+				if(typeof lilei[key]!="function")
+					console.log(key+":"+lilei[key]);
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var emp = {
+			id:1001,
+			name:'eric'
+		};
+		(function(){//外层函数
+			var _age = 25;//在作用域链上
+			Object.defineProperties(emp,{//emp全局，给全局对象添加一个属性，属性自动成全局
+				id:{},
+				name:{},
+				age:{
+					set:function(val){//内层函数
+						console.log("调用age属性的set方法，验证val");
+						//在赋值时自动接收等号右侧的值
+						if(val>=18 && val<=65){
+							_age=val;
+						}else{
+							throw new Error("年龄必须介于18-65之间");
+						}
+					},
+					get:function(){//内层函数
+						//专门负责返回受保护的属性值
+						console.log("调用get方法，返回"+_age);
+						return _age;
+					},
+					enumerable:true,
+					configurable:false
+				}
+			});
+		})();
+		//通过访问器属性age，获得_age值
+		console.log(emp.age);
+		//emp.age+=41;
+		//emp.age = -2;
+		console.log(emp.age);
+		for(var i in emp){
+			console.log(i+":"+emp[i]);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			table{border-collapse:collapse}
+			td{border:1px solid #555}
+		</style>
+	</head>
+	<body>
+		<div id="empInfo">
+		<!--
+			<h1>${emp.ename}</h1>
+			<h2>${emp.level}</h2>
+			<table>
+				<thead>
+					<tr>
+						<td>底薪</td>
+						<td>奖金</td>
+						<td>绩效</td>
+						<td>共计</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>¥${emp.base.toFixed(2)}</td>
+						<td>¥${emp.bonus1.toFixed(2)}</td>
+						<td>¥${emp.bonus2.toFixed(2)}</td>
+						<td>¥${
+							(emp.base+emp.bonus1+emp.bonus2)
+							.toFixed(2)
+						}</td>
+					</tr>
+				</tbody>
+			</table>
+		-->
+		</div>
+		<script>
+			//从服务器端获得一个对象
+			var emp={
+				ename:"Han Meimei", level:"高级项目经理",
+				base:10000, bonus1:4000, bonus2:5000
+			}
+			var html=`
+			<h1>${emp.ename}</h1>
+			<h2>${emp.level}</h2>
+			<table>
+				<thead>
+					<tr>
+						<td>底薪</td>
+						<td>奖金</td>
+						<td>绩效</td>
+						<td>共计</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>¥${emp.base.toFixed(2)}</td>
+						<td>¥${emp.bonus1.toFixed(2)}</td>
+						<td>¥${emp.bonus2.toFixed(2)}</td>
+						<td>¥${
+							(emp.base+emp.bonus1+emp.bonus2)
+							.toFixed(2)
+						}</td>
+					</tr>
+				</tbody>
+			</table>
+			`;
+			empInfo.innerHTML=html;
+		</script>
+	</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		table{
+			border-collapse:collapse;
+		}
+		td{
+			border:1px solid #555;
+		}
+	</style>
+</head>
+<body>
+	<div id="empInfo">
+	<!--
+		<h1>lilei</h1>
+		<h2>高级开发工程师</h2>
+		<table>
+			<thead>
+				<tr>
+					<td>底薪</td>
+					<td>奖金</td>
+					<td>绩效</td>
+					<td>共计</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>10000</td>
+					<td>2000</td>
+					<td>3000</td>
+					<td>15000</td>
+				</tr>
+			</tbody>
+		</table>
+		-->
+	</div>
+
+	<script>
+		var emp = {
+			ename:'Li Lei',
+			level:'高级开发工程师',
+			base:10000,
+			bonus1:2000,
+			bonus2:3000
+		}
+		var html = `
+			<h1>lilei</h1>
+			<h2>高级开发工程师</h2>
+			<table>
+				<thead>
+					<tr>
+						<td>底薪</td>
+						<td>奖金</td>
+						<td>绩效</td>
+						<td>共计</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>10000</td>
+						<td>2000</td>
+						<td>3000</td>
+						<td>15000</td>
+					</tr>
+				</tbody>
+			</table>
+		`;
+		empInfo.innerHTML=html;
+		//解构==>数组批量赋值给变量
+		var arr = [54,45,78];
+		//var [math,chs,eng]=arr;
+		var obj = {
+			math:89,
+			chs:56,
+			eng:91
+		}
+		var {math:m,chs:c,eng:e}=obj;
+		console.log(m,c,e);
+
+		function show([m,c,e]){
+			console.log(`
+				数学：${m};
+				语文：${c};
+				英语：${e};
+				=============
+				总分：${m+c+e}
+			`);
+		}
+		show([90,86,78]);
+	</script>
+</body>
+</html>

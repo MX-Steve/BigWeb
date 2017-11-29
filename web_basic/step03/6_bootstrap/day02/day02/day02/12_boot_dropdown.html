@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,
+           initial-scale=1">
+     <title>bootstrap_按</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<h3>全局CSS样式--下拉菜单</h3>
+<div class="container">
+  <h3>组件--下拉菜单--自定义下拉菜单</h3>
+  <div class="dropdown">
+      <a href="#" data-qiehuan="xiala">产品大全</a>
+      <ul class="dropdown-menu">
+          <li>苹果</li>
+          <li>梨</li>
+          <li>瓜</li>
+      </ul>
+  </div>
+  <h3>组件--下拉菜单--通过boot属性实现</h3>
+  <div class="dropdown">
+      <a href="#" data-toggle="dropdown">产品大全</a>
+      <ul class="dropdown-menu">
+          <li><a href="#">苹果</a></li>
+          <li><a href="#">梨</a></li>
+          <li><a href="#">瓜</a></li>
+      </ul>
+  </div>
+    <h3>组件--下拉菜单--复杂</h3>
+    <div class="dropdown">
+        <a href="#" data-toggle="dropdown" class="btn btn-default">
+            产品大全
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header">水果类</li>
+            <li><a href="#">苹果</a></li>
+            <li><a href="#">梨</a></li>
+            <li><a href="#">瓜</a></li>
+            <li class="dropdown-header">婴童类</li>
+            <li><a href="#">奶粉</a></li>
+            <li><a href="#">尿不湿</a></li>
+        </ul>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/bootlint.js"></script>
+<script>
+  bootlint.showLintReportForCurrentDocument([]);
+</script>
+<script>
+  $('[data-qiehuan="xiala"]').click(function(e){
+    e.preventDefault();
+    $(this).siblings(".dropdown-menu").toggle();
+  });
+</script>
+
+</body>
+</html>

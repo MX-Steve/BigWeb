@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//仅选取结尾的部分参数
+		//解决：在call
+		function add(sname,...scores){
+			var sum =0;
+			arguments=Array.prototype.slice.call(arguments,1);
+			var sum = arguments.reduce(function(prev,elem){
+				return prev+elem;
+			});
+			return sname+"总分数是"+sum;
+		}
+		console.log(
+			add('hmm',90,95)
+		);
+		function fun(){
+			console.dir(arguments);
+		}
+		fun(1,2,3,4);
+	</script>
+</body>
+</html>

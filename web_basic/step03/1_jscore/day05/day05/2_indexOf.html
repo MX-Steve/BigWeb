@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+//如果数组的爹中没有indexOf
+if(typeof Array.prototype.indexOf!="function")
+	//才向数组的爹中添加indexOf=function(...){
+	Array.prototype.indexOf=function(elem,fromi){
+		document.write("调用自定义的indexOf<br>");
+		//如果没有提供fromi，则默认为0
+		fromi=fromi||0;
+		//从fromi开始,遍历当前数组
+		for(var i=fromi;i<this.length;i++){
+			//如果当前数组的当前元素等于elem
+			if(this[i]===elem)
+				return i;//返回当前位置i
+		}//(循环结束)
+		return -1;//返回-1
+	}
+
+			var arr=[1,2,3,4,3,2,1];
+			       //0 1 2 3 4 5 6
+			document.write(
+				arr.indexOf(3/*,0*/)+"<br>"+//2
+				arr.indexOf(3,3)+"<br>"+//4
+				arr.indexOf(3,5)+"<br>"+//-1
+				arr.indexOf(6)//-1
+			);
+		</script>
+	</body>
+</html>

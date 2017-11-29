@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var arr=[89,59,91];
+//			var [math,chs,eng]=arr;
+
+			var obj={ math:89, chs:59, eng:91 };
+			//var {math:math,chs:chs,eng:eng}=obj;
+    //ES6:如果属性名和属性变量同名,只写一个即可
+		  var {math,chs,eng}=obj;
+
+			console.log(math);
+			console.log(chs);
+			console.log(eng);
+
+			//function show([math,chs,eng]){
+			function show({math,chs,eng}){
+				console.log(`
+					数学:${math},语文:${chs},英语:${eng}
+					======================================
+					总分:${math+chs+eng}
+				`);
+			}
+			show(obj);
+		</script>
+	</body>
+</html>

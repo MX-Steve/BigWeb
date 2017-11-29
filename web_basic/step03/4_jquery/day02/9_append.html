@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		.container {
+			border: 1px solid #aaa;  overflow:hidden;
+		}
+		.block {
+			float: left; margin: 10px;
+			border: 1px solid #aaa;
+			background: #faa;
+			width: 150px; height: 150px;
+		}
+		.block:hover{ box-shadow:0 5px 6px #000; }
+		.close {
+			float:right; padding:5px;
+			font-weight:bold; opacity:.2; cursor: pointer;
+		}
+		.close:hover { opacity: .5; }
+	</style>
+ </head>
+ <body>
+  <h1>添加/删除节点</h1>
+	<button id="add-block">添加区块</button>
+	
+	<div class="container">
+<!-- 		<div class="block"> -->
+<!-- 			<span class="close">×</span> -->
+<!-- 		</div> -->
+	</div>
+	
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		//查找class为container的div,$container
+		var $container=$(".container");
+		//为$container绑定单击事件
+		$container.click(e=>{
+			var $tar=$(e.target);
+			//只允许class为close的元素触发事件
+			if($tar.is(".close")){
+				//弹出确认框confirm，如果确认继续删除
+				if(confirm("继续删除吗?"))
+					//删除当前元素的父元素
+					$tar.parent().remove();
+			}
+		})
+
+		//为id为add-block的div绑定单击事件
+		$("#add-block").click(()=>{
+			//用HTML代码片段创建$block div
+			$(`<div class="block">
+				<span class="close">×</span>
+			</div>`)
+			//为$block随机生成背景颜色
+			.css("background",randomColor())
+			//将$block追加到$container下
+			.prependTo($container);
+		})
+		function randomColor(){
+			var r=parseInt(Math.random()*256);
+			var g=parseInt(Math.random()*256);
+			var b=parseInt(Math.random()*256);
+			return `rgb(${r},${g},${b})`;
+		}//"rgb(r,g,b)"
+	</script>
+	
+ </body>
+</html>

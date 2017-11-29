@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<h1>替换节点</h1>
+
+<div id="chosen">
+  <img src="img/p0.png">
+</div>
+<hr/>
+<div id="list">
+  <img src="img/p3.png">
+  <img src="img/p4.png">
+  <img src="img/p5.png">
+</div>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  //为id为list的div绑定单击事件,只允许img执行操作
+	$("#list").on("click","img",e=>{
+		var $tar=$(e.target);
+		//if($tar.is("img"))//被delegate第一个参数代替
+		//用当前img替换id为chosen下的img
+		$tar.clone().replaceAll("#chosen>img");
+	})
+</script>
+</body>
+</html>

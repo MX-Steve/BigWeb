@@ -1,0 +1,184 @@
+@charset "utf-8";
+/*最外层div 设置宽度100% 高度470px 背景色*/
+@media screen and (min-width:992px){
+    .logo-banner,.res-banner{
+        width: 100%;
+        height: 470px;
+        background-color: #fd7a72;
+    }
+}
+@media screen and (min-width: 992px){
+    .login-title img{
+        height: 60px;
+    }
+}
+/*id为login-main的div设置绝对定位 居中 高度*/
+@media screen and (min-width:992px) {
+    .login-main , .res-main {
+        max-width:1000px;
+        height: 470px;
+        margin:0 auto;
+        position: relative;
+    }
+}
+/*设置广告图片的显示隐藏在小型pad下隐藏 中型以上显示*/
+@media screen and (min-width:768px){
+    .login-banner-img{
+        float: left;
+    }
+}
+/*登录框的基本样式 宽度 最大宽度 高度 绝对定位 外边距 背景色 靠右边*/
+@media screen and (min-width: 992px) {
+    .login-box{
+        width:100%;
+        max-width: 360px;
+        height: 430px;
+        position: relative;
+        margin-left: 0;
+        margin-top: 20px;
+        background-color: #f8f8f8;
+        right: 2%;
+        padding: 10px 20px;
+    }
+}
+.title{
+    text-align: center;
+    padding: 8px;
+    font-weight:600 ;
+}
+.zcnext{
+    position: absolute;
+    padding: 5px;
+    font-size: 10px;
+    float: right;
+    background-color: #e6e6e6;
+    border-radius: inherit;
+    right: 20px;
+    top:15px;
+}
+@media screen and (max-width: 992px){
+    .zcnext{top:5px;}
+}
+.login-form{
+    width:100%;
+    background-color: #fff;
+}
+@media screen and (min-width: 640px){
+    form,.am-cf{
+        max-width: 640px;
+        margin:20px auto;
+    }
+}
+.form-control{
+    font-size: 14px;
+    height: 46px;
+    padding: 11px 8px 11px 50px;
+    width: 100%;
+    border: 1px solid #fff;
+}
+.input-height input{
+    height: 35px;
+}
+.login-form  .form-group{
+    margin:0px 0px 5px;
+}
+.login-form .form-control-feedback{
+    left: 0;
+    height: 46px;
+    line-height: 46px;
+}
+.res-tip,.login-tip{
+    height:17px;
+    padding-top: 3px;
+    font-size: 12px;
+    background-color: #f5f5f5;
+}
+.error{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.login-links{
+    font-size: 14px;
+    margin: 0 auto;
+}
+.am-cf{
+    width: 100%;
+}
+.am-cf input{
+    width: 100%;
+    font-size: 16px;
+}
+.parner{
+    width: 100%;
+    font-size: 14px;
+}
+.parner .btn-group{
+    display: block;
+}
+.parner h3{
+    text-align: center;
+}
+@media screen and (min-width: 768px){
+    .parner h3{
+        text-align: left;
+    }
+}
+.parner a span{
+    color: #000;
+    font-size: inherit;
+}
+.parner a:hover{
+    text-decoration: none;
+}
+.parner a span:hover{
+    color: #0e90d2;
+}
+.btn-group li{
+    width:33.33%;
+    float: left;
+    display: block;
+}
+.btn-group i{
+    margin: 0 auto;
+    display: block;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    padding-left:10px;
+    background-color: #fff;
+    color: #0e90d2;
+}
+@media screen and (min-width: 768px){
+    .btn-group i{
+        display: inline-block;
+        border-radius: 0px;
+        border: 0;
+        background-color: transparent;
+    }
+}
+.btn-group span{
+     display: none;
+ }
+@media screen and (min-width: 768px){
+    .btn-group span{
+        display: inline-block;
+    }
+}
+.footer{
+    text-align: center;
+    font-size: 12px;
+    padding: 5px;
+}
+@media screen and (min-width: 768px){
+    .footer{
+        text-align: center;
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        max-width: 1200px;
+        margin-top:20px ;
+        padding: 7px 0px 9px;
+    }
+}
+

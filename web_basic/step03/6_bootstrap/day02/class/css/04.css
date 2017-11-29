@@ -1,0 +1,47 @@
+*{box-sizing: border-box}
+body{
+    margin:0;
+    background: #fff;
+    font-size:1em;
+}
+
+.container{
+    margin:0 auto;
+}
+.container:before{
+    content: ' ';
+    display: table;
+}
+.container-fluid{
+    width:100%;
+}
+.left,.middle,.right{
+    float:left;
+}
+.my-img{
+  float:left;
+  padding: 10px 5px;
+}
+/*针对PC屏幕的媒体查询,屏幕宽度大于992*/
+@media screen and (min-width:992px){
+ .container{width:970px;color:red}
+ .left,.right{width:20%}
+ .middle{width:60%}
+ .my-img{width:25%}
+}
+/*针对PAD屏幕的媒体查询,屏幕宽度大于768-991*/
+@media screen and (min-width:768px) and (max-width: 991px){
+  .container{width:750px;color:green}
+  .left{width:25%}
+  .middle{width:75%}
+  .right{display: none}
+  .my-img{width:25%}
+}
+/*针对PHONE屏幕的媒体查询,屏幕宽度大于767*/
+@media screen and (max-width: 767px){
+   .container{width:100%;color:blue}
+   .left,.middle{width:100%}
+   .right{display: none}
+   .my-img{width:50%}
+}
+

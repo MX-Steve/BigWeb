@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="#" id='btn' data-mes="180_'游戏'">点我</a>
+	<script>
+		function Fly(speed,val){
+			this.speed = speed;
+			this.val = val;
+			this.c();
+		}
+		Fly.prototype.c = function(){
+//			var btn = document.getElementById('btn');
+//			btn.onclick = function(){
+//				var msg = btn.getAttribute('data-mes');
+//				console.log(msg);
+//				var [speed,val] = msg.split('_');
+//				var plane = new Fly(speed,val);
+//				console.log(plane);
+//			}
+			
+		}
+		var btn = document.getElementById('btn');
+			btn.onclick = function(){
+				var msg = btn.getAttribute('data-mes');
+				console.log(msg);
+				var [speed,val] = msg.split('_');
+				var plane = new Fly(speed,val);
+				console.log(plane);
+			}
+//		
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button>click me!</button>
+		<button>click me!</button>
+		<button>click me!</button>
+		<button>click me!</button>
+		<script>
+			//按标签名查找多个元素
+			var btns=
+				document.getElementsByTagName("button");
+			function factory(i){//受保护的变量i
+				return function(){
+					alert("我是第"+i+"个");
+				}
+			}
+			//遍历每个按钮，为每个按钮绑定单击事件
+			for(var i=0;i<btns.length;i++){
+			//<button onclick="function(){...}"
+				btns[i].onclick=factory(i);
+			}//i=4
+			//单击按钮时,自动调用:function(){
+				//alert("我是第"+i+"个");
+			//}
+		</script>
+	</body>
+</html>

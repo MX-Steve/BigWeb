@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+    var pid="130102198312262151";
+           //012345678901234567
+    //如果倒数第2位是奇数，就返回"男",否则返回"女"
+    var gender=pid[pid.length-2]%2==1?"男":"女";
+    //选取6位置开始之后的8位
+    var birth=//pid.slice(6,6+8);
+              pid.slice(6,-5+1);
+    //选取6位置开始的4位
+    var age=2017-pid.slice(6,6+4);
+    console.log("张东:",gender,birth,age);
+  </script> 
+ </body>
+</html>

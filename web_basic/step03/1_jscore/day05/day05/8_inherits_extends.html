@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+//作业: 模仿敌机类型，实现小蜜蜂类型Bee
+class Flyer{
+	constructor(fname,speed){
+		this.fname=fname; this.speed=speed;
+	}
+
+	fly(){
+		console.log(
+			this.fname+"以时速"+this.speed+"飞行");
+	}
+	toString(){
+		return `
+		{fname:${this.fname},speed:${this.speed}}
+		`;
+	}
+}
+class Plane extends Flyer{
+	constructor(fname,speed,score){
+		super(fname,speed);
+		this.score=score;
+	}
+		getScore(){
+			console.log("击落"+this.fname+"得"+this.score+"分");
+		}
+		toString(){
+			return `
+				{
+					father:${super.toString()},
+					score:${this.score}
+				}
+				`;
+		}
+
+}
+
+
+var f16=new Plane("F16",1000,10);
+f16.fly();
+f16.getScore();
+console.dir(f16);
+console.log(f16.toString());
+		</script>
+	</body>
+</html>
