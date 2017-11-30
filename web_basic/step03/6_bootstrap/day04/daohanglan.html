@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,
+           initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="IE-edge">
+    <title>响应式导航栏</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<h3>导航栏</h3>
+<p>导航条不包含在容器内，而是导航条包含容器</p>
+<div class="navbar navbar-default">
+    <div class="container">
+        <!--第一部分:导航条头部 = 品牌 + 汉堡包 -->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">Tarena</a>
+            <a href="#my-menu" data-toggle="collapse" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+        </div>
+
+        <!--导航条折叠内容：导航条 + 按钮 + 超链接 + 文本 + 表单-->
+        <div id="my-menu" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">新闻</a></li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown">产品大全
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">肉丝1</a></li>
+                        <li><a href="#">肉丝2</a></li>
+                        <li><a href="#">肉丝3</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!--导航栏中的超链接-->
+            <a href="#" class="navbar-right navbar-link navbar-text">登录</a>
+            <span class="navbar-right navbar-text">|</span>
+            <a href="#" class="navbar-right navbar-link navbar-text">注册</a>
+            <form action="#" class="navbar-right navbar-form">
+                <div class="form-group">
+                    <label for="kw" class="sr-only">产品搜索</label>
+                    <input type="text" id="kw" class="form-control">
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<!--底部导航栏-->
+<div class="navbar navbar-fixed-bottom navbar-inverse">
+    <div class="container">
+        <!--第一部分：导航栏的头部 = brand + 汉堡包-->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <img src="img/care.png" alt="">
+            </a>
+            <a href="#footer-head" data-toggle="collapse" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+        </div>
+        <!--第二部分：折叠部分 -->
+        <div id="footer-head" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">新闻</a></li>
+                <li><a href="#" data-toggle="dropdown">产品大全 <span class="caret"></span></a>
+                    <ul class="dropdown-menu ">
+                        <li><a href="#">白菜1</a></li>
+                        <li><a href="#">白菜2</a></li>
+                        <li><a href="#">白菜3</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>
