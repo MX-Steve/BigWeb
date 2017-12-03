@@ -13,35 +13,26 @@
     <div id="example"></div>
     <script type="text/babel">
         let MyInput = React.createClass({
-            handleChange(){
-                this.props.callback(this.refs.myInput.value);
-            },
             render(){
-                return <input type="text" ref='myInput' onChange={this.handleChange}/>
+                return <input type="text" ref="inputContent"/>
             }
         });
         let MyBtn = React.createClass({
             handleClick(){
-                let msg = this.props.toBtn();
-                alert("在myBtn中得到用户输入的内容为："+msg);
+               this.props.funcGet();
             },
             render(){
                 return <button onClick={this.handleClick}>获得兄弟组件的内容</button>
             }
         });
         let MyMain = React.createClass({
-            myMsg:'',
-            rcvMsg(msg){
-                console.log("父组件得到子组件中的值是："+msg);
-                this.myMsg = msg;
-            },
-            getMsg(){
-                return this.myMsg;
+            getValue(){
+                console.log(this.refs.userInput.refs.inputContent.value);
             },
             render(){
                 return <div>
-                    <MyInput callback={this.rcvMsg}/>
-                    <MyBtn toBtn={this.getMsg}/>
+                    <MyInput ref="userInput"/>
+                    <MyBtn funcGet = {this.getValue}/>
                 </div>
             }
         });
