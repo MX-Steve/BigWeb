@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+    <title>react入门01</title>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        let MyLabel = React.createClass({
+            render(){
+                return <label>{this.props.labelName}</label>
+            }
+        });
+        let MyInput = React.createClass({
+            render(){
+                return <input type="text" placeholder={this.props.inputName} />
+            }
+        });
+        let MyBtn = React.createClass({
+            handleClick(){
+                this.props.myCallback("我是按钮");
+            },
+            render(){
+                return <button onClick={this.handleClick}>{this.props.btnName}</button>
+            }
+        });
+        let MyLogin = React.createClass({
+            handleSubmit(e){
+                e.preventDefault();
+            },
+            rcvMsg(data){
+                console.log("data is "+data);
+            },
+            render(){
+                return <form onSubmit= {this.handleSubmit}>
+                    <MyLabel labelName="用户名"/>
+                    <MyInput inputName="请输入用户名"/>
+                    <br />
+                    <MyLabel labelName="密码"/>
+                    <MyInput inputName="请输入密码"/>
+                    <br />
+                    <MyBtn myCallback= {this.rcvMsg} btnName="登录"/>
+                    <MyBtn btnName="注册"/>
+                </form>
+            }
+        });
+        ReactDOM.render(
+            <MyLogin/>,
+            document.getElementById("example")
+        );
+    </script>
+</body>
+</html>

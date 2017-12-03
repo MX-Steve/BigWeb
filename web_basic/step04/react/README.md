@@ -18,13 +18,17 @@ react 小模板
     );
 
 ### 3. react 组件 ###
+(1) 组件  
 将需要反复使用的代码块封装在一个组件中，然后像插入html一样，插入到网页中，render来渲染组件
 
 注意：组件名要全驼峰，要大写
 
 	let HelloMsg = React.createClass({
+			handleClick(){
+				console.log(111);
+			},
             render(){
-                return <button>ClickMe</button>
+                return <button onClick={this.handleClick}>ClickMe</button>
             }
     });
     ReactDOM.render(
@@ -32,4 +36,20 @@ react 小模板
                 <HelloMsg></HelloMsg>
             </div>,
             document.getElementById("example")
-   );
+    );
+
+（2）复合组件  
+组件间的嵌套组成一个根组件，被称作组件树
+
+ (3) 组件间通信
+
+	①父到子props down：
+	父：<son tips = "something" />
+	子：<div>{this.props.tips}</div>
+	②子到父events up：
+	父：<son myCallback = {this.rcvMsg} />
+		rcvMsg(data){console.log(data);}//父组件创建方法接收子组件值
+	子：<button onClick={this.handleClick}>click</button>
+		handleClick(){
+			this.props.myCallback("dsadf");
+		}
