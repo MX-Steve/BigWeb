@@ -53,3 +53,55 @@ react 小模板
 		handleClick(){
 			this.props.myCallback("dsadf");
 		}
+	
+ (4)children属性：
+	
+this.props.children得到调用组件时，标签内缩写的元素：有一个是对象，没有，是null，多个，是数组
+
+	React.Children.map(
+		this.props.children,
+		function(child){
+			
+		}
+	);
+
+示例：
+
+		let MyList = React.createClass({
+            render(){
+                return <ul>
+                    {
+                        React.Children.map(
+                            this.props.children,
+                            function(child) {
+                                return child;
+                            }
+                        )
+                    }
+                </ul>
+            }
+        });
+        ReactDOM.render(
+            <MyList>
+                <li>test01</li>
+                <li>test02</li>
+                <li>test03</li>
+            </MyList>,
+            document.getElementById("example")
+        );
+
+### 4. refs:reference引用/参考 ###
+
+		let MyComponent = React.createClass({
+            handleClick(){
+				//通过refs找到想要的标签 this.refs.myInput
+                console.log(this.refs.myInput.value);
+                this.refs.myInput.style.color="red";
+            },
+            render(){
+                return <div>
+                    <input type="text" ref="myInput"/>
+                    <button onClick={this.handleClick}>获取输入的值</button>
+                </div>
+            }
+        });

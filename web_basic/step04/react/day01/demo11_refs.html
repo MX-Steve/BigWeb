@@ -12,26 +12,20 @@
 <body>
     <div id="example"></div>
     <script type="text/babel">
-        let MyList = React.createClass({
+        let MyComponent = React.createClass({
+            handleClick(){
+                console.log(this.refs.myInput.value);
+                this.refs.myInput.style.color="red";
+            },
             render(){
-                return <ul>
-                    {
-                        React.Children.map(
-                            this.props.children,
-                            function(child) {
-                                return child;
-                            }
-                        )
-                    }
-                </ul>
+                return <div>
+                    <input type="text" ref="myInput"/>
+                    <button onClick={this.handleClick}>获取输入的值</button>
+                </div>
             }
         });
         ReactDOM.render(
-            <MyList>
-                <li>test01</li>
-                <li>test02</li>
-                <li>test03</li>
-            </MyList>,
+            <MyComponent/>,
             document.getElementById("example")
         );
     </script>

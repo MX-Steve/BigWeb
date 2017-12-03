@@ -12,26 +12,29 @@
 <body>
     <div id="example"></div>
     <script type="text/babel">
-        let MyList = React.createClass({
+        let MyInput = React.createClass({
+            handleChange(){
+                console.log();
+            },
             render(){
-                return <ul>
-                    {
-                        React.Children.map(
-                            this.props.children,
-                            function(child) {
-                                return child;
-                            }
-                        )
-                    }
-                </ul>
+                return <input type="text" onChange={this.handleChange}/>
+            }
+        });
+        let MyBtn = React.createClass({
+            render(){
+                return <button>获得兄弟组件的内容</button>
+            }
+        });
+        let MyMain = React.createClass({
+            render(){
+                return <div>
+                    <MyInput />
+                    <MyBtn />
+                </div>
             }
         });
         ReactDOM.render(
-            <MyList>
-                <li>test01</li>
-                <li>test02</li>
-                <li>test03</li>
-            </MyList>,
+            <MyMain />,
             document.getElementById("example")
         );
     </script>
