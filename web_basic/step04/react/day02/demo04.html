@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+    <title>react入门01</title>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        let MyComponent = React.createClass({
+            getInitialState(){
+                return {
+                    opacity:0
+                }
+            },
+            componentDidMount(){
+                let t = setInterval(()=>{
+                    var o = this.state.opacity;
+                    o+=0.05;
+                    this.setState({opacity:o});
+                    if(o>=1){
+                        o=0;
+                        this.setState({opacity:o});
+                    }
+                },50);
+            },
+            render(){
+                return <h1 style={{opacity:this.state.opacity}}>一级标题</h1>
+            }
+        });
+        ReactDOM.render(
+            <MyComponent />,
+            document.getElementById("example")
+        );
+    </script>
+</body>
+</html>

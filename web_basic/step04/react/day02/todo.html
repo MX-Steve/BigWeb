@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+    <title>react入门01</title>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        let ToDoInput = React.createClass({
+            getInitialState(){
+                return {
+                    ToDo:''
+                }
+            },
+            handleChange(e){
+                this.setState({
+                    ToDo:e.target.value
+                });
+            },
+            handleClick(){
+                var ToDo = this.state.ToDo;
+                this.props.funAdd(ToDo);
+                this.state.ToDo = '';
+            },
+            render(){
+                return <div>
+                    <h1>待做事项列表</h1>
+                    <div>
+                        <input type='text' value={this.state.ToDo}
+                         onChange={this.handleChange}   
+                         placeholder='to do sth ...' />
+                        <button onClick={this.handleClick}>Add</button>
+                    </div>
+                </div>
+            }
+        });
+        let ToDoItem = React.createClass({
+            handleClick(){
+                //点击删除，删除数据
+                this.props.delete(this.props.myIndex);
+            },
+            render(){
+                return <li>
+                    <button onClick={this.handleClick}>delete</button>
+                    <span>{this.props.myValue}</span>
+                </li>
+            }
+        });
+        let ToDoList = React.createClass({
+            render(){
+                return <ul>
+                    {
+                        this.props.list.map((content,index)=>{
+                            return <ToDoItem delete={this.props.funcDel} myIndex={index} key={index} myValue={content}/>
+                        })
+                    }
+                </ul>
+            }
+        });
+        let ToDoBox = React.createClass({
+            getInitialState(){
+                return {
+                    myList:[]
+                }
+            },
+            addToList(result){
+                //将用户传递来的result添加到状态对应的数组中
+                var nowList = this.state.myList;
+                nowList.push(result);
+                this.setState({myList:nowList});
+            },
+            deleteFromList(index){
+                var nowList = this.state.myList;
+                nowList.splice(index,1);
+                this.setState({myList:nowList});
+            },
+            getSthFromInput(data){
+                console.log("在box中得到input中的值:"+data);
+                this.setState({ToDo:data});
+            },
+            render(){
+                return <div>
+                    <ToDoInput funAdd={this.addToList}></ToDoInput>
+                    <ToDoList funcDel={this.deleteFromList} list={this.state.myList}></ToDoList>
+                </div>
+            }
+        });
+        ReactDOM.render(
+            <ToDoBox></ToDoBox>,
+            document.getElementById("example")
+        );
+    </script>
+</body>
+</html>

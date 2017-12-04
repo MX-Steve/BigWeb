@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+    <title>react入门01</title>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        let LifecycleComponent = React.createClass({
+            getInitialState(){
+                return {
+                    inputContent:''
+                }
+            },
+            componentWillMount(){
+                console.log("正在初始化数据");
+                console.log(this.refs.myInput);
+            },
+            componentDidMount(){
+                console.log("组件已经挂载完毕");
+                console.log(this.refs.myInput);
+            },
+            componentWillUpdate(nextProps,nextState){
+                console.log("组件准备更新",nextState);
+            },
+            componentDidUpdate(prevProps,prevState){
+                console.log("组件更新完成",prevState);
+            },
+            componentWillUnmount(){
+                console.log("组件准备销毁，在此处理函数中进行处理");
+            },
+            handleChange(){
+                //修改状态
+                this.setState({
+                    inputContent:this.refs.myInput.value
+                });
+            },
+            render(){
+                return <div>
+                    <input type="text" onChange={this.handleChange} ref='myInput'/>
+                    <button>clickMe</button>
+                </div>
+            }
+        });
+        ReactDOM.render(
+            <LifecycleComponent/>,
+            document.getElementById("example")
+        );
+    </script>
+</body>
+</html>
