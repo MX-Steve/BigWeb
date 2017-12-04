@@ -105,3 +105,27 @@ this.props.children得到调用组件时，标签内缩写的元素：有一个�
                 </div>
             }
         });
+### 5. state：状态 ###
+
+初始化：  
+
+	getInitialState(){
+                return {
+                    btnStatus:false
+                };
+            }
+
+读取：
+	
+	let status = this.state.btnStatus;
+
+写：
+
+	this.setState(
+		{
+         btnStatus:!status
+	    },
+		function(){
+			状态成功设置完成后会调用的方法
+		}
+	);//这个方法是异步的
