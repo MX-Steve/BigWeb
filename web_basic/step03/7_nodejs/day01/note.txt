@@ -1,0 +1,11 @@
+1.静态网页和动态网页
+    静态网页:网页内容任何人任何时间访问都不变的：html/js/css/视频/音频
+    动态网页:网页的内容，不同人在不同时间内访问，可能不同：
+            JSP/PHP/ASP.NET/Node.JS
+2.NodeJS
+    JSP:HTML+java:功能强可靠，适合大型企业级项目
+    php:html+php：简单易用，适合互联网项目
+    asp.net:html + c#:易用，适合windows平台
+    Node.JS:HTML+"JS"
+
+

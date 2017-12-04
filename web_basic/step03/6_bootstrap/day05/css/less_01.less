@@ -1,0 +1,80 @@
+//单行注释
+/**
+  多行注释
+*/
+
+@import "00.less";
+
+//3.less变量
+@jdRed:#e4393c;
+@thinBorder:3px;
+@halfOpacity:0.6;
+@baseFont:"SimHei";
+@normalBorderStyle:solid;
+
+.box1{
+  font:@baseFont;
+  background:rgba(0,0,0,@halfOpacity);
+  border:@thinBorder @normalBorderStyle @jdRed;
+}
+
+//算术运算符
+@md-width:970px;
+@col-count:12;
+.col-md-1{width:@md-width/@col-count}
+.col-md-1{width:2*@md-width/@col-count}
+
+//混入
+.well{
+  padding: 30px;
+  border: 1px solid #aaa;
+  margin-bottom: 20px;
+}
+
+.box2{
+  .well;
+  background:#ccc;
+}
+
+//带参数的混入（像函数）
+.well2(@pd,@bw,@mb:30px){
+  padding:@pd;
+  border:@bw solid #23527c;
+  margin-bottom:@mb;
+}
+
+.box3{
+  .well2(10px,1px,5px);
+  background: #ccc;
+}
+
+//函数
+//ceil/floor/percentage()==>把小数转换为百分比/lighten(color,百分比)/darken
+//image-width("url");/image-height("url");
+
+//使用 @import:实现文件包含--推荐使用
+.col-md-1{
+  width:floor(970px/12);//less自带函数
+}
+.box04{
+  .list;
+  background:lighten(@jdRed,40%);
+  border:1px solid darken(@jdRed,30%);
+}
+
+.my-img{
+  width: image-width("../img/1.jpg");
+  height: image-height("../img/1.jpg");
+}
+
+
+
+
+
+
+
+
+
+
+
+
