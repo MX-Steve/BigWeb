@@ -71,11 +71,11 @@
             this.props.funcModify(this.props.index);
         },
         render() {
-        return (
-                <button onClick={this.handleClick} className="square">
-                    {this.props.list[this.props.index]}
-                </button>
-    );
+            return (
+                    <button onClick={this.handleClick} className="square">
+                        {this.props.list[this.props.index]}
+                    </button>
+        );
     }});
     var Board = React.createClass({
         getInitialState: function () {
@@ -145,13 +145,13 @@
         render() {
             return (
                     <div className="game">
-                    <div className="game-board">
-                    <Board />
-                    </div>
-                    <div className="game-info">
-                    <div>{ status }</div>
-                    <ol>{/* TODO */}</ol>
-                    </div>
+                        <div className="game-board">
+                            <Board />
+                        </div>
+                        <div className="game-info">
+                            <div>{ status }</div>
+                            <ol>{/* TODO */}</ol>
+                        </div>
                     </div>
         );
         }
