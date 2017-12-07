@@ -1,0 +1,12 @@
+1.SQL 注入
+    fname = "';drop table mysql.user";
+    uname = "' OR 1=1";
+    uname = "';select into c:/aa.dat";
+    let upwd = '123';
+    let sql = ` SELECT * FROM xz_user WHERE uname='${uname}' & upwd= '${upwd}'`;
+
+2.XSS 脚本攻击
+    var name = "<script>document.all.disabled=''</script>";
+    用户名 [tom];
+    解决方案：
+        所有用户输入的数据过滤：drop table;(数据库里的关键字，js里的关键词过滤一遍)

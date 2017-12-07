@@ -2,10 +2,63 @@
     静态网页:网页内容任何人任何时间访问都不变的：html/js/css/视频/音频
     动态网页:网页的内容，不同人在不同时间内访问，可能不同：
             JSP/PHP/ASP.NET/Node.JS
-2.NodeJS
+2.NodeJS:   IO 非阻塞/事件驱动
     JSP:HTML+java:功能强可靠，适合大型企业级项目
     php:html+php：简单易用，适合互联网项目
     asp.net:html + c#:易用，适合windows平台
-    Node.JS:HTML+"JS"
+    Node.JS:HTML+"JS"==>性能好，适合于服务器端IO密集型项目，不适合CPU密集型项目
+
+    CPU密集型项目：滴滴打车,天气预报
+    IO密集型项目 ：输入读取
+3.NodeJS安装
+    安装时注意：不要有空格，不要有中午
+4.运行模式
+    1.交互模式--一般用于临时测试
+        输入一行，执行一行
+    2.脚本模式--正式项目中使用的方式
+5.模块
+    nodejs按照不同的功能，可以把函数，对象分别保存不同的文件或目录下，这些文件或目录被称作模块
+
+    nodejs为每个模块创建独立的构造函数，解释会自动添加到每个js文件中
+
+    //(function(exports,require,module,__filename,__dirname){
+
+        自己编写的程序的内容
+
+        //exports:{}用户声明想外部导出自己的成员
+        //require:fn 用户导入其他模块，并且创建指定模块对象
+        //__filename 文件以及路径具体名称
+        //__dirname 其所在文件夹以及路径名称
+    //})
+
+nodejs中有两个对象可以向外公开数据
+    exports 和 module.exports(更安全)
+    module.exports:可以直接导出数据
+    exports:就像中介一样，间接导出数据
+    nodejs 底层代码： exports = module.exports
+    若只是给exports对象添加新成员，则等于给module.exports来添加新成员，但是若修改了exports指向，则不会产生实质作用
+    exports.age = 19;
+    module.exports.age = 19;两指没有区别
+    但是如果：
+    exports = {name:"tom",age:19}
+    则不能向外导出
+6.模块分类
+    1.nodejs官方提供的模块-安装在解释器内部
+        require('模块名');
+    2.第三方编写模块
+    3.用户自定义编写模块
+7.nodejs 预定义模块——Global
+    console
+    setInterval()
+    setTimeout()
+    setImmediate(fb)//等价于setTimeout(fn,0);
+
+
+
+
+
+
+
+
 
 
