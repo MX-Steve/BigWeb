@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .acl{
+            width: 750px;
+            height: 630px;
+            background-color: #fff;
+            border:2px solid #ddd;
+            border-radius: 5px;
+            margin:0 auto;
+            display: none;
+        }
+        .acl h1{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>角色列表</h1>
+    <table width="50%" border="1">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>角色名称</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="tb1"></tbody>
+    </table>
+    <div class="acl">
+        <h1>授权给[<span class="role_name"></span>]角色</h1>
+        <table width="80%" border="1">
+            <thead>
+            <tr>
+                <th>模块名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="module_list">
+
+            </tbody>
+        </table>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/acl.js"></script>
+</body>
+</html>

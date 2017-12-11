@@ -1,0 +1,18 @@
+1.功能全：前端项目（特效：3D,登录、轮播、音频、视频）
+
+2.登录：微信、微博、qq、支付宝
+
+3.SQL注入：密码md5，改版php
+
+4.图片/打散
+
+5.图片选择==>setInterval效率太差,requestAnimationFrame==>使用它实现动画
+    http://www.zhangxinxu.com/wordpress/2013/09/css3-animation-requestanimationframe-tween-%E5%8A%A8%E7%94%BB%E7%AE%97%E6%B3%95/
+
+6.音频-->多占空间(花费，优酷, 视频音频切片)，视频音频不放在自己的服务器上
+
+7.多人团队合作(git,subversion:svn)
+
+8.效率 redis : key["admin_productmenu_"].value{json}
+
+9.vue 重构

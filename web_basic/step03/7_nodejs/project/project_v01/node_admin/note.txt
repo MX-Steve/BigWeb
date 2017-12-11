@@ -1,0 +1,105 @@
+1.统一定义产品路由中间件
+2.统一定义用户路由中间件
+var router = express.Router();
+router.get("/list",(req,res,next));
+router.get("/del",(req,res,next));
+router.get("/update",(req,res,next));
+3.加载应用
+app.use("product",router);
+
+学子--重构
+node_admin/
+    app.js:在这里不处理任何请求
+        1.加载不同模块
+        2.加载路由模块
+        3.将路由模块添加到app
+    router/
+        product.js
+        user.js
+        order.js
+        pool.js
+
+webpack:
+    是一款加载器和打包工具：它能把各种资源(js/less/coffee/图片)等作为模块来使用处理并打包
+
+    1.安装和配置
+        1.创建一个测试的项目 , e:/webpack-test
+        2.进入项目目录中
+            e:
+            cd webpack-test
+        3.初始化项目
+            npm init
+        4.全局安装webpack
+            npm install webpack -g
+        5.本地安装
+            npm install webpack --save-dev //安装到当前目录下
+    示例：
+        1.创建 webpack-test/test.js
+        2.添加内容 hello
+        3.webpack test.js   test.bundle.js
+
+    示例：
+        1.创建/word.js
+        2.添加
+        3.test.js 中添加文件： require("./word");
+        4.打包  webpack test.js  test.bundle.js
+
+    示例：
+        1.创建css 1.css
+        2.test.js 引入 1.css
+            require("style-loader!css-loader!./1.css");
+        3.webpack test.js  test.bundle.js
+
+        错误：You may need an appropriate loader to handle this file type
+            安装依赖的第三方模块（loader）
+
+            npm install css-loader style-loader --save-dev
+
+    示例：
+        1.监控项目，内容实时修改
+            webpack test.js test.bundle.js --watch
+        2.看打包过程
+            webpack test.js test.bundle.js --progress
+        3.使用哪些模块
+            webpack test.js test.bundle.js --display-modules
+
+    示例
+        1.index.html  引入打包后的文件
+
+
+    示例
+        创建目录：e:/webpack-demo
+            dist  //生成静态资源文件
+            node_modules
+            src   //源程序
+                script
+                styles
+            package.json //描述文件
+
+            webpack.config.js   //webpack 配置文件
+
+    示例：
+        修改描述文件  package.json
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

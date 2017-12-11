@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://www.tmooc.cn/script/css/style_v2.css">
+</head>
+<body>
+<img src="http://www.tmooc.cn/script/img_v2/logo_v3.png" alt="">
+<script src="http://123.59.58.63/piwik/piwik.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+    $.ajax({
+        type:'get',
+        url:'http://www.tmooc.cn/web/index_new.html?tedu',
+        success(data){
+            console.log(data);
+        },
+        error(){alert(1)}
+    })
+</script>
+</body>
+</html>

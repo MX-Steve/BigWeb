@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>图书列表</h1>
+    <table width="80%" border="1">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>名称</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody id="tb1"></tbody>
+    </table>
+    <script src="jquery.js"></script>
+    <script>
+        $.ajax({
+            type:'get',
+            url:'/booklist',
+            success(data){
+                if(data.code>0){
+                    var data = data.data;
+                    var html = '';
+                    for(var i=0;i<data.length;i++){
+                        var item = data[i];
+                        html +=`
+                        <tr>
+                            <td>${item.bid}</td>
+                            <td>${item.title}</td>
+                            <td>${item.price}</td>
+                        </tr>
+                    `;
+                    }
+                    $("#tb1").html(html);
+                }else{
+                    alert(data.msg);
+                }
+
+            },
+            error(){
+                alert('网络错误，请检查');
+            }
+        });
+    </script>
+</body>
+</html>

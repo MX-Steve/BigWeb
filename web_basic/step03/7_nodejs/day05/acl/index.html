@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .roleList{
+            background:#f9f9f9;
+            width:320px;
+            height:510px;
+            border:2px solid #2A3F54;
+            border-radius: 5px;
+        }
+        .roleList h3{
+            text-align: center;
+            background: #9CC2CB;
+            color:#000;
+        }
+        .roleList ul{
+            list-style: none;
+            padding-left: 25px;
+        }
+        .roleList ul li{
+            margin-top:5px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h3>用户列表</h3>
+    <table border="1" width="80%">
+        <thead>
+        <tr>
+            <td>编号</td>
+            <td>用户名称</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody id="tbody1">
+
+        </tbody>
+    </table>
+
+   <div class="roleList">
+      <h3>该用户未拥有角色表列</h3>
+      <ul class="lists2">
+      </ul>
+      <h3>该用户己拥有角色列表</h3>
+      <ul class="lists3">
+        单独写php
+      </ul>
+   </div>
+ <script src="js/jquery.js"></script>
+ <script src="js/role.js"></script>
+</body>
+</html>
