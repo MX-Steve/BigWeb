@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <router-view></router-view>
+</div>
+
+<script>
+
+    var MyList = Vue.component('product-list',{
+        data: function () {
+          return {
+              productList:['MacPro','MacAir','Surface','Miix','Lenovo']
+          }
+        },
+        template:`
+        <div>
+            <h1>这是列表页面</h1>
+            <ul>
+                <li v-for="(temp,index) in productList">
+                    <router-link :to="'/detail/'+index">{{temp}}</router-link>
+                </li>
+            </ul>
+        </div>
+        `
+    })
+
+    var MyDetail = Vue.component('product-detail',{
+        data: function () {
+            return {
+                productId:0
+            }
+        },
+        template:`
+        <div>
+            <p>这是id为{{productId}}的详情信息</p>
+        </div>
+        `,
+        beforeMount: function () {
+            //获取传递来的数据
+            this.productId = this.$route.params.id
+        }
+    })
+
+    //配置路由词典
+    const myRoutes = [
+//            当路由地址空 指定显示一个组件
+        {path:'',component:MyList},
+        {path:'/list',component:MyList,alias:'/lists'},
+        {path:'/myList',redirect:'/list'},
+        {path:'/detail/:id',component:MyDetail}
+//            异常处理
+//        {path:'*',component:MyList}
+    ]
+
+    const myRouter = new VueRouter({
+        routes:myRoutes
+    })
+
+
+    new Vue({
+        router:myRouter,
+        el: '#container',
+        data: {
+            msg: 'Hello Vue'
+        }
+    })
+</script>
+
+</body>
+</html>

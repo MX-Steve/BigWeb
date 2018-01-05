@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="container">
+    <father></father>
+</div>
+<script>
+    Vue.component('son',{
+        template:`
+            <div>
+                <h1>子组件</h1>
+                <input type="text" v-model="kw">
+                <button @click="toFather">toFather</button>
+            </div>
+        `,
+        data:function(){
+            return {
+                kw:''
+            }
+        },
+        methods:{
+            toFather:function(){
+                this.$emit("myEvent",this.kw);
+            }
+        }
+    });
+    Vue.component('father',{
+        template:`
+            <div>
+                <h1>父组件</h1>
+                <p>准备接收子组件传递的值：{{msg}}</p>
+                <hr>
+                <son @myEvent="rcvMsg"></son>
+            </div>
+        `,
+        data:function(){
+            return {
+                msg:''
+            }
+        },
+        methods:{
+            rcvMsg:function(msg){
+                console.log("子组件传递的值为"+msg);
+                this.msg=msg;
+            }
+        }
+    });
+    new Vue({
+        el:"#container",
+        data:{
+            msg:"父子通信"
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/vue.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div id="container">
+
+  <p v-if="count != 105" v-hello="count"></p>
+  <button @click="handleClick">clickMe</button>
+</div>
+<script>
+  new Vue({
+    el:'#container',
+    data:{
+      count:100
+    },
+    methods:{
+      handleClick:function(){
+        this.count++;
+      }
+    },
+    directives:{
+      hello:{
+        bind: function (el,instance) {
+          //只会被调用一次
+          //el 是在哪个标签，调用的自定义指令
+          //instance 记录了当前指令被调用时信息
+          //console.log(arguments);
+          console.log('绑定上了');
+          //获取通过调用指令时 传递来的参数
+          var myResult = instance.value;
+          console.log("传递来的参数为"+myResult);
+          //根据传来的参数 对 调用指令的元素进行设置
+          el.innerHTML = myResult;
+        },
+        update: function (el,instance) {
+          console.log(instance);
+          el.innerHTML = instance.value;
+          console.log('数据有变化');
+        },
+        unbind: function () {
+          //只会被调用一次
+          console.log('解除绑定了');
+        }
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

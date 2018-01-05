@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/vue.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div id="container">
+  <my-component></my-component>
+</div>
+
+<script>
+
+  Vue.component('my-button',{
+    template:'<button>clickMe</button>'
+  })
+
+  Vue.component('my-input',{
+    template:'<input type="text"/>'
+  })
+
+  new Vue({
+    el: '#container',
+    data: {
+      msg: 'Hello Vue'
+    },
+    components:{
+      'my-component':{
+        template:`
+          <div>
+            <my-input></my-input>
+            <my-button></my-button>
+          </div>
+        `
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+和React搭配去使用的第三方的库、插件、教程：
+
+https://github.com/enaqx/awesome-react
+
+https://github.com/jondot/awesome-react-native
+
+学习Vue的安排：
+day1：
+	Vue的概述
+	Vue支持的指令
+	Vue自定义指令、过滤器
+	Vue来完成组件的创建和使用
+
+day2：
+	Vue组件间的通信
+	使用Vue来实现SPA（路由模块）
+	使用Vue来实现与远程服务器端的通信
+
+
+
+一、Vue概述
+
+Angular：实现基于MVC模式的数据操作比较频繁的SPA
+
+React：基于组件来 构建UI的js库
+
+Vue：尤玉溪 14年V1.0。 学习曲线比较缓和
+ Vue吸取了大量的ng、react的优点，规避了$scope等难以理解的概念，从而让开发者可以快速的进入到开发中。
+
+如何理解所谓的渐进式的框架？
+		可以使用框架做一些简单的事情
+		也可以使用框架 实现更复杂的功能
+		还可以使用框架周边的插件 来实现更多的功能
+		（不是把所有的功能都封装在了一起，结合插件来实现更多的功能）
+
+ what?
+	渐进式 JavaScript 框架 ==》UI的js框架
+
+ why?
+	①结合了ng(数据绑定、指令、过滤器。。)和react(组件、jsx、props..)的优点,规避了缺点(ng中$scope.$digest、依赖注入...)
+
+	②学习成本比较低
+	
+	③比较轻量
+
+	④核心库性能要比较好
+
+how?
+	方式1：CLI(command line interface)
+		//全局安装 vue-cli
+		$ npm install --global vue-cli
+		//创建一个基于 webpack 模板的新项目
+		$ vue init webpack my-project
+		//安装依赖，走你
+		$ cd my-project
+		$ npm install
+		$ npm run dev
+		
+	方式2：引入对应的js文件
+		vue.js
+		
+
+二、Vue使用
+
+1、Hello World
+①在body指定一个id为container的容器
+<div id='container'>
+	{{msg}}
+</div>
+
+②在js中 new Vue的实例，在实例的配置对象中，通过指定el将Vue的实例和视图绑定起来，通过data定义咱可以使用的数据
+
+new Vue({
+	el:'#container',
+	data:{
+		msg:'Hello'
+	}
+})
+
+
+2、常见的Vue指令
+
+循环指令：
+	<li v-for="tmp in list"></li>
+	<li v-for="(tmp,index) in list"></li>
+条件选择指令：
+	 <p v-if="answer == 'a'">A</p>
+ 	 <p v-else-if="answer == 'b'">B</p>
+ 	 <p v-else-if="answer == 'c'">C</p>
+ 	 <p v-else>D</p>
+属性绑定：
+ v-bind指令是用来将模型数据中的值 绑定到指定的属性
+ 	 <img v-bind:src="'img/'+myImage" alt=""/>
+	 //简写
+	 <img :src="'img/'+myImage" alt=""/>
+
+事件绑定：
+	<button v-on:click=“handleClick”></button>
+	//简写
+	<button @click=“handleClick”></button>
+
+双向数据绑定：
+	v-model是双向数据绑定的指令：
+			可以将数据绑定到视图
+			可以将视图中用户操作的结果 绑定到数据
+	<input type='text' v-model="userMsg"/>
+
+显示隐藏相关的指令:
+	v-show 根据表达式的真假 来决定元素是否要显示
+	<button v-show="hasMore"></button>
+
+将html标签绑定到视图去显示：
+	v-html
+	div v-html="showMsg"
+	data:{
+	 showMsg:'<h1>hello directives</h1>'
+	}
+
+3、自定义指令
+
+ng自定义指令知识点回顾：
+	var app = angular.module('myApp',['ng']);
+	app.directive('tsHello',function(){
+		return {
+			template:'<h1>Hello {{tsName}}</h1>',
+			restrict:'E',
+			replace:true,
+			scope:{
+				tsName:'@'
+			}
+		}
+	})
+	<ts-hello ts-name="zhangsan"></ts-hello>
+
+Vue中创建自定义指令的步骤：
+(React组件的生命周期：mount/update/unmount)
+Vue的指令有着自己的生命周期：bind/update/unbind
+
+基本用法：
+
+	步骤1：在Vue的实例中，指定directives属性，对应的值是一个对象
+	步骤2：在directives对应的对象中，指定自定义指令的名称以及配置对象
+	步骤3：在配置对象中去根据需求在bind/update/unbind去实现具体的业务
+		new Vue({
+			directives:{
+				hello:{
+					bind:func,
+					update:func,
+					unbind:func
+				}
+			}
+		})
+	步骤4：使用自定义指令 在自定义指令的名称前面加上'v-'
+
+	v-hello
+
+高级用法：
+	如何调用指令时传参？
+		<p v-hello="100"></p>
+	如何在指令内部接收参数？
+		bind:function(el,instance){
+			//接收传来的值
+			console.log(instance.value)
+		}
+	如何在指令内部根据参数的不同来设置元素？
+			bind:function(el,instance){
+			// el
+		}
+
+	各个方法的作用？
+		bind 第一次绑定 完成数据的初始化相关操作
+		update 数据发生变化，执行的方法，根据不同的数据，做一些和公司业务相关的处理
+		unbind 解除绑定时，清理工作
+
+
+
+4、Vue过滤器
+Vue1.*版本中 是支持过滤器:orderBy filterBy limitBy uppercase lowercase currency...
+
+Vue2.0版本 内置的过滤器全部舍弃。
+
+
+ng是如何实现一个自定义过滤器？
+过滤器的本质：是一个有参数有返回值的方法
+
+
+
+var app = angular.module('myApp',['ng']);
+app.filter('myCurrency',function(){
+	return function(inputMsg,arg1,arg2){
+	// {{100 | myCurrency:20:'*'}}
+	// inputMsg:100 arg1:20 arg:*
+		return '处理后的数据'
+	}
+});
+
+
+自定义过滤器: 在Vue中支持多重过滤。
+
+	步骤1：在Vue的实例 指定 filters
+	步骤2：在filters对应的对象，指定过滤器的名字和过滤器对应的方法
+	步骤3：通过管道符号，将待处理的数据 传递给自定义过滤器
+
+在调用过滤器时传参：
+	步骤1：在过滤器对应的方法中（本来已经有一个参数：通过管道传递来的数据），接着再指定参数，就是调用过滤器时传来的参数
+
+	filters:{
+		myFilter:function(myInput,arg1){
+			//myInput 通过管道传递来的数据
+			//arg1 是过滤器自身的参数
+		}
+	}
+	步骤2：调用过滤器时 指定参数即可
+	<p>{{price | myFilter('￥') }}</p>
+
+练习：要求大家来使用自定义过滤器的知识
+来实现一个大小写转换的过滤器:TextTransfrom
+如果参数true，转化为大写，否则转换为小写
+
+
+创建Vue的实例：
+el: 绑定要显示视图
+data：定义需要用到的数据
+filters:过滤器的创建
+directives:指令
+watch ：监听
+
+
+
+
+
+4、Vue监听属性
+
+步骤1：
+new Vue({
+	data:{
+		kw:''
+	}
+})
+
+步骤2：将用户的输入绑定到数据
+<input type='text' v-model='kw'/>
+
+步骤3：
+new Vue({
+	data:{
+		kw:''
+	}，
+	watch:{
+		kw:function(newValue,oldValue){
+		// newValue是当前的值
+		// oldValue 是变化前的数据
+		}
+	}
+})
+
+自定义指令： bind update unbind
+
+5、Vue的生命周期
+四个阶段：
+每一个阶段都对应着有两个处理函数，一个是将来，一个过去
+	create
+		beforeCreate
+		created
+	mount
+		beforeMount
+		mounted
+	update
+		beforeUpdate
+		updated
+	destroy
+		beforeDestroy
+		destroyed
+
+
+6、Vue的Component
+
+组件：可被反复使用的带有特定功能视图
+优点：方便复用，降低代码的复杂度，降低测试难度。。
+
+回顾：在其他创建组件的方式
+
+	React:
+		React.createClass({
+			render:function(){
+				return  <div></div>
+			}
+		})
+	ReactNative:
+		export default class TestComponent extends Component{
+			render(){
+			
+			}
+		}
+	angular:
+		$Component({
+			selector:'',
+			template:''
+		})
+		export class Demo01Component{
+		}
+	angularJS:
+		app.directive('tsHello',function(){
+			return {
+				template:'',
+				scope:{
+				},
+				replace:true,
+				restrict:''
+			}
+		})
+
+
+Vue中创建组件的两种方式：
+
+创建组件注意事项：
+	①组件的命名 必须是烤串式而且全部是小写字母
+	②如果组件要渲染多个元素，要把多个元素放在一个容器，否则会warning
+	③创建的局部组件，只能在Vue实例对应的容器中使用
+	④创建的全局组件，可以在Vue实例对应的任何一个地方去使用，包括在局部组件中去使用。
+
+方式1： 局部组件
+	在Vue的实例中，指定components属性，在该属性中指定一个对象；在对象中key就是组件的名称，value就是该组件的配置对象（template）
+	new Vue({
+		components:{
+		'test-com':{
+				template:'<h1>hello</h1>'
+			}
+		}
+
+	<test-com>	</test-com>
+
+方式2：全局组件
+	步骤1：创建组件 my-component
+		Vue.component('my-component',{
+		template:'<h1></h1>'
+		})
+	步骤2：调用组件
+		在Vue实例对应的视图范围内，按照html标签的方式去调用
+		<div id='container'>
+			<my-component></my-component>
+		</div>
+练习：
+创建一个全局组件 my-button,渲染一个按钮
+创建一个全局组件 my-input,渲染一个输入框；
+创建一个局部组件 my-component,渲染my-button和my-input. 根组件：my-component
+
+
+每日一练：
+通过所学的组件和指令的知识，来实现待做事项列表
+要求：
+①组件名字todo-box、todo-list、todo-item、
+todo-input
+②组件都按照全局组件
+③todo-list显示3个todo-item

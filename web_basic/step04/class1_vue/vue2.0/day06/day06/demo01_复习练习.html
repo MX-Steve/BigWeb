@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <!--{{msg}}-->
+    <router-view></router-view>
+</div>
+
+<script>
+    var MyList = Vue.component('my-list',{
+        data: function () {
+            return {
+                scoreList:[10,20,30],
+                userInput:'',
+                hasRepeatData:false
+            }
+        },
+        watch:{
+            userInput: function () {
+                console.log("当前输入框中内容为"+this.userInput);
+                if(this.scoreList.indexOf(this.userInput) == -1){
+                    this.hasRepeatData = false;
+                }
+                else
+                {
+                    this.hasRepeatData = true;
+                }
+                console.log('this.hasRepeatData',this.hasRepeatData);
+            }
+        },
+        methods:{
+            addToList: function () {
+                //向数组中 插入元素，内容：用户的输入信息
+                this.scoreList.push(this.userInput);
+            },
+            jumpToDetail: function (itemIndex) {
+                this.$router.push('/detail/'+itemIndex);
+            }
+        },
+        template:`<div>
+        <h1>this is my list</h1>
+        <input type="text" v-model.number="userInput"/>
+        <button @click="addToList" :disabled="hasRepeatData">add</button>
+        <p v-show="hasRepeatData">有重复数据</p>
+        <ul>
+            <li v-for="(tmp,key) in scoreList">
+
+                <router-link :to="'/detail/'+key">{{tmp}}</router-link>
+                <!--<p @click="jumpToDetail(key)">{{tmp}}</p>-->
+            </li>
+        </ul>
+        </div>`
+    })
+
+    var MyDetail = Vue.component('my-detail',{
+        data: function () {
+          return {
+              myIndex:''
+          }
+        },
+        template:`<div>
+        <h1>this is {{myIndex}} detail</h1>
+        </div>`,
+        beforeMount: function () {
+            console.log(this.$route.params.index);
+            this.myIndex = this.$route.params.index;
+        }
+    })
+
+    var NotFound = Vue.component('not-found',{
+        template:`<div>
+        <h1>404</h1>
+        </div>`
+    })
+
+    // 配置路由词典
+    const myRoutes = [
+        {path:'',component:MyList},
+        {path:'/list',component:MyList},
+        {path:'/detail/:index',component:MyDetail},
+        {path:'*',component:NotFound},
+    ];
+
+    const myRouter = new VueRouter({
+        routes:myRoutes
+    })
+
+    new Vue({
+        router:myRouter,
+        el:'#container',
+        data:{
+            msg:'Hello VueJS'
+        }
+    })
+</script>
+
+
+</body>
+</html>

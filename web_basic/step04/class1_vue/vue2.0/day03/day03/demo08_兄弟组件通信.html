@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <xiong-da></xiong-da>
+    <hr/>
+    <xiong-er></xiong-er>
+</div>
+
+<script>
+
+    //这是一个对象，兄弟间的通信
+    // 要通过它的事件的绑定和触发来实现
+    var bus = new Vue();
+
+    Vue.component('xiong-da',{
+        methods:{
+            sendToXiongEr: function () {
+                //给熊二发消息
+                bus.$emit('msgToXiongEr','光头强又来偷木头了！');
+            }
+        },
+        template:`
+            <div>
+                <h1>我是熊大</h1>
+                <button @click="sendToXiongEr">clickMe</button>
+            </div>
+        `,
+        mounted: function () {
+            //绑定一个自定义的事件 和 对应的处理函数
+            bus.$on('msgToXiongDa', function (msg) {
+                console.log('熊二传来的数据为'+msg);
+            })
+        }
+        
+    })
+
+    Vue.component('xiong-er',{
+        methods:{
+            sendToXiongDa: function () {
+                //触发熊大组件 绑定的事件对应的处理函数
+                bus.$emit('msgToXiongDa','快跑！');
+            }
+        },
+        template:`
+        <div>
+            <h1>我是熊二</h1>
+            <button @click="sendToXiongDa">给熊大发消息</button>
+        </div>
+        `,
+        mounted: function () {
+            //给该组件 绑定一个自定义事件 和 对应的处理函数
+            bus.$on('msgToXiongEr', function (msg) {
+                console.log('自定义的事件被触发了，接收到的数据为'+msg);
+            })
+        }
+    })
+
+    new Vue({
+        el: '#container',
+        data: {
+            msg: 'Hello Vue'
+        }
+    })
+</script>
+
+</body>
+</html>

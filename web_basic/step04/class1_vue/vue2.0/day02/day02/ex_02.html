@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <button @click="isShow = !isShow">切换组件是否显示</button>
+        <my-component v-if="isShow"></my-component>
+        <hr>
+    </div>
+    <script>
+        Vue.component('my-component',{
+            template:`<div>
+                    <h1>hello{{count}}</h1>
+                    <button @click="handleClick">click</button>
+                    <hr/>
+                    <input v-model="kw" type="text" />
+                    <p>{{kw}}</p>
+                    <p :style="{opacity:myOpa}">lorem sfdjdsaj alfdjsolj gasfdas</p>
+                </div>`,
+            data:function(){
+                return {
+                    count:0,
+                    kw:'',
+                    myOpa:0
+                }
+            },
+            watch:{
+                'kw':function(msg){
+                    console.log(msg);
+                }
+            },
+            methods:{
+                handleClick(){
+                    this.count++;
+                }
+            },
+            // beforeCreate(){console.log("准备创建组件");},
+            // created(){console.log("组件创建完毕")},
+            // beforeUpdate(){console.log("准备更新了")},
+            // updated(){console.log("更新完毕")},
+            // beforeMount(){console.log("准备挂载")},
+            mounted(){
+                console.log("挂载结束")
+                setInterval(()=>{
+                    this.myOpa+=0.05;
+                    if(this.myOpa>=1){
+                        this.myOpa = 0;
+                    }
+                },50);
+            },
+            // beforeDestroy(){
+            //         console.log("准备销毁")
+            // },
+            destroyed(){console.log("组件已经销毁")}
+        });
+        new Vue({
+            el:'#box',
+            data:{
+                isShow:true
+            }
+        });
+    </script>
+</body>
+</html>

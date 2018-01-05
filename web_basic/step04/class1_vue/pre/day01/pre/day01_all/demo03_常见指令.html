@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/vue.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div id="container">
+  <button v-on:click="handleClick">
+    clickMe
+  </button>
+  <!-- 写一个输入框，当输入框中的内容变化时 在控制台打印当前用户输入的内容-->
+  <input type="text" v-on:change="handleChange" />
+
+  <!-- 事件绑定的简写方式 v-on:click 简写为@click -->
+  <button @click="handleClick">clickMe</button>
+
+  <!-- 双向数据绑定
+  ngModel
+  -->
+  <input type="text" v-model="userMsg"/>
+  <h2>{{userMsg}}</h2>
+
+  <!-- v-show用法 -->
+  <button v-show="hasMore">加载更多</button>
+  <p v-show="!hasMore">没有更多数据可以加载了</p>
+
+  <!-- v-html 用法-->
+  <div v-html="showMsg"></div>
+</div>
+
+<script>
+
+  new Vue({
+    el:'#container',
+    data:{
+      userMsg:'defaultName',
+      hasMore:false,
+      showMsg:'<h1>Hello Directives</h1>'
+    },
+    methods:{
+      handleClick: function () {
+        console.log('btn  is clicked');
+      },
+      handleChange: function () {
+        console.log('内容变化了');
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

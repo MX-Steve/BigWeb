@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <parent-component></parent-component>
+</div>
+
+<script>
+
+    // 一切都是组件
+    Vue.component('parent-component',{
+        data: function () {
+            return {
+                gift:'传家宝'
+            }
+        },
+        template:`
+        <div>
+            <h1>这是父组件</h1>
+            <hr/>
+            <child-component :myValue="gift"></child-component>
+            <child-component myValue="money"></child-component>
+        </div>
+        `
+    })
+    Vue.component('child-component',{
+        props:['myValue'],
+        template:`
+        <div>
+            <h1>这是子组件</h1>
+            <p>{{"老爹给的礼物："+myValue}}</p>
+        </div>
+        `
+    })
+
+
+    new Vue({
+        el: '#container',
+        data: {
+            msg: 'Hello Vue'
+        }
+    })
+</script>
+
+</body>
+</html>

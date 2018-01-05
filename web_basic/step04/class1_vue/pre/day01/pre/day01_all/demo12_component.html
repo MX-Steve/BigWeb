@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/vue.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div id="container">
+  {{msg}}
+  <my-component></my-component>
+  <!-- 调用组件-->
+  <test-component></test-component>
+</div>
+
+
+<script>
+  //创建一个叫做my-component的全局组件
+  Vue.component('my-component',{
+    template:`
+    <div>
+      <p> it is my component</p>
+      <button>clickMe</button>
+
+     </div>
+     `
+  })
+//  <test-component></test-component>
+
+
+  new Vue({
+    el: '#container',
+    data: {
+      msg: 'Hello Vue'
+    },
+    components:{
+      'test-component':{
+        template:`
+        <div>
+          <span>it is a local component</span>
+          <my-component></my-component>
+        </div>
+        `
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

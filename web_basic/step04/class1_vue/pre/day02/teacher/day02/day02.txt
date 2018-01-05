@@ -1,0 +1,205 @@
+每日一练：
+	通过Vue来实现一个分页的效果。
+
+	提供一个数组：
+	pageNumbers=[1,2,3,4,5]
+	将数组显示在一个列表中，默认第0个被选中，点击列表项时候，让该列表项高亮显示。 
+
+	v-for
+	v-bind
+	v-on
+
+
+day2学习安排：
+	自定义指令
+	自定义过滤器
+	组件的创建和使用
+	组件的高级用法
+
+一、自定义指令的创建和使用
+
+Vue自带的指令很多，v-for/v-if/v-else/v-else-if/v-model/v-bind/v-on/v-show/v-html/v-text...
+但是这些指令都是比较偏向于工具化，有些时候在实现具体的业务逻辑的时候，发现不够用，如何来自定义指令.
+
+
+1、自定义指令
+①创建
+	new Vue({
+		directives:{
+			change:{
+				bind:function(){},
+				update:function(){},
+				unbind:function(){}
+			}
+		}
+	})
+
+	在自定义指令时，在指令对应的配置对象中有3个处理函数指令对应的操作
+	bind
+		指令在绑定到元素要执行的操作
+	update
+		如果在调用指令时候，传了参数，当参数变化时候，就会执行update所指定的方法
+	unbind
+		解绑要执行的操作
+
+②使用自定义指令
+	directives:{
+			hello:{
+				bind:function(){},
+				update:function(){},
+				unbind:function(){}
+			}
+		}
+	v-hello
+
+
+注意事项：
+	建议在给指令的命名采用小驼峰式的命名方式，比如changeBackgroundColor,在使用的时候，采用烤串式写法 v-change-background-color
+
+
+练习：实现一个自定义指令v-change-background-color,
+
+changeBackgroundColor
+
+在调用指令时，可以去传递参数，根据参数的值 修改调用该指令的元素的背景色。
+
+二、自定义过滤器的创建和使用
+
+过滤器：生活中有很多例子，净水器 空气净化器 。
+过滤器的作用：实现数据的筛选、过滤、格式化。
+
+vue1.*版本是有内置的过滤器，但是在vue2.*所有的版本都已经没有自带的过滤器了。
+
+1、过滤器创建
+过滤器的本质 是一个有参数 有返回值的方法
+new Vue({
+	filters:{
+		myCurrency:function(myInput){
+			return 处理后的数据
+		}
+	}
+})
+
+2、过滤器使用
+语法：
+<any>{{表达式 | 过滤器}}</any>
+举个例子：
+<h1>{{price | myCurrency}}</h1>
+
+3、过滤器高级用法
+
+在使用过滤器的时候，还可以指定参数，来告诉过滤器按照参数进行数据的过滤。
+
+①如何给过滤器传参？
+<h1>{{price | myCurrency('￥',true)}}</h1>
+②如何在过滤器中接收到？
+new Vue({
+	filters:{
+	//myInput是通过管道传来的数据
+	//arg1在调用过滤器时在圆括号中第一个参数
+	//arg2在调用过滤器时在圆括号中第二个参数
+		myCurrency:function(myInput,arg1,arg2){
+			return 处理后的数据
+		}	}})
+练习：
+实现一个过滤器myTextTransform,功能是实现将一个字符串转换为大写或者小写，取决于传递给过滤器的参数，如果是true转换为大写 否则小写。
+
+myInput.toUpperCase()
+myInput.toLowerCase()
+
+
+三、组件
+
+w3c为什么有组件概念？
+
+现在的前端领域，对于代码的质量和数量有着非常高的要求，特别容易出问题。
+通过组件的方式来完成代码的管理和编写。
+
+组件：是一个可以被反复使用的 带有指定功能的 视图
+
+组件化编程 一切都是组件component，把可以被反复使用的任何的视图 都可以封装成组件。
+
+类似玩积木。
+
+组件化的好处（封装）：
+①提高了代码的复用率
+②提高开发速度
+③降低测试难度
+④降低整个应用的耦合度
+。。。
+
+1、组件的创建
+	Vue.component('my-component',{
+		template:'<h1>it is a component</h1>'
+	})
+
+2、组件的使用
+	组件的使用就像是使用普通的html标签一样
+	<my-component>	</my-component>
+
+建议：组件的命名和使用 建议来使用烤串式命名规则。
+（如果组件的名字写成驼峰式 myComponent,使用依然还得是烤串式）
+
+注意：
+①如果一个组件要渲染多个元素，将多个元素放到一个顶层标签；否则会报错。
+
+3、复合组件
+组件可以像html一样来使用，复合组件并不是一个新的概念，就是一个组件，只不过该组件中又调用了其它的组件。
+
+一个完整的Vue的项目，可以比作是一颗组件树，组件树的根 就是 根组件（my-article）....
+组件树可以帮助我们降低业务的复杂度，避免出现一些错误，提高开发速度。
+
+4、组件的生命周期
+
+分为4个阶段：
+create/mount/update/destroy
+每一个阶段都对应着有自己的处理函数
+create: beforeCreate created
+	初始化
+mount:  beforeMount mounted
+	和挂载相关的处理
+update: beforeUpdate updated
+	根据要更新的数据 做逻辑判断
+destroy:beforeDestroy destroyed
+	清理工作
+
+
+在Vue的实例或者在组件，都有哪些属性？
+
+el
+data
+methods
+directives
+filters
+watch
+
+
+练习：
+ 生命周期。
+ 创建一个组件，该组件渲染一个h1的标签。
+ 要求：在组件挂载完毕之后，启动定时器，修改h1标签的透明度的值 0~1 
+
+	v-bind:style='{backgroundColor:myBGColor}'
+
+
+每日一练：
+	创建一个组件，my-game:
+	猜数字大小。
+
+	组件：一个input和一个p构成
+	当组件准备挂载的时候，初始化一个随机数，在input取输入的时候，如果输入的数字小了，在p显示：输入的太小了；如果输入的数字大了，在p显示：输入的太大了；否则就提示输入正确。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <p>{{msg}}</p>
+    <ul>
+        <li v-for="tmp in myList">
+            {{tmp.name}}
+        </li>
+    </ul>
+</div>
+
+<script>
+    new Vue({
+        el:'#container',
+        data:{
+            msg:'Hello VueJS',
+            myList:[]
+        },
+        mounted: function () {
+            //发起网络请求
+
+            this.$http
+                    .get('data/test.json')
+                    .then(function (response) {
+                        console.log(response);
+                        this.myList = response.data;
+                    })
+        }
+    })
+</script>
+
+
+</body>
+</html>

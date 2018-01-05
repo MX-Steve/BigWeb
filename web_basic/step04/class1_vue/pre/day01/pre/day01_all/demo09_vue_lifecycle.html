@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/vue.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div id="container">
+  {{myValue}}
+</div>
+
+<script>
+
+  /*
+  create/mount/update/destroy
+  准备：before+名称
+  已经：名称+ed
+
+   * 需求：当Vue的实例，
+   * 在准备创建，初始化一个值（myValue=100）,
+   * 在挂载到DOM之后，启动定时器 来让myValue自增
+   * 在准备更新myValue时候，如果值超过了110，结束定时器
+   * */
+
+  new Vue({
+    el: '#container',
+    data: {
+      msg: 'Hello Vue',
+      myValue: 0,
+      myIntervalId: null
+    },
+    beforeCreate: function () {
+      console.log('准备创建了');
+    },
+    created: function () {
+      //处理数据初始化相关的操作
+      this.myValue = 100;
+      console.log('创建好了');
+    },
+    beforeMount: function () {
+      console.log('准备挂载');
+    },
+    mounted: function () {
+      console.log('已经挂载完毕');
+      this.myIntervalId = setInterval(function () {
+        this.myValue++;
+        console.log(this.myValue);
+      }.bind(this), 500)
+    },
+    beforeUpdate: function () {
+      if (this.myValue == 110) {
+        clearInterval(this.myIntervalId)
+      }
+      console.log('要有新的更新');
+    },
+    updated: function () {
+      console.log('已经更新完成');
+    },
+    beforeDestroy: function () {
+      console.log('准备销毁');
+    },
+    destroyed: function () {
+      console.log('销毁完成');
+    }
+
+
+  })
+
+</script>
+</body>
+</html>

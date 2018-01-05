@@ -1,0 +1,110 @@
+vue.js
+day1:
+	vue的概述
+	vue的常见指令和插值表达式
+	vue的组件的基本概念
+day2:
+	vue的组件高级用法
+	vue不同的组件之间如何进行数据通信
+day3:
+	vue的路由模块使用
+	vue的过渡效果
+	vue与远程服务器端的通信
+
+零、框架
+①什么是框架？
+	框架指的是一套非常优秀可被反复使用的代码，帮助开发者解决一些复杂的问题。
+
+②框架有啥好处？
+	提高了代码的复用率
+	降低模块之间的耦合度
+	提高开发速度
+	提高代码质量
+
+
+一、Vue的概述
+
+what？
+	Vue的开发者是尤雨溪，是受到angular的启发，是一个实现ui层的渐进式的js框架
+	
+	版本：V2.4.0
+
+	注意：
+	①并不是所有的ui类的库或者框架 都提供了丰富的样式类
+	②渐进式：step by step
+
+
+where？
+	饿了么 滴滴 阿里巴巴
+	gitlab。。。
+
+	VueJS可以用在很多地方，从简单的表单验证，到复杂的大型企业应用程序，Vue都可以胜任；核心库是实现UI层的。
+
+why？
+	①非常好的中文文档
+	②学习曲线比较缓和（容易上手）
+	③速度快
+	④体积小
+	⑤基于组件化（web component）的开发方式
+	⑥代码的可读性、可维护性比较好
+
+how？
+	搭建环境有两种方式：
+	方式1：CLI（command line interface 命令行窗口）
+		#安装nodejs
+			https://nodejs.org/en/
+		#全局安装 vue-cli
+		 npm install --global vue-cli
+		#创建一个基于 webpack 模板的新项目
+		 vue init webpack my-project
+		#安装依赖，走你
+		 cd my-project
+		 npm install
+		 npm run dev
+	
+	方式2：直接引入对应的js文件
+
+二、Vue的基础使用
+
+1、第一个例子
+
+通过new的方式来得到了Vue的实例，在new通过一个对象来对Vue的实例配置（el，data）；
+接触了双花括号(mustache/interpolation)的语法:可以读取变量的值 显示在调用的元素的innerHTML中。
+
+
+练习时间：
+新建一个文件，通过vue的方式 ，在html中执行
+一个三目运算、一个逻辑运算；将运算的结果显示不同的h1标签中。
+
+2、双花括号
+语法： <any>{{表达式}}</any>
+作用：执行表达式，将表达式的结果 输出到当前调用元素的innerHTML中
+
+
+三、Vue的常用指令
+
+循环、选择判断、显示隐藏。。。
+
+1、循环指令
+语法1：
+<any v-for=" tmp in 集合"></any>
+
+ 根据in关键词后的集合，去循环创建多个标签，
+ 举例：
+ myList:[100,200,300]
+ <a v-for="tmp in myList">{{tmp}}</a>
+
+语法2：
+<any v-for="(value,key) in 集合"></any>
+
+练习：
+去新建一个文件，通过Vue将一个对象数组 显示在table(thead和tbody)中。
+对象数组有5个对象，
+每个对象指定3个属性：name/sex/age.
+
+
+基本步骤
+①定义数据
+	[{},{}]
+②在视图中创建table
+③将数据通过v-for和双花括号将值显示出来

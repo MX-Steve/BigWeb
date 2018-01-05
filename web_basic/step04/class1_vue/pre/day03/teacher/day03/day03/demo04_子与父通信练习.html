@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <main-component></main-component>
+</div>
+
+<script>
+
+    Vue.component('main-component',{
+        data: function () {
+            return {
+                productList:[100,200,300,400,500],
+                isUserLogin:true
+            }
+        },
+        methods:{
+            recvUserLogin: function (msg) {
+                console.log('接收到事件的值：'+msg)
+                this.isUserLogin = msg;
+            }
+        },
+        template:`
+        <div>
+            <header-component
+            @checkUserLoginEvent="recvUserLogin"></header-component>
+            <ul v-if="isUserLogin">
+                <li v-for="tmp in productList">
+                    {{tmp}}
+                </li>
+            </ul>
+        </div>
+        `
+    })
+
+//组件的生命周期：create/mount/update/destroy
+    Vue.component('header-component',{
+        data: function () {
+            return {
+                isLogin:false
+            }
+        },
+        template:`
+            <h1> 这是页头 </h1>
+        `,
+        mounted: function () {
+            //挂载完毕之后 触发自定义事件checkUserLoginEvent
+            this.$emit('checkUserLoginEvent',this.isLogin);
+        }
+    })
+
+
+
+
+
+
+    new Vue({
+        el: '#container',
+        data: {
+            msg: 'Hello Vue'
+        }
+    })
+</script>
+
+</body>
+</html>

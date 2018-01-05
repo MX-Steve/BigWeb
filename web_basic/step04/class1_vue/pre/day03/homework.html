@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no,
+          initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<body>
+<div id="container">
+    <main-component></main-component>
+</div>
+<script>
+    Vue.component('main-component',{
+        template:`
+            <div>
+                <button v-bind:disabled="!isValid" @click="plus">点击自增</button>
+                <hr>
+                <son-component @customEvent="controlBtn" :plusCount="count"></son-component>
+            </div>
+        `,
+        data:function(){
+            return {
+                count:0,
+                isValid:true
+            }
+        },
+        methods:{
+            plus:function(){
+                this.count++;
+            },
+            controlBtn:function(msg){
+                console.log(msg);
+                this.isValid=msg;
+            }
+        }
+    });
+    Vue.component('son-component',{
+        template:`
+            <div>
+                <p>{{plusCount}}</p>
+            </div>
+        `,
+        data:function(){
+            return{
+                isValid:true
+            }
+        },
+        props:['plusCount'],
+        updated:function(){
+            if(this.plusCount>=10){
+                this.isValid=false;
+                this.$emit('customEvent',this.isValid);
+            }
+        }
+
+
+    });
+    new Vue({
+        el:"#container",
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+今日安排：
+1、网络请求
+2、通过vue-cli命令行方式所创建的模板项目 是如何进行编程的
+3、综合小项目ToDoList
+4、学子商场的后天管理界面框架搭建
+
+
+fake api:
+http://jsonplaceholder.typicode.com/posts
+方便对于网络模块做测试。
+
+正常情况，需要公司的服务器。
+
+一、网络请求
+需要vue-resource.js插件
+
+this.$http
+	.get('url')
+	.then(function(response){
+		// response.data 就是服务器端所返回的数据
+	})
+
+
+二、综合组件之间的通信
+
+实现一个ToDoList。
+
+①完成所有的组件的创建和使用
+
+②add
+点击add按钮时候，将用户输入的内容（todoinput），显示在（todolist）
+
+核心代码：兄弟组件间通信
+	步骤1：var bus = new Vue()
+	步骤2：在准备接受数据的组件
+		bus.$on('addEvent',function(){
+		
+		})
+	步骤3：触发事件
+		bus.$emit('addEvent',123)
+
+
+将todolist中数组的元素 渲染在todoitem的每一个span标签。（父子组件通信）
+
+③delete
+
+在todoitem中点击delete按钮时，将该todoitem删除，由于todoitem的数量 取决于 todolist中数组
+
+子组件 和 父组件通信、
+
+
+三、基于Vue-Cli所创建的模板项目使用方式
+
+好处：
+①当代码修改，直接预览效果
+hot reload
+②框架已经搭建好了，快速进入到开发
+③组织代码的方式
+将组件通过.vue的文件 单独组织 放在src目录components
+
+1、webstorm设置
+为了提高webStrom在Vue项目中响应速度，设置：
+选中项目，点击右键，mark directory as,excluded
+
+进入到CLI：
+windows+R 
+cmd
+
+d:
+cd vue_cli
+npm run dev
+
+2、介绍单文件组件概念
+文件扩展名为 .vue 的 single-file components(单文件组件) ；
+有3个标记：template(是html) script（组件的设置） style（样式的设置）
+
+3、vue项目启动流程
+
+在执行npm run dev的时候，会去在当前文件夹下的项目中找package.json文件,启动开发服务器，默认端口是8080；
+
+找到src的main.js文件，在该文件中new Vue的实例，要加载的模板内容App，App是src目录下的App.vue结尾的文件，在App.vue所对应的模板当中，有一个router-view
+
+在src目录下有一个router文件夹，该文件夹有个index.js文件，该文件是配置路由词典，指定了路由地址是空，加载Hello组件
+
+
+4、使用Vue的组件
+
+步骤1：创建.vue结尾的文件
+	MyHeader.vue
+步骤2：创建组件
+在main.js文件中，
+	①引入要使用的组件
+	import MyHeader from '@/components/MyHeader'
+	②创建组件
+	Vue.component('my-header',MyHeader)
+步骤3：使用组件
+	MyList.vue
+	<template>	
+		<my-header>		</my-header>
+	</template>
+
+
+5、Vue项目 如何 部署在真正的服务器端
+
+在工程所在的目录中，执行npm run build，
+会生成一个dist的文件夹
+
+就是我们可以直接部署（deploy）在服务器端的文件。
+
+
+练习：
+创建两个组件，my-login,my-main,要求，当路由地址是空或者'/login'的时候，访问my-login组件；
+当路由地址是'/main'，访问my-main组件。
+
+步骤1：
+在components创建中创建MyLogin.vue,MyMain.vue
+
+步骤2：
+配置路由词典
+
+
+参数传递：
+①明确发送 接收
+login main
+
+②配置接收方路由地址
+{path:'/main'}
+-->
+{path:'/main/:uName'}
+
+③在接收方接收数据
+this.$route.params.uName
+
+④发送参数
+this.$router.push('/main/michale')
+
+
+
+
+重构todolist。
+ToDoBox.vue
+ToDoList.vue
+TODoItem.vue
+ToDoInput.vue
+
+
+
+
+
+

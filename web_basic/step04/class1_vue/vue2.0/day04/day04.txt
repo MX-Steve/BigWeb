@@ -1,0 +1,166 @@
+每日一练：
+
+创建2个组件，main-component,son-component
+
+视图：
+ main-component 显示一个按钮
+ son-component 显示一个p标签
+
+功能：
+	main-component 定义一个变量count,初始化为0，将count传递给son-component,son-component接收到数据显示在p标签中
+
+	main-component 在点击按钮时，实现对count的自增操作，要求son-component能够实时显示count对应的数据
+
+	son-component在接收到count之后，在count大于10的时候，将main-component的按钮禁用掉
+	（参考：
+	<button v-bind:disabled="!isValid">clickMe</button>）
+
+
+
+今天的安排：
+
+1、SPA（single page application）概述
+2、VueRouter来实现一个SPA的基本步骤
+3、VueRouter来实现一个SPA的实现页面间的跳转
+4、VueRouter来实现一个SPA的实现页面间的跳转的同时，完成参数的传递
+
+一、SPA的概述
+
+SPA（single page application）单页面应用程序，在一个完成的应用或者站点中，只有一个完整的html页面，这个页面有一个容器，可以把需要加载的代码片段插入到该容器中。
+
+
+SPA的工作原理：
+http://127.0.0.1/index.html#/start
+①根据地址栏中url解析完整的页面：index.html
+加载index.html
+②根据地址栏中url解析#后的路由地址： start
+根据路由地址，去在当前应用的配置中 找该路由地址的配置对象去查找该路由地址 所对应的模板的页面地址
+发起异步请求加载该页面地址
+③把请求来的数据加载到指定的容器中
+
+
+二、通过VueRouter来实现一个SPA的基本步骤
+①引入对应的vue-router.js
+②指定一个盛放代码片段的容器
+<router-view></router-view>
+③创建业务所需要的各个组件
+④配置路由词典
+	每一个路由地址的配置对象（要加载哪个页面...）
+	const myRoutes = [
+		{path:'/myLogin',component:TestLogin},
+		{path:'/myRegister',component:TestRegister}
+	]
+	const myRouter =  new VueRouter({
+		routes:myRoutes	
+	})
+	new Vue({
+		router:myRouter	
+	})
+⑤测试
+	在地址栏中 输入对应的不同的路由地址 确认是否能够加载对应的组件
+
+
+练习：
+	需要大家创建一个SPA，这个SPA有3个组件，分别对应的是collect/detail/order
+	功能需求：
+	在地址栏中路由地址是:
+	/myColllect --> 收藏页组件
+	/myDetail --> 详情页组件
+	/myOrder --> 订单页组件
+
+
+三、通过VueRouter来实现组件之间的跳转
+提供了3种方式实现跳转：
+①直接修改地址栏中的路由地址
+
+②通过router-link实现跳转
+<router-link to="/myRegister">注册</router-link>
+
+③通过js的编程的方式
+ jumpToLogin: function () {
+			this.$router.push('/myLogin');
+		}
+
+
+四、通过VueRouter来实现组件之间的跳转：参数的传递
+
+login ---用户名---》main
+
+①明确发送方和接收方
+②配置接收方的路由地址
+	{path:'/myTest',component:TestComponent}
+	-->
+	{path:'/myTest/:id',component:TestComponent}
+③接收方获取传递来的数据
+	this.$route.params.id
+④跳转的时候，发送参数
+ this.$router.push('/myTest/20')
+<router-link :to="'/myTest'+id">跳转</router-link>
+练习：
+视图：有两个组件
+	product-list ： 构造一个具有5条数据的数组，显示在列表中，每个列表项都有一个超链接
+  product-detail:p 显示字符串：这是id为**的详情信息
+功能：点击product-list的列表项，跳转到product-detail，并将数组中该元素的下标发送给product-detail，product-detail接收到数据显示在p标签。
+
+
+①明确发送 接收
+发送：list
+接收：detail
+
+②配置接收方的路由地址
+{path:'/detail',} --》 {path:'/detail/:id',}
+
+③接收方取值
+this.$route.params.id
+
+④发送参数
+<router-link :to="'/detail/'+index"></router-link>
+
+this.$router.push('/detail/20')
+
+
+五、路由设置高级用法
+alias 别名
+	{path:'/list',component:MyList,alias:'/lists'}
+redirect 重定向
+	{path:'/productList',redirect:'/list'}
+path:'*' 异常处理
+	{path:'*',component:'NotFound'}
+
+六、路由嵌套
+举个例子：
+163邮箱为例，
+login/mail(根据需求 加载inbox或者outbox)
+
+
+login mail
+			 --inbox
+			 --outbox
+
+路由嵌套的SPA实现的步骤：
+
+A（/a）组件需要嵌套B组件(/b)和C组件(/c)
+
+①准备嵌套其它组价的父组件 指定一个容器
+在A组件指定一个容器
+<router-view></router-ivew>
+
+②在A组件的路由配置对象中指定children属性
+{ 
+	path:'/a',
+	component:A,
+	children:[
+	 {path:'/b',component:B},
+ 	 {path:'/c',component:C},
+	]
+}
+
+
+补充：
+	//数字如果超出记录的次数，是不行的。
+	this.$router.go(num);
+	如果num是正数，向前进
+	如果num是负数，向后退
+
+
+

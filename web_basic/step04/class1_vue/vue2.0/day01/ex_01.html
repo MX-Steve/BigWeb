@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='js/vue.js'></script>
+    <style>
+        #pager:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        #pager li{
+            list-style:none;
+            width:80px;
+            height:30px;
+            text-align:center;
+            line-height:30px;
+            float:left;
+        }
+        #pager li.hover{
+            background:#ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <form @submit.prevent="form01click">
+            <input type="text" v-model.trim="kw" >
+            <button @click="btnClick">获取input信息</button>
+            <p>{{kw}}</p>
+        </form>
+        <!--
+        <div>
+             <ul id="pager">
+                <li :class="{hover: pno==k}" @click="changePage(k)" v-for="(tmp,k) in page">{{tmp}}</li>
+            </ul>
+            <div :style="{backgroundColor:bgColor}">sadfsafg</div>
+            <img :style="{width:myWidth}" src="img/1.jpg">
+            <button @click="changeSize">修改大小</button>
+            <br>
+            <img v-bind:src="'img/'+url" alt="">
+            <br>
+            <img :src="'img/'+url" alt="">
+            <form @submit.prevent="handleSubmit">
+                <input type="checkbox"> 是否同意本站协议
+                <br>
+                <button>同意</button>
+            </form>
+            <h1>{{msg}}</h1>
+            <ul>
+                <li>{{car.brand}}</li>
+                <li>{{car.price}}</li>
+                <li>{{3+8}}</li>
+            </ul>
+            <ul>
+                <li v-for="tmp in myList">{{tmp}}</li>
+            </ul>
+            <ul>
+                <li v-for="(v,k) in car">
+                    {{k+":"+v}}
+                </li>
+            </ul>
+            <ul>
+                <li v-if="a==1">1</li>
+                <li v-else-if="a==2">2</li>
+                <li v-else>3</li>
+            </ul>
+            <h1 v-if="isLoad">正在加载数据</h1>
+            <ul>
+                <li v-for="tmp in list">{{tmp}}</li>
+            </ul>
+            <hr>
+            <button type="button" v-on:click="handleClick">clickMe</button>
+            <br>    
+            <select @change="changeColor">
+                <option value="red">red</option>
+                <option value="blue">blue</option>
+                <option value="green">green</option>
+            </select>
+        </div>
+        -->
+    </div>
+    <script>
+        new Vue({
+            el:'#container',
+            methods:{
+                btnClick(){
+                    //eval(this.kw);
+                    console.log(this.kw);
+                },
+                form01click(){
+                    //console.log("提交事件被触发了");
+                },
+                changePage(k){
+                    this.pno=k;
+                },
+                changeSize(){
+                    this.myWidth="500px";
+                },
+                handleSubmit(){
+                    console.log("提交事件被触发了");
+                },
+                handleClick(){
+                    console.log("btn is clicked!");
+                },
+                changeColor(event){
+                    console.log("选择了"+event.target.value);
+                }
+            },
+            data:{
+                kw:'adsf',
+                pno:0,
+                page:[1,2,3,4,5],
+                myWidth:'250px',
+                url:'1.jpg',
+                msg:'hello vue js',
+                car:{
+                    brand:'volvo',
+                    price:23
+                },
+                myList:[11,22,33,44,55],
+                a:2,
+                isLoad:true,
+                list:[],
+                bgColor:'#000'
+                
+            },
+            created:function(){
+                console.log("vue is created");
+                setTimeout(()=>{
+                    this.bgColor = "#f00";
+                    this.isLoad = false;
+                    this.list=[12,334,54,545];
+                },5000);
+            }
+        });
+    </script>
+</body>
+</html>

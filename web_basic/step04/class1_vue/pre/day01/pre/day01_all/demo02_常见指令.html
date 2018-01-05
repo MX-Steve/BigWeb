@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/vue.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div id="container">
+
+  <!-- ngRepeat
+   <li ng-repeat="(tmp,index) in list">
+   -->
+  <ul>
+    <li v-for="(tmp,index) in list">
+      {{"index is "+index+"value is "+tmp}}
+    </li>
+  </ul>
+
+  <!-- ngIf 指令
+    <p ng-if="isMemebr">仅会员可见</p>
+  -->
+
+  <div v-if="isMember">仅会员可见</div>
+  <!--
+  if/else/else if
+  -->
+  <p v-if="answer == 'a'">答案是A</p>
+  <p v-else-if="answer == 'b'">答案是B</p>
+  <p v-else-if="answer == 'c'">答案是C</p>
+  <p v-else>答案是D</p>
+
+  <!--<img ng-src="img/{{url}}"/>-->
+  <!-- v-bind指令是用来将模型数据中的值 绑定到指定的属性-->
+  <img v-bind:src="'img/'+myImage" alt=""/>
+
+  <a v-bind:href="myUrl">clickMe</a>
+
+  <!-- v-bind指令支持简写 -->
+  <img :src="'img/'+myImage" alt=""/>
+
+</div>
+
+<script>
+  new Vue({
+    el:'#container',
+    data:{
+      list:[100,200,300],
+      isMember:true,
+      answer:'c',
+      myImage:'1.jpg',
+      myUrl:"http://www.tedu.cn"
+    }
+  })
+</script>
+
+
+</body>
+</html>
+
+
+

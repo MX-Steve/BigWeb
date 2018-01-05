@@ -1,0 +1,53 @@
+
+①安装nodejs
+https://nodejs.org 
+下载nodejs，安装的时候，点击同意，一路next就可以。
+会自带一个npm（npm是个包管理器，有啥用？是个仓库，需要用到啥 直接npm install packageName就可以了）
+
+②安装cnpm
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+③安装vue-cli
+windows电脑，同时按下widnows+r，输入cmd，点击回车，进入到命令行模式；
+在命令行中输入以下指令，最后点击回车
+cnpm install --global vue-cli
+
+
+④根据vue-cli安装后提供的vue指令创建模板项目
+
+使用老师提供的压缩包(tpls.zip)。
+
+步骤1：将tpls.zip文件夹解压缩一下，进入到tpls目录，再次进入到tpls目录，此时目录应该有很多文件夹，全部选中，复制
+
+步骤2：在D盘的跟目录下 创建一个文件夹叫做vue_cli.
+
+步骤3：进入到D盘下的vue_cli文件夹中，将步骤1中复制的所有内容 粘贴到此文件夹下
+
+
+
+⑤安装项目需要用到的依赖
+
+步骤1：windows+R 输入cmd，点击回车，进入到命令行模式
+
+步骤2：进入到D盘跟目录，只需输入 D:
+
+步骤3：进入到D盘后，接着进入到vue_cli文件夹中： cd vue_cli
+
+步骤4：在该目录下安装项目开发时 所需要用到的所有依赖 ：cnpm install
+
+在步骤4中，安装所有的依赖时 由于依赖的文件夹比较多，会消耗一定的时间（这也是为什么安装cnpm）
+
+⑥执行指令，启动开发服务器
+
+完成上一步之后，在命令行中（注意：必须是在D盘的vue_cli文件夹中）输入：
+npm run dev 点击回车
+
+
+
+如果看到启动了浏览器，并显示一个网页，就是安装成功了，我们就可以实现更高效的开发了。
+
+
+
+
+
+

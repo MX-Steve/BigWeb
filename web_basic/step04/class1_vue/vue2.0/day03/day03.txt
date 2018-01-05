@@ -1,0 +1,192 @@
+每日一练：
+	创建一个组件，my-game:
+	猜数字大小。
+
+	组件：一个input和一个p构成
+	当组件准备挂载的时候，初始化一个随机数，在input取输入的时候，如果输入的数字小了，在p显示：输入的太小了；如果输入的数字大了，在p显示：输入的太大了；否则就提示输入正确。
+
+
+
+学习安排：
+	组件间通信
+	父-》子(props down)
+	子-》父 (events up)
+	兄弟组件
+
+
+<a href='http://www.tedu.cn'>
+
+一、组件间通信（父组件--》子组件）
+步骤：
+①父组件在调用子组件 传值
+	<child-component myValue="123">	</child-component>
+②在子组件中 获取父组件传来的值
+ Vue.component('child-component',{
+	props:['myValue'],
+	template:''
+ })
+
+ 练习：登录窗口
+ 创建4个组件，分别是my-label my-input my-button my-login(复合组件)
+
+
+二、组件间通信（子组件传值给父组件）
+
+通过事件的方式来完成数据的传输。
+
+①在父组件中 定义一个方法，用来接收子组件所通过事件传来的值
+
+methods:{
+ recvMsg:function(msg){
+	//参数msg就是子组件通过事件出来的数据
+ }
+}
+
+②绑定事件处理函数
+事件一般情况 都是自定义事件
+
+<child-component @myEvent="recvMsg">
+</child-component>
+
+③在子组件触发事件
+this.$emit('myEvent',myPhone)
+//触发一个叫做myEvent的事件，同时把第二个参数数据传递给事件对应的处理函数
+总结：
+在 Vue 中，父子组件的关系可以总结为 props down, events up。父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息。
+
+练习：
+在子组件中 放上一个input，点击按钮 把用户输入的内容发给父组件
+
+
+练习：
+有两个组件，分别是main-component,header-component.
+main-component是由header-component和一个列表（有5条数据 [100,200,300,400,500]），
+header-component是由一个h1的标签：'这是页头',有一个数据isUserLogin:true
+
+在渲染main-component时候，读取header-component在挂载完毕之后通过事件传递来的数据（isUserLogin），根据该数据的真假来决定列表是否显示.
+
+<child-component @myEvent="recvMsg">
+</child-component>
+
+this.$emit('myEvent',myPhone)
+
+
+
+三、组件间通信（$parent $refs）
+
+
+父组件要想获取子组件的数据：
+①在调用子组件的时候，指定ref属性
+<child-component ref="mySon"></child-component>
+
+②根据指定的引用的名字 找到子组件的实例对象
+this.$refs.mySon
+
+
+子组件要想获取父组件的数据：
+①直接读取
+this.$parent
+
+
+组件间通信综合练习：
+（props down,events up）
+有2个组件：chat-room,user-component
+user-component是由label input button构成
+chat-room是由两个user-component和一个列表构成
+
+①在chat-room调用user-component指定label的名字
+②在user-component，
+点击按钮时，将当前用户输入的信息发送给chat-room组件，chat-room接收到数据显示在列表中
+
+四、兄弟组件间通信（event）
+
+借助于一个公共的Vue的实例对象，不同的组件可以通过该对象完成事件的绑定和触发
+
+var bus = new Vue();
+
+bus.$emit()
+bus.$on()
+
+熊大想要发消息给熊二，
+
+接收方（熊二）：事件绑定
+	bus.$on('customEvent',function(msg){
+		//msg就是通过事件 传递来的数据
+	})
+发送方（熊大）：触发事件
+	bus.$emit('customEvent',123);
+
+
+练习：
+	在熊二中 加上一个button，
+	点击按钮时告诉熊大:'快跑！'
+
+	接收方：事件绑定
+	发送方：触发事件
+
+
+
+总结：
+父组件--》子组件
+	①通过属性
+		步骤1：
+		<son myName="michael" myPhone='123'></son>
+		<son :myName="userList[0]"></son>
+		步骤2：
+		Vue.component('son',{
+		 props:['myName','myPhone']
+		})
+	②通过$parent
+		直接在子组件中通过this.$parent得到调用子组件的父组件
+
+子组件--》父组件
+	①events up
+		 步骤1：在父组件中 调用子组件的时候 绑定一个自定义事件 和 对应的处理函数
+			 methods:{
+			  recvMsg:function(msg){
+					//msg就是传递来的数据
+				}
+			 }，
+			 template:'
+			  <son @customEvent="recvMsg"></son>
+			 '
+
+		 步骤2：在子组件中 把要发送的数据通过触发自定义事件传递给父组件
+			this.$emit('customEvent',123)
+
+	②$refs
+
+	reference 引用
+		步骤1：在调用子组件的时候 可以指定ref属性
+		<son ref='zhangsan'></son>
+		步骤2：通过$refs得到指定引用名称对应的组件实例
+		this.$refs.zhangsan
+
+兄弟组件通信
+	步骤1：创建一个Vue的实例 作为事件绑定触发的公共的对象
+	 var bus = new Vue();
+	步骤2：在接收方的组件 绑定 自定义的事件
+		bus.$on('customEvent',function(msg){
+			//msg是通过事件传递来的数据 (传递来的123)
+		});
+	步骤3：在发送方的组件 触发 自定义的事件
+		bus.$emit('customEvent',123);
+
+
+每日一练：
+
+创建2个组件，main-component,son-component
+
+视图：
+ main-component 显示一个按钮
+ son-component 显示一个p标签
+
+功能：
+	main-component 定义一个变量count,初始化为0，将count传递给son-component,son-component接收到数据显示在p标签中
+
+	main-component 在点击按钮时，实现对count的自增操作，要求son-component能够实时显示count对应的数据
+
+	son-component在接收到count之后，在count大于10的时候，将main-component的按钮禁用掉
+	（参考：<button v-bind:disabled="!isValid">clickMe</button>）
+
+

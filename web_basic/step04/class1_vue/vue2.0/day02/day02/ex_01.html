@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{price | myCurrency}}</p>
+        <h1>{{msg}}</h1>
+        <button type="button" @click="add">自增</button>
+        <p>{{count}}</p>
+        <h2 v-if="count<6" v-change="count">it is a cstom directive</h2>
+        <div v-change-bg-color="bgcolor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, cum, provident. Eveniet odio reiciendis, rem quisquam, non magni iste nihil quis esse voluptatum tempore adipisci ex, sed, facilis atque inventore.</div>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                bgcolor:'blue',
+                msg:'hello',
+                count:0,
+                price:356
+            },
+            methods:{
+                add(){
+                    this.count++;
+                }
+            },
+            //过滤器就是有参数有返回值的方法
+            filters:{
+                myCurrency(myInput,k){
+                    k = k || "$";
+                    return k+myInput;
+                }
+            },
+            directives:{
+                changeBgColor:{
+                    bind(el,bindings){
+                        el.style.backgroundColor=bindings.value;
+                    },
+                    update(){},
+                    unbind(){}
+                },
+                change:{
+                    bind(el,bindings){
+                        // console.log("指令被绑定了");
+                        // console.log(el);
+                        // console.log(bindings.value);
+                        el.innerHTML =bindings.value;
+                    },
+                    update(el,bindings){
+                        el.innerHTML =bindings.value;
+                        if(bindings.value>5){
+                            console.log("it is a test");
+                        }
+                    },
+                    unbind(){
+                        console.log("解除绑定了");
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

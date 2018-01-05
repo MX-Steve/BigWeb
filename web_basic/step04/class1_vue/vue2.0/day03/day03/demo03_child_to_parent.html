@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <parent-component></parent-component>
+</div>
+
+<script>
+
+    Vue.component('parent-component',{
+        data: function () {
+          return {
+              sonMsg:''
+          }
+        },
+        methods:{
+            recvMsg: function (msg) {
+                console.log('父组件接收子组件触发的事件了:'+msg);
+                this.sonMsg = msg;
+            }
+        },
+        template:`
+        <div>
+            <h1>这是父组件</h1>
+            <p>子组件传来的数据为:{{sonMsg}}</p>
+            <hr/>
+            <child-component @customEvent="recvMsg">
+            </child-component>
+        </div>
+        `
+    })
+
+    Vue.component('child-component',{
+        data: function () {
+            return {
+                myMsg:''
+            }
+        },
+        methods:{
+            sendMsgToFather: function () {
+                //触发'绑定给子组件的自定义事件'
+                this.$emit(
+                        'customEvent',
+                        this.myMsg
+                );
+            }
+        },
+        template:`
+        <div>
+            <p>这是子组件</p>
+            <input type="text" v-model="myMsg"/>
+            <br/>
+            <button @click="sendMsgToFather">sendToFather</button>
+        </div>
+        `
+    })
+
+    new Vue({
+        el: '#container',
+        data: {
+            msg: 'Hello Vue'
+        }
+    })
+</script>
+
+</body>
+</html>

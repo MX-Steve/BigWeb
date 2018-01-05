@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <!-- 指定一个盛放代码片段的容器-->
+    <router-view></router-view>
+</div>
+
+<script>
+
+    var MyMain = Vue.component('main-component',{
+        data: function () {
+            return {
+                uName:''
+            }
+        },
+        template:`
+            <div>
+                <h1>用户名为:{{uName}}</h1>
+            </div>
+        `,
+        beforeMount: function () {
+            //接收参数
+            console.log(this.$route.params);
+            this.uName = this.$route.params.myName;
+        }
+    });
+
+    var MyLogin = Vue.component('login-component',{
+        data: function () {
+            return {
+                user_name:''
+            }
+        },
+        methods:{
+            doLogin: function () {
+                //跳转到主页面，并将用户输入的名字发送过去
+                this.$router.push('/main/'+this.user_name)
+            }
+        },
+        template:`
+        <div>
+            <h1>这是登录页面</h1>
+            <input type="text" v-model="user_name"
+            placeholder="请输入用户名"/>
+            <button @click="doLogin">登录到主页面</button>
+            <router-link :to="'/main/'+user_name">登录到主页面</router-link>
+        </div>
+        `
+    })
+
+    var NotFound = Vue.component('not-found',{
+        template:`
+            <div>
+                <h1>404 Page Not Found</h1>
+                <router-link to="/login">返回首页</router-link>
+            </div>
+        `
+    })
+
+    //配置路由词典
+    const myRoutes = [
+        {path:'',component:MyLogin},
+        {path:'/login',component:MyLogin},
+        {path:'/main/:myName',component:MyMain},
+//没有匹配到上述任何一个路由地址，跳转到404页面
+        {path:'*',component:NotFound}
+    ]
+
+    const myRouter = new VueRouter({
+        routes:myRoutes
+    })
+
+    new Vue({
+        router:myRouter,
+        el: '#container',
+        data: {
+            msg: 'Hello Vue'
+        }
+    })
+</script>
+
+</body>
+</html>

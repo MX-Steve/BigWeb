@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <main-component></main-component>
+</div>
+
+<script>
+
+    Vue.component('main-component', {
+        methods:{
+            modifyCount: function () {
+                this.count++;
+            }
+        },
+        data: function () {
+            return {
+                count:0,
+                isBtnEnable:true
+            }
+        },
+        template: `
+                <div>
+                    <button :disabled="!isBtnEnable" @click="modifyCount">clickMe</button>
+                    <hr/>
+                    <son-component :myCount="count"></son-component>
+                </div>
+            `
+    })
+
+    Vue.component('son-component', {
+        props:['myCount'],
+        template: `<p>{{myCount}}</p>`,
+        updated: function () {
+            console.log('子组件的数据有变化！');
+            if(this.myCount > 10)
+            {
+                    this.$parent.isBtnEnable = false;
+            }
+        }
+    })
+
+    new Vue({
+        el: '#container',
+        data: {
+            msg: 'Hello Vue'
+        }
+    })
+</script>
+
+
+</body>
+</html>

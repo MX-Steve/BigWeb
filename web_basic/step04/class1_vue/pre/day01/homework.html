@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue.js"></script>
+	<style>
+		ul,li{padding:0;margin:0;list-style:none}
+		li{float:left;width:20px;height:20px;border:1px solid #ddd;line-height:20px;text-align:center;}
+		li.active{background:#faf}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<h1>{{msg}}</h1>
+		<ul>
+			<li 
+			v-for="(tmp,index) in pageNumbers" 
+			v-bind:class="{active:isNow==index}"
+			v-on:click="changePage(index)"
+			>{{tmp}}</li>
+		</ul>
+
+	</div>
+
+	<script>
+		new Vue({
+			el:"#container",
+			data:{
+				msg:"你好",
+				pageNumbers:[1,2,3,4,5],
+				isNow:0
+			},
+			methods:{
+				changePage:function(index){
+//					console.log(this);
+//					var lis  = e.target.parentNode.querySelectorAll("li");
+//					for(var li of lis){
+//						li.className="";
+//					}
+//					e.target.className="active";
+						this.isNow = index;
+				}
+			},
+			created:function(){
+//				var ul  = document.querySelector("ul");
+//				console.log(ul);
+//				ul.querySelector('li').className="active";
+			}
+		});
+	</script>
+</body>
+</html>

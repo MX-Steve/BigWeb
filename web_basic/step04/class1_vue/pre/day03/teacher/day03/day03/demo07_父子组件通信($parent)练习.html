@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <chat-room></chat-room>
+</div>
+
+<script>
+    Vue.component('chat-room',{
+        data: function () {
+            return {
+                msgHistoryList:[]
+            }
+        },
+        template:`
+        <div>
+            <ul>
+                <li v-for="tmp in msgHistoryList">
+                    {{tmp}}
+                </li>
+            </ul>
+            <user-component  userName="Lucy"></user-component>
+            <user-component  userName="Michael"></user-component>
+        </div>
+        `
+    })
+
+    Vue.component('user-component',{
+        props:['userName'],
+        data: function () {
+          return {
+              userInput:''
+          }
+        },
+        methods:{
+            sendToFather: function () {
+                //触发toFatherEvent的事件，把input中
+                //用户输入的数据发送
+                this.$parent.msgHistoryList.push(
+                        this.userName+":"+this.userInput)
+                this.userInput = '';
+            }
+        },
+        template:`
+            <div>
+                <label>{{userName}}</label>
+                <input type="text" v-model="userInput"/>
+                <button @click="sendToFather">发送</button>
+            </div>
+        `
+    })
+
+    new Vue({
+        el: '#container',
+        data: {
+            msg: 'Hello Vue'
+        }
+    })
+</script>
+
+</body>
+</html>

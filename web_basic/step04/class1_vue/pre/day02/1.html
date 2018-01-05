@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+	<script src="js/vue.js"></script>
+ </head>
+ <body>
+  <div id="box">
+		<h1>{{msg}}</h1>
+		<p>{{sentence | upperCase(false)}}</p>
+		<input type="text" v-model='kw'>
+		<br>
+		<h3 v-change-font-size="size">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, pariatur, suscipit quae quos aspernatur praesentium doloribus hic saepe laudantium id inventore obcaecati nam. Ex rerum veniam perferendis cum corporis debitis.</h3>
+		<button @click="changeColor">改变颜色</button>
+	</div>
+
+	<script>
+		new Vue({
+			el:"#box",
+			data:{
+				msg:"你好",
+				sentence:"i am A boy",
+				kw:"",
+				size:"24px"
+			},
+			filters:{
+				upperCase:function(msg,bool){
+					var arr = msg.split("");
+					var result = '';
+					for(var a of arr){
+						if(bool){
+							result+=a.toUpperCase();
+						}else{
+							result +=a.toLowerCase();
+						}
+					}
+					return result;
+				}
+			},
+			watch:{
+				kw:function(newV,oldV){
+					console.log(newV,oldV);
+				}
+			},
+			directives:{
+				changeFontSize:{
+					bind:function(el,bindings){
+						console.log("绑定成功");
+						el.style.fontSize=bindings.value;
+		
+					},
+					update:function(el,bindings){
+						
+					},
+					unbind:function(){}
+
+				}
+			},
+			methods:{
+				changeColor:function(){
+					this.size="64px";
+					console.log(111);
+				}
+			}
+		});
+	</script>
+ </body>
+</html>

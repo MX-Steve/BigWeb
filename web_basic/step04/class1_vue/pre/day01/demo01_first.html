@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    {{msg}}
+		<p v-on:click="getMsg">{{uname}}</p>
+</div>
+
+<script src='js/common.js'></script>
+<script>
+		
+    new Vue({
+        el:'#container',
+        data:{
+            msg:'Hello VueJS',
+						uname:"你好"
+        },
+				methods:{
+					getMsg:function(){
+							/*var uname = '';
+							var xhr = getXhr();
+							xhr.open('get','data/1.php',true);
+							xhr.onreadystatechange = function(){
+								if(xhr.readyState == 4 && xhr.status == 200){
+									uname = JSON.parse(xhr.responseText).uname;
+									this.uname = uname;
+								}
+							}
+							xhr.send(null);*/
+							this.uname = "张三";
+					}
+				}
+    });
+
+</script>
+
+
+</body>
+</html>

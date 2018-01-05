@@ -1,0 +1,98 @@
+
+综合SPA练习：
+有一个列表页 （my-list）
+	有一个input和按钮（添加：将用户的输入直接添加到当前的列表中）、一个列表（支持点击，当点击列表中的 列表项时，将当前序号 传递给详情页）
+有一个详情页 (my-detail )
+	 显示一个序号（从列表页传递过来的）
+
+直接引入对应的js文件。
+步骤:
+①引入对应的js(vue.js vue-router.js)
+②指定容器 <router-view></router-view>
+③创建组件
+④配置路由词典
+⑤测试
+⑥实现跳转功能 
+（①明确发送、接收 ②配置接收方 ③ 接收 ④发送）
+
+
+项目：通过VueJS，完成学子商城的后台管理界面的重构
+
+考察的知识点：
+①组件的创建和使用
+②SPA的实现步骤、跳转的3种方式、路由传参的基本步骤
+③实现与远程的httpServer进行通信
+④组件内部之间的通信（props down,events up, $refs,$parent,$on/$emit）
+⑤采用样式类库：bootStrap
+
+
+具体步骤：
+0、准备工作
+通过vue_cli的方式来完成本次项目
+
+复习：
+	通过vue-cli来构建Vue的模板项目的基本步骤：
+	①安装nodeJS（提供npm,支持安装需要用到的依赖等功能）
+	②npm install vue-cli 安装基于cli的使用vue的工具
+	③vue init webpack tpls 创建一个基于webpack的模板项目
+	④ cd tpls 进入到指定的目录
+	⑤ npm install 安装所有的依赖
+	⑥ npm run dev 进入到开发模式（启动一个开发服务器，在本地修改该工程的文件，将会自动的更新浏览器中该工程的页面）
+
+	关注点：99%的时间 都在工程中的src。
+
+①将day04中的压缩包tpls.zip，解压缩，选中src目录下所有的内容 并拷贝
+②删除D盘vue_cli文件夹中的src目录下所有的内容
+③在D盘的vue_cli文件夹中粘贴拷贝的内容
+④windows+R --> cmd --》进入到了命令行模式
+⑤进入到D盘 ：  D:
+⑥进入到当前目录下的vue_cli文件夹内： cd vue_cli
+⑦执行npm run dev
+（2:45 ~ 3:20）
+一、创建一个SPA
+1、login  
+2、index(路由嵌套)
+	2.1 myChart
+	2.2 productList
+	2.3 userList
+
+每一个组件 只显示h1的标签就可以了；
+
+检验第一步完成的标准：
+	修改地址栏来实现对于各个组件的访问。
+	路由地址的名称：
+	/login/index/myChart/productList/userList
+
+二、具体实现每一个组件
+（4:00 - 4:30）
+0、准备工作：
+	零：开启apache和mysql
+	①在工程的src目录下 有一个assets目录；在assets目录创建三个文件夹：js/css/img
+	②把（project压缩包解压）project目录中，将css文件中的样式类文件拷贝到assets/css文件夹；将js文件夹中的jquery.js jquery-flot.js拷贝到assets/js文件夹中，将img目录当中的图片拷贝到assets/img文件夹中
+	③在main.js中 引入 上述所提到的css和js文件
+		import './assets/css/bootstrap.css'
+1、实现login
+	①实现静态页面（todo）
+	注意事项：
+		①要想使用bootstrap和fontawesome,需要用到字体图标，要放在css文件，上一级文件夹中的fonts
+		②默认识别文件的类型 是不包含ico结尾的文件
+			在build文件夹中，webpack.base.conf.js；找到41行，支持ico结尾的文件
+			test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/
+
+	②实现与服务器端的通信
+		当用户名和密码 输入完成之后，在点击登录，请求服务器端；登录成功的话，跳转到index页面
+		①让当前的工程 能够使用vueResource	
+			找到router目录中index.js:
+				import VueResource from 'vue-resource'
+				Vue.use(VueResource)；
+
+		header('Access-Control-Allow-Origin:*');
+		统一访问拷贝到htdocs目录下，data_vue_admin中user目录中login.php
+		
+		注意：只要是涉及到与服务器端的通信，如果出错，
+		network，找到请求的php文件，看response/header
+
+2、实现index
+3、实现myChart
+4、实现productList
+5、实现userList

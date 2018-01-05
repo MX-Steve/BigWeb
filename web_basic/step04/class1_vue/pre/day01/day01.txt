@@ -1,0 +1,226 @@
+vue.js
+day1:
+	vue的概述
+	vue的常见指令和插值表达式
+	vue的组件的基本概念
+day2:
+	vue的组件高级用法
+	vue不同的组件之间如何进行数据通信
+day3:
+	vue的路由模块使用
+	vue的过渡效果
+	vue与远程服务器端的通信
+
+WebStorm提供了一个模板的功能，常见一个模板：
+①编写模板
+②拷贝模板当中的所有的内容
+③点击webstorm左上角的file--》new--》edit file templates
+④点击弹窗中的左上角的加号，指定模板的名字（vue）和结尾的名字（html）
+⑤保存就可以
+
+
+
+零、框架
+①什么是框架？
+	框架指的是一套非常优秀可被反复使用的代码，帮助开发者解决一些复杂的问题。
+
+②框架有啥好处？
+	提高了代码的复用率
+	降低模块之间的耦合度
+	提高开发速度
+	提高代码质量
+
+
+一、Vue的概述
+
+Vue的开发模式 和 之前接触的jQuery、原生JSDOM操作是不同的，之前要想修改试图，首先找元素；在使用Vue时，专心把精力放在修改数据。
+DOM驱动 ---》 数据驱动。
+
+what？
+	Vue的开发者是尤雨溪，是受到angular的启发，是一个实现ui层的渐进式的js框架
+	
+	版本：V2.4.0
+
+	注意：
+	①并不是所有的ui类的库或者框架 都提供了丰富的样式类
+	②渐进式：step by step
+
+
+where？
+	饿了么 滴滴 阿里巴巴
+	gitlab。。。
+
+	VueJS可以用在很多地方，从简单的表单验证，到复杂的大型企业应用程序，Vue都可以胜任；核心库是实现UI层的。
+
+why？
+	①非常好的中文文档
+	②学习曲线比较缓和（容易上手）
+	③速度快
+	④体积小
+	⑤基于组件化（web component）的开发方式
+	⑥代码的可读性、可维护性比较好
+
+how？
+	搭建环境有两种方式：
+	方式1：CLI（command line interface 命令行窗口）
+		#安装nodejs
+			https://nodejs.org/en/
+		#全局安装 vue-cli
+		 npm install --global vue-cli
+		#创建一个基于 webpack 模板的新项目
+		 vue init webpack my-project
+		#安装依赖，走你
+		 cd my-project
+		 npm install
+		 npm run dev
+	
+	方式2：直接引入对应的js文件
+
+二、Vue的基础使用
+
+1、第一个例子
+
+通过new的方式来得到了Vue的实例，在new通过一个对象来对Vue的实例配置（el，data）；
+接触了双花括号(mustache/interpolation)的语法:可以读取变量的值 显示在调用的元素的innerHTML中。
+
+
+练习时间：
+新建一个文件，通过vue的方式 ，在html中执行
+一个三目运算、一个逻辑运算；将运算的结果显示不同的h1标签中。
+
+2、双花括号
+语法： <any>{{表达式}}</any>
+作用：执行表达式，将表达式的结果 输出到当前调用元素的innerHTML中
+
+
+三、Vue的常用指令
+
+循环、选择判断、显示隐藏。。。
+
+1、循环指令
+语法1：
+<any v-for=" tmp in 集合"></any>
+
+ 根据in关键词后的集合，去循环创建多个标签，
+ 举例：
+ myList:[100,200,300]
+ <a v-for="tmp in myList">{{tmp}}</a>
+
+语法2：
+<any v-for="(value,key) in 集合"></any>
+
+练习：
+去新建一个文件，通过Vue将一个对象数组 显示在table(thead和tbody)中。
+对象数组有5个对象，
+每个对象指定3个属性：name/sex/age.
+
+
+基本步骤
+①定义数据
+	[{},{}]
+②在视图中创建table
+③将数据通过v-for和双花括号将值显示出来
+
+2、选择指令
+<any v-if="表达式"></any>
+
+v-if指令 ： 根据表达式执行的结果的真假 来选择是否要挂载到DOM
+v-else-if 
+v-else
+
+练习：
+通过Vue，渲染一个h1,ul.
+
+在刚开始时，h1：正在加载数据 ,ul显示一个空的列表在vue实例创建完毕1s之后，h1:从DOM中移除掉，同时给数组初始化5条数据 显示在ul中。
+data需要用到的数据：
+isDataReady:false
+myList:[]
+
+①搞定数据
+②显示在视图中
+③指定定时器
+
+
+
+
+3、Vue事件绑定
+
+<any v-on:eventName="处理函数名字"></any>
+通过v-on去给指定的事件绑定一个处理函数
+
+
+举个例子：
+<button v-on:click="handleClick">clickme</button>
+当触发click事件，就会调用handleClick方法。
+
+注意事项：
+	方法在定义时，要放在Vue实例的methods属性
+	new Vue({
+		methods:{
+			handleClick:function(){
+				//做一些操作
+			}
+		}
+	})
+
+	事件绑定支持支持一种简写形式：
+<button v-on:click="handleClick">clickme</button>
+//通过@后边跟上事件的名字，和v-on:是一样的效果
+<button @click="handleClick">clickme</button>
+
+ Vue.js 为 v-on 提供了 事件修饰符。通过由点(.)表示的指令后缀来调用修饰符。
+v-on:submit.prevent="handleSubmit"
+
+
+4、Vue其它常用指令
+v-bind
+	将变量中的值 通过 v-bind 绑定到元素指定的属性
+	img v-bind:src="myImage"
+	a v-bind:href="myLink"
+	v-bind:style='{backgroundColor:myBGColor}'
+	v-bind:class='{myRed:isRed}'
+	v-bind:disabled="!isValid"
+	
+	v-bind也支持简写
+	a v-bind:href="myLink"
+	===》
+	a :href="myLink"
+
+v-show
+	v-show="表达式" 根据表达式执行的结果的真假 来切换display显示还是隐藏
+v-text
+	v-text='变量' 根据变量更新对应的文本内容
+v-html
+	v-html="变量"  根据变量更新对应的innerHTML
+...
+
+5、Vue中的v-model
+
+双向数据绑定：
+方向1：data --> view
+	之前所接触的循环、判断、显示隐藏等指令，主要的功能是将数据 绑定到视图；
+	方式：①双花括号 ②常见的指令
+
+方向2：view --》 data
+	将表单控件中 用户操作的 结果 绑定到 数据
+	方式：v-model
+
+v-model指令本身就是一个双向数据绑定的指令：既可以将数据绑定到视图，又可以将视图中的结果绑定到数据。
+	
+	修饰符：
+	.lazy - 取代 input 监听 change 事件（在输入完之后，失去焦点 再去更新）
+	.number - 输入字符串转为数字
+	.trim - 输入首尾空格过滤
+
+
+
+每日一练：
+	通过Vue来实现一个分页的效果。
+
+	提供一个数组：
+	pageNumbers=[1,2,3,4,5]
+	将数组显示在一个列表中，默认第0个被选中，点击列表项时候，让该列表项高亮显示。 
+
+	v-for
+	v-bind
+	v-on

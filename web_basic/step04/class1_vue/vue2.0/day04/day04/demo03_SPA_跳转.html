@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <!-- 第一步：引入要用到的路由插件-->
+    <script src="js/vue-router.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <!-- 通过routerView指定盛放组件的容器-->
+    <router-view></router-view>
+</div>
+
+<script>
+
+    var testLogin = Vue.component('login',{
+        template:`
+        <div>
+            <h1>这是我的登录页面</h1>
+            <router-link to="/myRegister">注册</router-link>
+        </div>
+        `
+    })
+
+    var testRegister = Vue.component('register',{
+        methods:{
+            jumpToLogin: function () {
+            //通过js的方式实现导航到指定的路由地址对应的组件
+                this.$router.push('/myLogin');
+            }
+        },
+        template:`
+        <div>
+            <h1>这是我的注册页面</h1>
+            <button @click="jumpToLogin">注册完成，去登录</button>
+        </div>
+        `
+    })
+
+    //配置路由词典
+    const myRoutes = [
+//当path为空，相当于是指定页面打开时，默认要加载谁
+        {path:'',component:testLogin},
+        {path:'/myLogin',component:testLogin},
+        {path:'/myRegister',component:testRegister}
+    ]
+    const myRouter = new VueRouter({
+        routes:myRoutes
+    })
+    new Vue({
+        router:myRouter,
+        el: '#container',
+        data: {
+            msg: 'Hello Vue'
+        }
+    })
+</script>
+
+</body>
+</html>

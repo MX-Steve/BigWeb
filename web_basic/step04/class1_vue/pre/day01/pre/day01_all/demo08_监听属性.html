@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/vue.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div id="container">
+  {{msg}}
+
+  <input type="text"
+         placeholder="请输入菜品或者原材料的名称"
+         v-model="myKw"/>
+  
+</div>
+
+<script>
+
+  new Vue({
+    el: '#container',
+    data: {
+      msg: 'Hello Vue',
+      myKw:''
+    },
+    watch:{
+      myKw: function (newValue,oldValue) {
+        console.log('内容发生了变化');
+        console.log(oldValue,newValue);
+      }
+    }
+  })
+
+</script>
+</body>
+</html>
