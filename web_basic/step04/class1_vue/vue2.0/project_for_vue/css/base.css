@@ -1,0 +1,90 @@
+/*
+初始化样式
+*/
+*{box-sizing:border-box;}
+body,h1,h2,h3,h4,h5,h6,table,tr,td,th,p,ul,li,ol,pre,dl,dd,dt{
+	margin:0;padding:0;
+	list-style:none;
+}
+/*a基础样式*/
+a{text-decoration:none;color:#000;}
+/*图片两边对齐方式*/
+img{vertical-align:bottom;}
+/*左右浮动*/
+.left{float:left;}
+.right{float:right;}
+/*清除浮动*/
+.clear:after{
+	content:'';
+	display:block;
+	clear:both;
+}
+/*防止上外边距溢出*/
+.stop-up:before{
+	content:'';
+	display:table;
+}
+/*容器宽*/
+.container{margin:auto;position:absolute;top:0;bottom:0;left:0;right:0}
+@media screen and (min-width:1200px){
+	.container{width:1200px;}
+}
+@media screen and (max-width:1199px) and (min-width:992px){
+	.container{width:992px;}
+}
+@media screen and (max-width:991px) and (min-width:768px){
+	.container{width:768px;}
+}
+@media screen and (max-width:767px){
+	.container{width:100%;}
+}
+
+/*列宽*/
+.row{position:relative;}
+.row .col-1{width:10%;}
+.row .col-2{width:20%;}
+.row .col-3{width:30%;}
+.row .col-4{width:40%;}
+.row .col-5{width:50%;}
+.row .col-6{width:60%;}
+.row .col-7{width:70%;}
+.row .col-8{width:80%;}
+.row .col-9{width:90%;}
+.row .col-10{width:100%;}
+/*左偏移*/
+.row .col-push-1{position:absolute;left:10%;}
+.row .col-push-2{position:absolute;left:20%;}
+.row .col-push-3{position:absolute;left:30%;}
+.row .col-push-4{position:absolute;left:40%;}
+.row .col-push-5{position:absolute;left:50%;}
+.row .col-push-6{position:absolute;left:60%;}
+.row .col-push-7{position:absolute;left:70%;}
+.row .col-push-8{position:absolute;left:80%;}
+.row .col-push-9{position:absolute;left:90%;}
+/*文本水平居中*/
+.text-center{text-align:center;}
+/*块级元素水平垂直居中==>父元素*/
+.mid-center{position:relative;}
+.mid-center>*{
+	position:absolute;
+	left:0;right:0;top:0;bottom:0;
+	margin:auto;
+}
+/*输入框样式*/
+.input{
+	padding:5px 15px;
+	color:#666;
+	border-radius:5%;
+	outline:none;
+	border:1px solid #333;
+}
+.input:focus{
+	box-shadow:3px 3px 3px #000;
+}
+/*按钮的基本样式*/
+.btn{
+	border:0;
+	outline:0;
+	border-radius:10%;
+	padding:5px 15px;
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mx-steve hometown</title>
+	<script src="js/vue.js"></script>
+	<script src="js/vue-router.js"></script>
+	<link rel="stylesheet" href="css/base.css">
+	<style>
+		body{
+			background:url(img/login.jpg) no-repeat;
+			background-size: cover;
+		}
+		#login{
+			height:500px;
+			margin-top:50px;
+			padding:30px;
+			background: rgba(0,0,0,0.5);
+		}
+		#login>div{
+			height:100%;
+			color:#fff;
+		}
+		#login form{
+			width:80%;
+			margin:10% auto;
+		}
+		#login form div{
+			height:30px;
+			width:100%;
+			margin-bottom:15px;
+			font-size:18px;
+		}
+		.btn{
+			
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div id="login" class="row">
+			<div class="col-6 col-push-2">
+				<h2 class="text-center">{{title}}</h2>	
+				<my-form></my-form>
+			</div>
+		</div>
+	</div>
+	<script>
+		Vue.component('my-input',{
+			template:`<div>
+				<label>用户名</label>
+				<input class="input" type="text" placeholder="请输入用户名" />
+			</div>`
+		});
+		Vue.component('my-btn',{
+			template:`
+				<button class="btn">登录</button>
+			`
+		});
+		Vue.component('my-form',{
+			template:`
+				<form class="text-center">
+					<my-input></my-input>
+					<my-input></my-input>
+					<div>
+						<my-btn></my-btn>
+						<my-btn></my-btn>
+					</div>
+				</form>
+			`
+		});
+		new Vue({
+			el:'#login',
+			data:{
+				title:'欢迎登录-开拓者之家'
+			}
+		});
+	</script>	
+</body>
+</html>
