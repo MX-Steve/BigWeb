@@ -1,0 +1,90 @@
+一、AngularJS概述
+
+
+官网：
+https://angular.cn/ 中文
+https://angular.io/ 英文
+
+哪些公司在使用AngularJS？
+Google、网页版微信、锤子手机。。。
+
+what?
+
+使用的angular是哪个版本？ ng4.0 与老版本的区别
+	①ng2.0之后所有的版本 基本上 没有大的变化
+	②ng1.* 与 ng2.0之后所有版本的区别 就像是雷锋和雷峰塔的关系
+	③命名：将angular1.* 称之为angularJS,将angular2.*以及以后所有的版本统称为angular
+	④angular引入了component的概念，舍弃了老版本的$scope/controller..
+	⑤angular速度更快
+	⑥angular的代码由于是基于组件化的开发，代码的可读性非常好，调试方便，测试简单
+
+angular是一个Google推出的js的框架，
+
+
+when?
+	主要实现SPA（single page application 单页面应用程序），用在数据操作比较频繁的场景；是实现大而全的平台，能够实现移动端和桌面端的开发
+
+why?
+	angularJS在一些传统企业中依然在大量使用，angular主要是用在新兴的互联网公司。
+	①迎合开发的潮流，引入了组件的概念
+	（提高了代码的复用率，降低了测试难度，提高了开发速度）
+	②代码具有更强的可读性和可维护性
+	③angular引入了更优秀的提高性能的工具，让开发和部署更简单，让应用程序速度更快
+	④angular采用的语言是 typescript
+	ts是由微软和google合作联合推出的一种基于es6的超集的语言；支持了新特性，比如：js是弱类型检查语言，而ts是强类型检查语言，让代码更健壮！
+
+
+how?
+	如何来搭建开发环境？
+	提供两种方式，基于cli：
+	方式1：官方推荐
+		Angular CLI是一个命令行界面工具，它可以创建项目、添加文件以及执行一大堆开发任务，比如测试、打包和发布。
+		
+		①安装nodejs
+		如果node -v ; npm -v能够显示对应的版本信息，已经安装，
+		否则nodejs.org官网下载最新版本，一路next去安装
+		②通过npm安装 angular cli
+		npm install -g @angular/cli
+		③通过安装的cli去创建一个项目
+		ng new my-app
+		④启动开发服务器
+		cd my-app
+		ng serve --open
+
+	方式2：
+		借助于angular所提供的quickstart
+		(17,819 个文件，2,434 个文件夹)
+		①下载快速开始用到的文件
+		https://codeload.github.com/angular/quickstart/zip/master
+		②解压缩
+		安装该项目依赖的所有的资源文件
+		npm install
+		（将nodeModules.zip文件解压缩，将拷贝到quickstart-master文件夹中）
+		③启动开发服务器：
+		npm start
+
+
+二、AngularJS开发基础知识
+
+1、执行npm start时，Angular是如何启动？
+
+在启动开发服务器的时候，会去寻找src目录中main.ts文件；
+在main.ts文件中，指定要启动一个模块AppModule；
+在src目录中有一个app目录，有一个app.module.ts文件；
+在app.module.ts文件中，指定bootStrap要启动哪一个组件？--》 AppComponent（一般情况下，都是整个应用程序的根组件）
+在app.component.ts文件中，指定了template用来渲染该组件的视图（Hello Angular）
+
+2、组件的创建和使用
+创建：
+	在app目录中，创建一个文件夹，在该文件夹中创建一个***.component.ts(比如：demo01.component.ts)
+	 在该文件中， 通过 @Component装饰当前的类为一个组件类，然后通过export导出一个类
+使用：
+	①先到模块中声明
+		import {Demo01Component} from './demo01/demo01.component'
+		在 @ngModule装饰器 的declarations数组中，添加上Demo01Component
+	②使用组件
+	就像使用html标签一样去使用（指定的选择器的名字）
+	
+	练习：实现一个组件，demo02文件夹中，命名为demo02.component.ts,在该组件中，显示一个有5个元素的列表。
+
+

@@ -1,0 +1,97 @@
+
+
+代替蓝蝶（Android模拟器、虚拟机）的一种方案：
+	①找到eclipse
+		C:\adt-bundle-windows-x86_64-20130522\adt-bundle-windows-x86_64-20130522\eclipse
+	②打开eclipse.exe
+
+	③检查工具条是否显示，
+		如果没显示 windows->show toolbar
+
+	④在工具条中 从左边数 第六个按钮（Android Virtual Device Manager）
+
+	⑤在虚拟设备的列表中 选中AVDName名称为123的模拟器，
+	start -> launch
+
+一、ReactNative的常用组件
+
+1、Text
+	展示文本
+	<Text> some text </Text>
+
+2、View
+	指定一个容器
+	<View>
+		<Text></Text>
+	</View>
+
+3、StyleSheet
+	①创建
+		import {StyleSheet} from 'react-native';
+		const myStyle = StyleSheet.create({
+			myH1:{
+				fontSize:20
+			},
+			myH2:{
+				fontSize:15
+			},
+			myColor:{
+				color:'red'
+			}
+		})
+	②使用
+		<Text style={myStyle.myH2}></Text>
+		<Text style={[myStyle.myH2,myStyle.myColor]}></Text>
+
+		在styleSheet中创建的myColor等 要遵循小驼峰式的命名方式
+	
+4、react核心概念
+	props
+		<Component3 myName='zhagnsan'/>
+		<Text>{this.props.myName}</Text>
+	state
+		①初始化
+		constructor(){
+			super();
+			this.state = {
+				count:1
+			}
+		}
+		②读状态的值
+		this.state.count;
+
+		③写
+		this.setState({count:2});
+
+	创建一个ng的组件类：
+		import {Component} from '@angular/core'
+		import {Router} from '@angular/router'
+		@Component({
+			selector:'demo01',
+			template:'<h1></h1>'
+		})
+		
+		export class Demo01Component {
+			constuctor(private myRouter:Router){}
+
+			jump(){
+				this.myRouter.navigateByUrl('/login')
+			}
+		}
+
+5、Button
+	
+	使用步骤：
+		①import {Button} from 'react-native'
+		②<Button title="clickMe" onPress={this.handlePress}>
+		</Button>
+
+练习：在components创建文件夹 componentLianxi,在该文件夹中创建一个js文件 lianxi.js
+	在lianxi.js文件中  创建一个组件类
+	在该组件类中有一个按钮
+	点击按钮时，按钮中文本变为开/关
+
+	考察知识点：
+		state、Button
+6.FlatList
+二、ReactNative如何使用第三方框架来实现页面的跳转和传参
