@@ -1,0 +1,131 @@
+Ionic - Day05
+
+一、 Ionic 3 懒加载 lazy loading
+1. lazy loading，是在用户要跳转到这个页面时，才实现加载，以往的情况时 App 第一次启动时，加载全部页面
+2. 作用之一，加快 App 启动的速度，作用之二，项目打包时体积会减小
+3. 实现:
+		a. 创建一个新的页面 LazyTestPage
+			 ionic g page lazyTest
+		b. 修改 home.ts，导出类中定义新的函数	
+			 navToLazyTestPage():void {
+					this.navCtrl.push('LazyTestPage');
+			 }
+		c. 修改 home.html，添加按钮
+		d. Error: can not find module
+			 尽量使用 npm 下载全局和项目依赖，不建议使用 cnpm
+
+
+二、 用户注册功能
+4. 使用 Ionic 做用户注册页面 sign-up
+5. HomePage 点击按钮进入注册页 SignUpPage
+6. 做 Node.js 基于 Express 的服务器端
+7. 在 ionic-1708N/ 下创建服务器端的目录:blank-server
+			 ionic-1798N/
+					blank-app/		Ionic App 前端 8100
+					blank-server/ Express 服务器端 3000
+8. 在 blank-server/ 下执行命令
+	 npm init
+	 创建 package.json
+	 生成了 package.json
+9. 在 blank-server/ 下手动创建 app.js（index.js）
+10. 安装 NPM 的第三方模块：Express
+		在 blank-server/ 下执行
+    npm i -S express
+		创建 blank-server/node_modules
+		(未联网)：解压缩 node_modules.zip 到 server/ 下
+11. 修改 app.js 文件，实现一个简单的服务器，端口是
+3000
+	11.1 导入第三方模块 Express
+			 const express = require('express');
+	11.2 创建一个 Express 的实例
+			 let app = new express();
+	11.3 处理一个根目录请求 '/'
+			 app.get('/', (req, res)=>{res.end('running...')});
+	11.4 监听端口：3000
+			 app.listen(3000);
+
+12. 启动服务器
+		blank-server/ 下
+    执行：node app.js
+		服务器启动了
+
+13. 打开浏览器，访问：http://127.0.0.1:3000/
+
+14. 在 SignUpPage 页面内创建表单视图
+
+15. 在 SignUpPage 的模块中定义一个属性 
+		User={
+			username: '',
+			password: ''
+		};
+
+16. 在 SignUpPage 的模板中对 username 和 password 进行双向绑定（two-way binding）
+		<ion-input [(ngModel)]="User.username">
+		<ion-input type="password" [(ngModel)]="User.password">
+
+
+		<button ion-button (click)="signUp()">
+
+17. 在 signUpPage.ts 中，定义函数 signUp
+		signUp():void {
+			console.error(`username: ${this.User.username`);
+			console.error(`username: ${this.User.username`);
+		}
+
+18. 在服务器端，接收用户的注册请求，修改 app.js：
+		app.get('/signUp', (req, res) => {
+			console.log(req.query.username);
+			console.log(req.query.password);
+
+			// todo MySQL...
+		});
+
+19. Ionic 发起 HTTP 请求：
+		1. 修改 app.module.ts 文件，导入 HttpModule 模块：
+		   import { HttpModule } from '@angular/http';
+		2. 修改 app.module.ts 文件，在 import 数组中添加 HttpModule
+		3. 修改 sign-up.ts，导入 Http, Response
+		   import {Http, Response} from "@angular/http";
+		4. 修改 sign-up.ts，在构造器中依赖注入 Http
+
+20. App 客户端发起注册请求
+		signUp():void {
+			let username = this.User.username;
+			let password = this.User.password;
+			
+			let url = `http://127.0.0.1:3000/signUp?username=${username}&password=${password}`;
+
+			this.http.request(url)
+				.subscribe((res: Response) => {
+					console.error(res.json());
+				})
+		}
+
+21. 返回响应，修改 app.js
+		res.send({"status":"ok"});
+
+22. Ionic CORS：添加代理 proxy
+23. 修改 blank-app/ionic.config.json，添加代理
+		名称, "proxies"
+		值，
+		[
+			{
+				"path": "/signUp",
+				"proxyUrl": "http://127.0.0.1:3000/signUp"
+			},
+			{...}
+		]
+24. 修改 sign-up.ts 文件，修改 url
+		let url =
+		`/signUp?username=${username}&password=${password}`;
+
+25. 安装 mysql 模块为服务器端项目依赖
+		blank-server/
+		npm i -S mysql
+26. 在 app.js 中引入 mysql，创建数据库连接池 pool
+27. 完成用户注册，把这一组用户名和密码存入数据库表，blank-server/app.js
+28. 修改 HomePage 为项目的首页
+29. 把 HomePage 改为 lazy loading
+
+30. 练习一：完成用户登录
+31. 练习二：登录成功进入商品列表页(infiniteScroll)
