@@ -1,0 +1,38 @@
+2017-11-15 Gulp
+
+1. 打开命令行：
+    1.1 WebStorm里：Alt + F12
+    1.2 进入目录：按 Shift，点击鼠标右键-在此处打开命令窗口
+2. Dos 命令
+    2.1 cd <目录名> 切换目录 cd .. 回到上一级
+    2.2 dir 列出当前目录下的所有文件和目录
+    2.3 快捷方式 文件、目录名的时候，前几个字符，按Tab键
+    2.4 上、下一个命令：上、下箭头
+    2.5 盘符切换：d:
+3. NPM 命令
+    3.1 package.json 的创建：当前目录下命令：npm init
+    3.2 cnpm: npm install -g cnpm --registry=https://registry.npm.taobao.org
+    3.3 npm install <包名> 安装第三方包，简写为 npm i <包名>
+    3.4 npm install <包名> --save 安装第三方包，把包加入package.json的dependencies里，项目的依赖
+    3.5 npm install <包名> --save-dev 安装第三方包，把包加入package.json的devDependencies里，开发版的依赖
+4. Gulp
+    4.1 安装 Node.js
+    4.2 创建一个目录 gulp-demo
+    4.3 目录里执行命令：npm init，创建 package.json
+    4.4 目录里执行命令：cnpm install gulp -g 和 cnpm install gulp --save-dev 安装 gulp，放入package.json的devDependencies里
+    4.5 Gulp 的作用
+        a. 检查 JavaScript 的错误
+        b. 编译 CSS 预处理器文件 Less、Scss、Sass、Stylus
+        c. 合并项目的所有的 JavaScript 文件
+        d. 压缩文件
+    4.6 安装 Gulp 的依赖,当前目录***以管理员身份***执行：
+        cnpm install jshint gulp-jshint gulp-sass gulp-concat gulp-uglify gulp-rename --save-dev
+    4.7 目录里手动创建 gulp 的配置文件 gulpfile.js
+    4.8 Gulp 的方法有五个：
+        a. task：gulp 的任务
+        b. src：源代码的路径
+        c. dest：destination 目的地路径
+        d. run：运行，执行 Gulp 任务
+        e. watch：监听文件的变化
+    4.9 执行 Gulp 任务：当前项目目录命令行运行：
+        gulp [default]

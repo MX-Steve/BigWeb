@@ -1,0 +1,19 @@
+1. 创建目录 webpack-demo
+2. 创建文件 package.json cmd：npm init
+3. 安装 webpack， 加入全局依赖 cmd: cnpm install webpack -g
+4. 加入项目开发依赖 cmd: cnpm install webpack --save-dev
+5. 创建目录 app，创建文件 app/hello.js
+6. 创建文件 app/main.js
+7. 创建目录 public，创建文件 public/index.html
+8. 运行命令：webpack app/main.js public/bundle.js
+9. 浏览器打开 index.html
+------------------------
+10. 项目根目录下，创建 Webpack 的配置文件：webpack.config.js
+11. 运行命令 cmd: webpack
+12. 修改 package.json 文件，在 scripts 里加入 "start":"webpack"
+13. 运行命令 cmd: npm [run] start，run 仅在 start 时可以省略
+------------------------
+14. 安装 dev 依赖：cnpm install webpack-dev-server --save-dev
+15. 修改 webpack.config.js，加入服务器配置项
+16. 修改 package.json，在 scripts 里加入 "server":"webpack-dev-server"
+17. 运行命令 cmd: npm run server

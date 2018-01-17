@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="bt">
+		异步加载服务器端数据(跨域)
+	</button>	
+	<script src="jquery-3.2.1.js"></script>
+	<script>
+		$('#bt').click(function(){
+			$.ajax({
+				type: 'get',
+				url: 'http://127.0.0.1:3000/userlist',
+				/*withCredentials: true,*/
+				xhrFields: { withCredentials: true},
+				success: function(data){
+					console.log(data);
+				}
+			})
+		});
+	</script>
+</body>
+</html>
