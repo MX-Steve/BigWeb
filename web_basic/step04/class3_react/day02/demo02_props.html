@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var HeaderComponent = React.createClass({
+        render(){
+            return <h1>{this.props.myTitle}</h1>
+        }
+    });
+
+    ReactDOM.render(
+        <HeaderComponent myTitle="购物车"/>,
+        document.getElementById("example")
+    );
+</script>
+</body>
+</html>

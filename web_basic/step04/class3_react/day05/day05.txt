@@ -1,0 +1,19 @@
+1.移动的应用程序
+	1.webApp：基于网页的，基于浏览器的，比如网页版的淘宝
+		优势在于强大的跨平台能力
+	2.nativeApp：直接可以安装在手机的操作系统的app称之为原生的app
+		原生开发：调用google/apple所提供的SDK中提供的原生的接口或者服务，构建用户的可以安装在手机上执行的安装包，称之为Android/ios的原生开发
+		如：安装在手机中的微信
+		优势在于良好的性能
+	3.hybridApp
+		混合编程：混合使用前端开发技能和原生开发技能进行开发而生成的可以安装在手机上的安装包
+		html/css/js + 原生Android webview/ios uiwebview
+
+2.todolist应用
+	1.组件创建和使用
+	2.todobox中定义一个状态，是个数组
+
+一、RN的组件
+	1.ActivityIndicator
+	2.KeyboardAvoidingView
+	3.Switch

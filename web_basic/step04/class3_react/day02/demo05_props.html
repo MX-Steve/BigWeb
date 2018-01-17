@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var BtnComponent = React.createClass({
+        handleClick(){
+            this.props.func();
+        },
+        render(){
+            return <button onClick={this.handleClick}>{this.props.btnName}</button>
+        }
+    });
+    var LoginComponent = React.createClass({
+        login(){
+            console.log("登录成功!");
+        },
+        register(){
+            console.log("注册成功");
+        },
+        render(){
+            return <div>
+                <BtnComponent func={this.login} btnName="登录"/>
+                <BtnComponent func={this.register} btnName="注册"/>
+            </div>
+        }
+    });
+    ReactDOM.render(
+            <LoginComponent/>,
+        document.getElementById("example")
+    );
+</script>
+</body>
+</html>

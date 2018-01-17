@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var MyInputComponent = React.createClass({
+        handleChange(event){
+           var myValue = event.target.value;
+           console.log(myValue);
+        },
+        render(){
+            return <input type="text" ref="msg" onChange={this.handleChange} />
+        }
+    });
+    var MyButtonComponent = React.createClass({
+        handleClick(){
+            this.props.getInputMsg();
+        },
+        render(){
+            return <button onClick={this.handleClick}>clickMe</button>
+        }
+    });
+    var MainComponent = React.createClass({
+        func(){
+            var msg = this.refs.myInput.refs.msg.value;
+            console.log(msg);
+        },
+        render(){
+            return <div>
+                <MyInputComponent ref="myInput"/>
+                <MyButtonComponent getInputMsg={this.func}/>
+            </div>
+        }
+    });
+    ReactDOM.render(
+        <MainComponent/>,
+        document.getElementById("example")
+    );
+</script>
+</body>
+</html>

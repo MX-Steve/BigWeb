@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+  <div id="example"></div>
+
+  <script type="text/babel">
+
+    var HeaderComponent = React.createClass({
+      render:function(){
+        return <h1>这是页头</h1>
+      }
+    })
+
+    var FooterComponent = React.createClass({
+      render:function(){
+        return <h2>这是页尾</h2>
+      }
+    })
+
+    var CartComponent = React.createClass({
+      render:function(){
+        return <div>
+          <HeaderComponent></HeaderComponent>
+          <ul>
+            <li>test01</li>
+            <li>test02</li>
+            <li>test03</li>
+          </ul>
+          <FooterComponent></FooterComponent>
+        </div>
+      }
+    })
+
+    ReactDOM.render(
+      <CartComponent></CartComponent>,
+      document.getElementById('example')
+    );
+
+  </script>
+
+</body>
+</html>

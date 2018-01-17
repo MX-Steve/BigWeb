@@ -1,0 +1,90 @@
+一、组件
+组件是一个可被反复使用的，带有特定功能的视图
+	1、组件的创建和使用
+		Vue:
+			Vue.component()
+			new Vue({
+				components:
+			})
+		angular:
+			@Component({})
+			export class
+		1.1 组件的创建
+			var TestComponent = React.createClass({
+				render:function(){
+					return <h1>it is a test</h1>
+				}
+			})
+
+		1.2 组件的调用
+			<TestComponent></TestComponent>
+		
+		注意事项：
+		①首字母大写
+		②不允许直接在render方法中去换行，但是可以通过圆括号去处理
+		③不允许直接返回多个要渲染的元素
+
+	2、复合组件
+		复合组件就是在一个组件中去调用其它的组件
+
+二、props
+
+	React中组件间的通信是可以通过props来实现。
+
+	Vue
+		<son myName="zhangsan"></son>
+		Vue.component('son',{
+			props:['myName']
+		})
+	Angular
+		<son myName="zhangsan"></son>
+		
+		import {Input} from '@angular/core'
+		export class SonComponent{
+			@Input() myName:string = "";
+			//读取
+			this.myName
+		}
+
+	React
+		1、基本用法
+			步骤1：传值
+				<Son myName="zhangsan"></Son>
+			步骤2：接收值
+				在子组件中：
+					this.props.myName
+
+			练习：(10:50 - 11:05)
+				有一个登录窗口
+				要求封装3个组件
+				LoginComponent
+				MyInputComponent
+				ButtonComponent
+
+				①组件的创建和使用
+				②复合组件的写法
+				③props传值的实现方式
+				④jsx
+		2、 this.props.children
+			指的是组件在调用时，内部所写的标签；类型是不确定的，如果内部没东西，就是Undefined；如果有一个，就是object，如果有多个array；可以使用React.Children.map做遍历，帮助减少操作时异常处理。
+
+			React创建的组件类中的props对象的属性和调用组件时传递的属性是一一对应的
+			在props对象中有一个children属性是特殊的。
+		3、props传递方法
+			①在父组件中定义方法
+				login:function(uName){}
+			②调用子组件时 通过属性传递方法
+				<ButtonComponent func={this.login}/>
+			③在子组件中调用父组件传递来的方法
+				this.props.func('zhangsan');
+		注意：
+				props传递过来的值无法修改
+
+三、reference
+	步骤1：
+		any ref="myRef"
+	步骤2：
+		this.refs.myRef 得到真正的DOM 或者是组件的实例对象	
+
+
+	  

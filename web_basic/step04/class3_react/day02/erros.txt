@@ -1,0 +1,63 @@
+/****************  ng ********************/
+1、未知元素
+Unhandled Promise rejection: Template parse errors:
+'demo01' is not a known element:
+
+未在模块中声明 或者 组件名写错了
+
+2、SPAWN ENOENT
+npm start
+-->
+npm run serve
+
+3、开发服务器无法启动
+当执行npm start，发现在控制台报了一堆的error，到第一个error前边的那几句话，分析错误出在哪个文件 哪一行
+
+4、ngModel使用时报错
+Can't bind to 'ngModel' since it isn't a known property of 'input'. 
+
+解决方案是借助于：让当前模块依赖于FormsModule
+
+5、template或者templateUrl指定错误
+Unhandled Promise rejection: Failed to load %0A%20%20%20%20%3Ch1%3E%E8%BF%99%E6%98%AF%E7%88%B6%E7%BB%84%E4%BB%B6%3C/h1%3E%0A%20%20 ; Zone: <root> ; Task: Promise.then ; 
+Value: Failed to load %0A%20%20%20%20%3Ch1%3E%E8%BF%99%E6%98%AF%E7%88%B6%E7%BB%84%E4%BB%B6%3C/h1%3E%0A%20%20 
+
+6、管道名称不要写错了
+Unhandled Promise rejection: Template parse errors:
+The pipe 'data' could not be found ("
+-->
+<p>{{nowDate}}</p>
+<p>{{[ERROR ->]nowDate | data:'hh:mm'}}</p>"): Demo16Component@11:5 ; Zone: <root> ; Task: Promise.then ; Value:
+
+7、 DI Error
+Dependency Injection Error
+依赖注入
+	①没有指定providers
+	②服务名字写错了
+
+8、组件不是模块的一部分
+ Component PersonComponent is not part of any NgModule or the module has not been imported into your module. ; Zone: <root> ; Task: Promise.then ; Value:
+
+ 解决方案：到模块中声明
+
+ 9、Maximum call stack size exceeded
+ EXCEPTION: Uncaught (in promise): Error: Error in app/utility/header/header.component.html:0:0 caused by: Maximum call stack size exceeded
+Error: Error in app/utility/header/header.component.html:0:0 caused by: Maximum call stack size exceeded
+
+死循环（无穷的嵌套）
+
+/****************  React ********************/
+
+1、在一个组件的render方法中，返回要渲染的元素时直接换行（不允许直接换行）
+Uncaught Error: ListComponent.render(): A valid React element (or null) must be returned. You may have returned undefined, an array or some other invalid object.
+
+2、在一个组件去渲染时，渲染了多个标签
+（解决方案：将多个标签放在一个容器中）
+Uncaught SyntaxError: embedded: Adjacent JSX elements must be wrapped in an enclosing tag (11:8)
+   9 |           <li>test03</li>
+  10 |         </ul>
+> 11 |         <button>clickMe</button>
+     |         ^
+  12 | 
+  13 |       }
+  14 |     });

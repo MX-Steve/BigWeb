@@ -1,0 +1,56 @@
+https://github.com/brillout/awesome-react-components
+
+vue对应的移动端app的解决方案：weex
+
+React
+学习安排：
+①概述
+②搭建开发环境
+③React的核心思想和核心概念
+④React的组件的基础知识
+
+一、概述
+    1.React是由facebook推出的,一个是通过组件化，用来实现ui层的开源的js库
+
+
+    2.why?
+    ①.声明范式
+    ②.基于组件化的开发方式
+    ③.开发理念 learn once , write anywhere
+
+    为什么推出react
+        ①大量的数据操作，带来了大量的DOM操作,浏览器遇到了性能瓶颈问题
+            --》虚拟DOM(virtual DOM)
+
+        ②大量的数据操作背后，复杂的业务逻辑，代码的维护和开发成本提高
+            市面上多数的框架都是数据绑定
+            jsx结合着单向数据流来减小页面的复杂度
+                js+xml==>允许在js中写一些标签
+            --》state和组件化
+
+    3.how
+        搭建环境
+            方法1.cli
+                npm install -g create-react-app
+                create-react-app my-app
+                cd my-app/
+                npm start
+            方法2.引入对应的js
+                react.js
+                react-dom.js
+                brower.min.js
+二、jsx
+    1.demo01
+        1.babel:是一个js编译器，支持将es6，jsx转换为浏览器能识别的结果
+        babeljs.io
+    2.方法
+        ReactDOM.render(
+            <h1>111</h1>,
+            document.getElementById("example")
+        );
+    3.jsx
+        jsx并不是新的语言，只不过允许在js中编写html标签
+        浏览器默认不识别，需要通过babel做一个转换
+        在jsx语法中支持一些运算
+    注意：
+        1.不允许在render中放置多个标签，要放在一个容器中

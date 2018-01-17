@@ -1,0 +1,89 @@
+RN支持自定义标题栏
+比如：
+	myPay:{
+    screen:PayComponent,
+    navigationOptions:()=>({
+      headerTitle:"支付页面",
+      headerTitleStyle:{
+        alignSelf:'center',
+        color:'red'
+      }
+    })
+  }
+应用程序：
+	1.基本的页面结构
+	2.服务器端的通信
+	3.框架的一些基本语法、指令、过滤器。。
+	4.掌握矿建中的路由模块、网络请求模块
+	5.应用内部之间的通信。比如：组件间的通信、本地数据的处理
+
+总结：
+	ReactJS
+		五大核心概念
+			jsx	
+				是允许在js中编写标签的一种语法
+				遇到{}用js解析
+				遇到<>用html或者react解析
+			component
+				组件类：封装好的带有特定功能的可被反复使用的视图
+				要指定模板、指定方法
+			ref
+				得到组件的实例/DOM元素
+			state
+				管理数据、数据绑定
+			props
+				组件间通信
+		综合练习（todobox、三连棋）
+	ReactNative:定位：实现原生APP
+		实现原理：通过js编写的或者调用的组件类，都会在对应的平台中变成真是的和原生开发一样的SDK中提供的一些服务或者组件，比如View会变成ios下真实的uiView，会变成android下的android.view
+
+
+		
+		组件的使用
+			Text/View/TextInput/FlatList/Image/Button/ActivityIndicator/TouchableOpacity/Switch/KeyboardAvoidingView/...
+		样式添加
+			StyleSheet.create({
+				myH1:{
+					color:""
+				}
+			});
+			FlexBox 弹性盒子
+				flexDirection:指定主轴方向row/column
+				justifyContent:指定延主轴方向的对齐方式
+				alignItems:沿着次轴方向的对齐方式
+				RN默认主轴是column
+		与服务器端的通信
+			fetch("url")
+				.then((response)=>{response.json()})
+				.then((response)=>{
+					response得到的数据
+				});
+		页面间跳转传参
+			reactNavigation: StackNavigator
+				步骤：
+					1.安装
+						npm install --save react-navigation
+					2.引入
+						Import {StackNavigator} from 'react-navigation'
+					3.创建要用到的组件
+						PayComponent/SendComponent
+					4.配置路由词典
+						const RootNavigator = StackNavigator(
+							myPay:{
+								screen:PayComponent,
+								navigationOptions:()=>({
+									headerTitle:"",
+									headerTitleStyle:"",
+									headerLeft:,
+									headerRight:
+								})
+							}
+						)
+				跳转
+					this.props.navigation.navigate("mySend");
+				传参
+					1.发送、接收方
+					2.发送
+						this.props.navigation.navigate("mySend",{id:10});
+					3.接收
+						this.props.navigation.state.params.id;

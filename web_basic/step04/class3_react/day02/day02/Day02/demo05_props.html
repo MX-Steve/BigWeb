@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+
+<div id="example"></div>
+
+<script type="text/babel">
+  var ButtonComponent = React.createClass({
+    handleClick:function(){
+      console.log('btn is clicked');
+      //调用父组件所传递来的方法
+      console.log(this.props.func);
+      this.props.func();
+
+    },
+    render:function(){
+      return <button
+        onClick={this.handleClick}>
+        {this.props.btnName}
+        </button>
+    }
+  })
+
+  var LoginComponent = React.createClass({
+    login:function(){
+      console.log('登录成功');
+    },
+    register:function(){
+      console.log('注册成功');
+    },
+    render:function(){
+      return <div>
+        <ButtonComponent func={this.login} btnName="登录"/>
+        <ButtonComponent func={this.register} btnName="注册"/>
+      </div>
+    }
+  })
+
+  ReactDOM.render(
+    <LoginComponent/>,
+    document.getElementById('example')
+  )
+</script>
+
+</body>
+</html>

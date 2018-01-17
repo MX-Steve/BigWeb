@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+
+<div id="example"></div>
+
+<script type="text/babel">
+
+  var ListComponent = React.createClass({
+    render:function(){
+      return <ul>
+        {/*将li显示在列表中*/}
+        {
+            React.Children.map(
+              this.props.children,
+              function(child){
+                console.log(child);
+                return child;
+              }
+            )
+        }
+      </ul>
+    }
+  })
+
+  ReactDOM.render(
+    <ListComponent>
+      <li>test01</li>
+      <li>test02</li>
+      <li>test03</li>
+    </ListComponent>,
+    document.getElementById('example')
+  )
+</script>
+
+</body>
+</html>

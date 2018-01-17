@@ -1,0 +1,105 @@
+一、React中，受控组件的处理方案
+	1.受控表单元素
+		如果input指定了value/checked，或者select指定了selected属性，所对应的表单元素直接操作就会直接失败，不受我们控制，称之为受react控制的表单元素
+	2.解决方案
+		1.
+			defaultValue
+			defatulChecked
+		2.好处：统一放在一起，集中处理，比如校验、格式化
+			<input type=text value='123'/>
+			步骤1：初始化状态
+				getInitialState(){
+					return {myValue:""}
+				};
+			步骤2：<input type=text value={this.state.myValue}/>
+			步骤3：给表单元素指定onChange ， 绑定处理函数，在处理函数中去执行状态的写操作
+				<input type=text value={this.state.myValue} onChange={this.handleChange}/>
+				handleChange(e){
+					this.setState({myValue:e.target.value});
+				}
+	3.总结
+		1.组件方法分两类：
+			1.自带的
+				getInitialState、componentWillMount、render ...
+			2.自定义的方法
+				handleClick、handleChange、...
+			规则
+				将自带的方法写在前面
+				将自定义的方法写在中间
+				将render方法写在最后
+	vue/react都有 VDOM 虚拟dom
+		目的：为了提高操作DOM的效率，降低操作的成本
+		手段：所谓的VDOM，就是由组件所构成的存在内存中的数据结构，每一个组件都可以看成一个VDOM，在挂载要渲染的元素时，才会变成真正的DOM
+		VDOM中每个阶段的属性相比DOM节点属性少很多，每次当数据发生变化时，根据算法，查看VDOM 和 DOM 的区别，将真正需要的dom放在真实的DOM
+		http://todomvc.com/
+二、综合练习 ToDoList
+
+三、三连棋的小游戏
+	创建组件的方式
+		1.通过方法
+			React.createClass({
+				render(){return }
+			})
+		2.继承类
+			class Game extends React.Component {
+			 render(){}
+			}
+
+四、RN的概述和环境搭建
+	1.理念
+		learn once , write anywhere
+	2.概念
+		1.what
+			不是写网页的，不是写移动端的，不是写混合编程（将网页结合着原生的组件放在一起，生成的可以安装在手机的安装包）的
+
+			实现真正的原生app
+		2.why
+			reactNative是一个平台，将所写的js ， 调用的各个组件，编译转换成真正的原生组件的应用
+			
+			注意：
+				html:div/h1/p/span等不允许在reactNative中出现
+		3.when
+			原生开发，如果先快速开发一个多平台的app，使用RN，可以实现这一点。
+		4.how
+			方案1
+				步骤1：安装
+					npm install -g create-react-native-app
+				步骤2：创建模板项目
+					create-react-native-app AwesomeProject
+				步骤3：安装依赖
+				步骤4：启动开发服务器
+					cd AwesomeProject
+					npm start
+
+			方案2
+				1.准备代码环境
+				2.准备虚拟机环境
+				3.安装apk
+					myapp\android\app\build\outputs\apk
+				4.配置蓝叠中心得ip地址和端口号
+					176.3.15.6:8081
+
+					快捷键
+						RR：强制刷新
+						手机的摇一摇：启动
+				5.配置ip和端口号
+					点击摇一摇=》在弹出菜单中，选中最下的devSettings=》在弹出菜单中，设置 debug server host & port =>输入端口和ip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var ToDoBox = React.createClass({
+        getInitialState(){
+            return {
+                myList:[]
+            }
+        },
+        msgFromInput(data){
+            console.log(data);
+            var list = this.state.myList;
+            list.push(data);
+            this.setState({
+                myList:list
+            });
+
+        },
+        removeItem(index){
+            //根据index，删除当前位置的元素
+            var list = this.state.myList;
+            list.splice(index,1);
+            this.setState({myList:list});
+        },
+        render(){
+            return <div>
+                <ToDoInput func={this.msgFromInput}/>
+                <hr/>
+                <ToDoList funDelete={this.removeItem} list={this.state.myList}/>
+            </div>
+        }
+    });
+    var ToDoInput = React.createClass({
+        getInitialState(){
+            return {
+                myInput:""
+            }
+        },
+        handleChange(e){
+            this.setState({myInput:e.target.value});
+        },
+        handleClick(){
+            //console.log(this.state.myInput);
+            this.props.func(this.state.myInput);
+            this.state.myInput = '';
+
+        },
+        render(){
+            return <div>
+                <h1>代做事项列表</h1>
+                <input type="text" value={this.state.myInput} onChange={this.handleChange}/>
+                <button onClick={this.handleClick}>添加</button>
+            </div>
+        }
+    });
+    var ToDoList = React.createClass({
+        delFun(data){
+            console.log("list:"+data);
+        },
+        render(){
+            return <ul>
+                {React.Children.map(this.props.list,(child,index)=>{
+                    return <ToDoItem
+                            delete={this.props.funDelete}
+                            myIndex={index}
+                            item={child}/>;
+                })}
+            </ul>
+        }
+    });
+    var ToDoItem = React.createClass({
+        handleClick(){
+            //1.明确是第几个
+            var index = this.props.myIndex;
+            console.log(index);
+            //2.通过del传递过来的方法
+            this.props.delete(this.props.myIndex);
+        },
+        render(){
+            return <li>
+                <button onClick={this.handleClick}>删除</button>
+                <span>{this.props.item}</span>
+            </li>
+        }
+    });
+    ReactDOM.render(
+        <ToDoBox/>,
+        document.getElementById("example")
+    );
+</script>
+</body>
+</html>

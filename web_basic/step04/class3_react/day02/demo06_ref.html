@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var MyComponent = React.createClass({
+        handleClick(){
+            //得到input中用户输入的信息
+            console.log(this.refs.myInput.value);
+            var myInput = this.refs.myInput;
+            myInput.style.background = "red";
+            //获取子组件的信息
+            console.log(this.refs.test.count);
+        },
+        render(){
+            return <div>
+                <input type="text" ref="myInput" />
+                <button onClick={this.handleClick}>clickMe</button>
+                <TestComponent ref="test"/>
+            </div>
+        }
+
+    });
+    var TestComponent = React.createClass({
+        count:1000,
+        render(){
+            return <div>
+                <p>这是一个子组件</p>
+            </div>
+        }
+    });
+    ReactDOM.render(
+        <MyComponent/>,
+        document.getElementById("example")
+    );
+</script>
+</body>
+</html>

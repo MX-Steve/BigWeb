@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var MyComponent = React.createClass({
+        getInitialState(){
+            return {
+                myOpacity:0
+            }
+        },
+        handleClick(){
+            var myOpacity = this.state.myOpacity;
+            console.log(myOpacity);
+            setInterval(()=>{
+                myOpacity += 0.02;
+                this.setState({myOpacity:myOpacity});
+                if(myOpacity >= 1){
+                    myOpacity = 0;
+                }
+            },50)
+
+        },
+        render(){
+            return <div>
+                <button onClick={this.handleClick}>clickMe</button>
+                <h1 style={{opacity:this.state.myOpacity}}>大家好</h1>
+            </div>
+        }
+    });
+    ReactDOM.render(
+        <MyComponent/>,
+        document.getElementById("example")
+    );
+</script>
+</body>
+</html>

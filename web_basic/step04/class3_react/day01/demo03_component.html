@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    //创建组件
+    var MyComponent = React.createClass({
+        render(){
+            return <div>
+                <h1>react is Awesome</h1>
+            </div>
+        }
+    });
+    ReactDOM.render(
+        <MyComponent></MyComponent>,
+        document.getElementById("example")
+    );
+</script>
+</body>
+</html>

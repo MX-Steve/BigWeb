@@ -1,0 +1,11 @@
+1、准备工作
+
+启动apache和mysql
+
+2、搭建项目架子
+
+①在app目录下创建components目录，在components目录中，创建project目录
+②在project目录中创建login.js main.js productList.js三个文件
+③在index.android.js中配置路由词典，让默认访问login.js
+
+3、实现具体页面需求
