@@ -1,90 +1,141 @@
-一、AngularJS概述
+一、angular概述
+	官网：
+		angular.cn
+		angular.io
+	版本：angular4.0
+		在推出2.0之后，官方承诺2.0之后的所有版本， 都是基于同一版本，只会有新的特效
+		angularJS的学习建议：
+		www.runoob.com/angularjs
+		angular1.*和angular2.0之后的所有版本区别非常大
+		称呼：angular1.*-->angularJS
+					angular2.0之后-->angular
+		实现：angularJS的双向数据绑定是基于脏数据检查机制，在2.0之后采用了更高效的基于zone.js的方式
+		angularJS之前没有组件，是靠$scope,$rootscope来实现作用域的管理，现在就是靠组件和组件间通信
 
+	使用公司：
+		Google、锤子科技、微信网页版
 
-官网：
-https://angular.cn/ 中文
-https://angular.io/ 英文
+	what?
+		angular是一个js的开源的框架
+	where?
+		数据操作非常频繁的SPA
+	why?
+		1.支持一种typescript语言
+			javascript：js
+			typescript：ts==》微软提出的，是es6的超级，是一个真正的可以面向对象开发的语法
+			强类型检查机制的语言
+			如：var a = 3;
+					a = "张三"
+					会报错
 
-哪些公司在使用AngularJS？
-Google、网页版微信、锤子手机。。。
+		2.组件component(webcomponent标准)
+			组件是可以被反复使用的，带有特定功能的视图
+			组件化（模块化的好处）的好处？
+				1.提高了代码的复用率
+				2.提高了代码的可读性
+				3.降低了测试和维护的难度
 
-what?
-
-使用的angular是哪个版本？ ng4.0 与老版本的区别
-	①ng2.0之后所有的版本 基本上 没有大的变化
-	②ng1.* 与 ng2.0之后所有版本的区别 就像是雷锋和雷峰塔的关系
-	③命名：将angular1.* 称之为angularJS,将angular2.*以及以后所有的版本统称为angular
-	④angular引入了component的概念，舍弃了老版本的$scope/controller..
-	⑤angular速度更快
-	⑥angular的代码由于是基于组件化的开发，代码的可读性非常好，调试方便，测试简单
-
-angular是一个Google推出的js的框架，
-
-
-when?
-	主要实现SPA（single page application 单页面应用程序），用在数据操作比较频繁的场景；是实现大而全的平台，能够实现移动端和桌面端的开发
-
-why?
-	angularJS在一些传统企业中依然在大量使用，angular主要是用在新兴的互联网公司。
-	①迎合开发的潮流，引入了组件的概念
-	（提高了代码的复用率，降低了测试难度，提高了开发速度）
-	②代码具有更强的可读性和可维护性
-	③angular引入了更优秀的提高性能的工具，让开发和部署更简单，让应用程序速度更快
-	④angular采用的语言是 typescript
-	ts是由微软和google合作联合推出的一种基于es6的超集的语言；支持了新特性，比如：js是弱类型检查语言，而ts是强类型检查语言，让代码更健壮！
-
-
-how?
-	如何来搭建开发环境？
-	提供两种方式，基于cli：
-	方式1：官方推荐
-		Angular CLI是一个命令行界面工具，它可以创建项目、添加文件以及执行一大堆开发任务，比如测试、打包和发布。
+		3.angular引入了更多的提高性能的工具，比如rxjs/zone.js让开发和部署变的更简单
+	how?
+		1.搭建开发环境
+			方法1：
+				//全局安装ng的命令行工具
+				1.npm install -g @angular/cli
+				//创建基于ng模板的项目
+				2.ng new my-app
+				//进入到对应的工程中
+				3.cd my-app
+				//启动开发服务器
+				4.ng server 
+			方法2：
+				1.下载对应的包
+					https://github.com/angular/quickstart
+				2.安装依赖
+					npm install
+				3.进入项目
+					cd my-app
+				4.启动项目
+					ng server
 		
-		①安装nodejs
-		如果node -v ; npm -v能够显示对应的版本信息，已经安装，
-		否则nodejs.org官网下载最新版本，一路next去安装
-		②通过npm安装 angular cli
-		npm install -g @angular/cli
-		③通过安装的cli去创建一个项目
-		ng new my-app
-		④启动开发服务器
-		cd my-app
-		ng serve --open
+			具体实现方式
+				1.将压缩包放到指定文件夹
+				2.将压缩包解压缩到当前文件夹
+				3.将quickstartmaster解压缩到quickstartmaster
+				4.将nodemodles.zip压缩包拷贝到quickstartmaster中
+				5.将nodemodles.zip解压缩到当前文件夹
+				6.vsc打开工程，在终端中npm start
+		
+		2.启动流程
+			angular以模块为基本单位，模块可以包含各种各样的组件、指令、服务...
+			VueJS是一组件为基本单位
 
-	方式2：
-		借助于angular所提供的quickstart
-		(17,819 个文件，2,434 个文件夹)
-		①下载快速开始用到的文件
-		https://codeload.github.com/angular/quickstart/zip/master
-		②解压缩
-		安装该项目依赖的所有的资源文件
-		npm install
-		（将nodeModules.zip文件解压缩，将拷贝到quickstart-master文件夹中）
-		③启动开发服务器：
-		npm start
+			main.ts --> 
 
+三、组件的创建和使用
+	1.Vue中创建组件的方式：
+		var Mycomponent = Vue.component('my-son',{
+			tmplate:""
+		});
+		{path:"",component:Mycomponent}
+	2.Angular中创建组件的方式
+		创建：
+			import { Component } from "@angular/core"
 
-二、AngularJS开发基础知识
+			@Component({
+				selector:"demo01",
+				template:`<h1>{{title}}</h1>`
+			})
 
-1、执行npm start时，Angular是如何启动？
+			export class Demo01Component{
+				title:"今天天气不错"
+			}
+		
+		使用：
+			1.声明：
+				到app.module.ts中引入自己写的组件
+					import { Demo01Component } from "./demo01/Demo01Component"
+				
+					@NgModule({//装饰器@
+						declarations: [ AppComponent , Demo01Component],
+					})
+			2.调用：
+				<demo01></demo01>
+			
+				注意事项：
+					1.组件调用之前必须声明
+					2.组件在使用时，必须写成<Demo></Demo>
 
-在启动开发服务器的时候，会去寻找src目录中main.ts文件；
-在main.ts文件中，指定要启动一个模块AppModule；
-在src目录中有一个app目录，有一个app.module.ts文件；
-在app.module.ts文件中，指定bootStrap要启动哪一个组件？--》 AppComponent（一般情况下，都是整个应用程序的根组件）
-在app.component.ts文件中，指定了template用来渲染该组件的视图（Hello Angular）
-
-2、组件的创建和使用
-创建：
-	在app目录中，创建一个文件夹，在该文件夹中创建一个***.component.ts(比如：demo01.component.ts)
-	 在该文件中， 通过 @Component装饰当前的类为一个组件类，然后通过export导出一个类
-使用：
-	①先到模块中声明
-		import {Demo01Component} from './demo01/demo01.component'
-		在 @ngModule装饰器 的declarations数组中，添加上Demo01Component
-	②使用组件
-	就像使用html标签一样去使用（指定的选择器的名字）
+	3.项目目录结构：
+				扩展：tsc：typescript compiler:将ts转换为多数浏览器都支持的js
+				src 
+					--app
+						--demo01
+							demo01.component.ts
+						--app.component.ts//根组件
+						--app.module.ts//根模块
+					--main.ts//启动时要执行的文件
+				package.json 不需要修改，
 	
-	练习：实现一个组件，demo02文件夹中，命名为demo02.component.ts,在该组件中，显示一个有5个元素的列表。
+	4.复合组件
+		复合：就是一个组件嵌套其他组件
+
+
+常见错误
+1.未声明
+2.SPAWN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -1,0 +1,7 @@
+搭建环境步骤：
+①找到quickstart-master.zip,node_modules.zip文件夹
+②选中quickstart-master.zip,解压到，ng_codeboy文件夹中
+③复制node_modules.zip压缩包，粘贴到ng_codeboy中的quickstart-master文件夹
+④选中刚粘贴过来的node_modules.zip，解压缩到当前文件夹
+（不允许把之前的node_modules文件夹拷贝过来，因为windows系统有文件夹个数限制）
+⑤通过visualStudioCode打开ng_codeboy中的quickstart-master文件夹

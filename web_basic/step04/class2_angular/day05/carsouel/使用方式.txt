@@ -1,0 +1,39 @@
+步骤1：首先在模块中声明上述两个组件
+
+步骤2：引入bootstrap.css和对应的fonts目录（会用到字体图标）
+
+步骤3：在应用的组件中，准备数据
+
+export class IndexComponent implements OnInit {
+    //图片之间轮播的间隔时间
+    private NextPhotoInterval: number = 1000;
+    //是否要禁用循环播放
+    private noLoopSlides: boolean = false;
+    //Photos
+    private slides: Array<any> = [];
+
+    constructor() { }
+
+    ngOnInit() {
+        this.slides.push(
+            { image: 'http://www.angulartypescript.com/wp-content/uploads/2016/03/car1.jpg', text: 'BMW 1' },
+            { image: 'http://www.angulartypescript.com/wp-content/uploads/2016/03/car2.jpg', text: 'BMW 2' },
+            { image: 'http://www.angulartypescript.com/wp-content/uploads/2016/03/car3.jpg', text: 'BMW 3' },
+            { image: 'http://www.angulartypescript.com/wp-content/uploads/2016/03/car4.jpg', text: 'BMW 4' },
+            { image: 'http://www.angulartypescript.com/wp-content/uploads/2016/03/car5.jpg', text: 'BMW 5' },
+            { image: 'http://www.angulartypescript.com/wp-content/uploads/2016/03/car6.jpg', text: 'BMW 6' }
+        );
+    }
+}
+
+步骤4：在模板中，调用轮播组件实现 轮播图效果
+<carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
+    <slide *ngFor="let slidez of slides; let index=index" [active]="slidez.active">
+        <img [src]="slidez.image" style="margin:auto;">
+
+        <div class="carousel-caption">
+            <h3 style="background-color: transparent;color: white;">Slide {{index + 1}}</h3>
+            <p style="background-color: transparent;color: white;">{{slidez.text}}</p>
+        </div>
+    </slide>
+</carousel>
