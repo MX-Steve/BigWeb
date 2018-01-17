@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <link rel="stylesheet" type="text/css" href="css/common.css">
+	    <link rel="stylesheet" type="text/css" href="js/theme/default/laydate.css">
+	    <link rel="stylesheet" type="text/css" href="css/mian.css">
+	    <link rel="stylesheet" type="text/css" href="css/table_mian.css">
+	    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	    <script type="text/javascript" src="js/table.js"></script>
+	    <script type="text/javascript" src="js/page.js"></script>
+	    <script type="text/javascript" src="js/laydate.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<!--
+        	作者：523776426@qq.com
+        	时间：2017-12-24
+        	描述：用户列表
+        -->
+        <div class="equipment_massage">
+        	<div class="navigation_fast_title equiptop">
+    			<p>用户信息</p>
+    		</div>
+    		<div class="equip_main">
+    			<div class="equip_info_add">
+    				<div class="equip_info"><a href="javascript:void(0)">用户列表</a></div>
+    				<div class="equip_add"><a href="javascript:void(0)">添加用户</a></div>
+    			</div>
+    		</div>
+    		<div class="equip_table">
+    			<table class="table_box" id="table_box" cellpadding="2" cellspacing="1">
+    				<tr>
+    					<th>用户名</th>
+    					<th>角色</th>
+    					<th>注册时间</th>
+    					<th>操作者</th>
+    					<th>操作时间</th>
+    					<th>操作</th>
+    				</tr>
+    				<tr>
+    					<td>用户名</td>
+    					<td>角色</td>
+    					<td>注册时间</td>
+    					<td>操作者</td>
+    					<td>操作时间</td>
+    					<td style="width: 200px;">
+    						<div class="equip_list"><a href="javascript:void(0)">查看详情</a></div>
+    						<div class="equip_delete"><a href="javascript:void(0)">删除</a></div>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>用户名</td>
+    					<td>角色</td>
+    					<td>注册时间</td>
+    					<td>操作者</td>
+    					<td>操作时间</td>
+    					<td style="width: 200px;">
+    						<div class="equip_list"><a href="javascript:void(0)">查看详情</a></div>
+    						<div class="equip_delete"><a href="javascript:void(0)">删除</a></div>
+    					</td>
+    				</tr>
+    			</table>
+    		</div>
+    		<!--
+            	作者：523776426@qq.com
+            	时间：2017-12-24
+            	描述：页码
+            -->
+        	<div class="equip_page_export">
+        		<div class="epuip_export"></div>
+        		<div class="equip_page">
+        			<div class="page">
+        				<div class="pagebox" id = 'controllerPage'></div>
+        			</div>
+        		</div>
+        		<div class="pagebox_Jump">
+    					<input type="text" value=""/>
+    					<a href="javascript:void(0)">GO</a>
+				</div>
+        	</div>
+    	</div>
+        <!--
+        	作者：523776426@qq.com
+        	时间：2017-12-24
+        	描述：添加用户和更改角色
+        -->
+        <form class="table_win" action="" method = "post">
+			<p>用户信息<span id = "close_table_win">X</span></p>
+			<div class="form_box">
+				<span>用户名</span>
+				<input type="text" name=""  required="required" oninvalid="setCustomValidity('请填写该条信息')" oninput="setCustomValidity('')"/>
+			</div>
+			<div class="form_box">
+				<span>角色</span>
+				<select name="">
+						<option value="">请选择角色</option>
+				</select>
+			</div>
+			<div class="form_box">
+				<span>密码</span>
+				<input type="text" name=""  required="required" oninvalid="setCustomValidity('请填写该条信息')" oninput="setCustomValidity('')"/>
+			</div>
+			<div class="form_box">
+				<span>确认密码</span>
+				<input type="text" name=""  required="required" oninvalid="setCustomValidity('请填写该条信息')" oninput="setCustomValidity('')"/>
+			</div>
+			<div class="form_box">
+				<span>操作时间</span>
+				<input type="text" name="" id="test11" placeholder="年/月/日"/>
+			</div>
+			<div class="form_box">
+				<input type="submit" value="保存">
+			</div>
+		</form>
+		<!--
+        	作者：523776426@qq.com
+        	时间：2017-12-24
+        	描述：删除信息
+        -->
+        <div class="judge_win">
+			<p>信息<span class = "close_judge_win">X</span></p>
+			<h1>确定要删除该条信息吗？</h1>
+			<div class="judge_btn">
+				<h2 class = "sure_delete_judge_win">确定</h2>
+				<h2 class = "close_judge_win">取消</h2>
+			</div>
+		</div>
+	</body>
+<script type="text/javascript">
+	
+</script>
+<!--js分页-->
+<script type="text/javascript">
+	$(function() {
+		var carNum = 100;
+		var curpage = 1;
+		carNum = Math.ceil(carNum/10);
+		page({
+			id:'controllerPage',
+			nowNum: curpage,
+			allNum: carNum
+		});
+	});
+</script>
+<script type="text/javascript">
+	//执行一个laydate实例
+	laydate.render({
+	  elem: '#test11' //指定元素
+	  ,format: 'yyyy年MM月dd日'
+	});
+</script>
+</html>

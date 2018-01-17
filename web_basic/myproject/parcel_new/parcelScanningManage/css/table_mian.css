@@ -1,0 +1,32 @@
+.table_box{width: 100%;height: auto;margin: 30px auto;background: #dddddd;overflow: hidden;}
+.calbox{margin: 0 auto;background: #fff;}
+.table_box img{width: 24px;height: 24px;margin: 0 auto;padding-top: 11px;}
+.table_box th{line-height: 35px;white-space: nowrap;text-align: center;background: #3570cc;font-size: 14px;color: #FFF;}
+.table_box td{line-height: 35px;text-align: center;font-size: 14px;color: #515151;background: #fff;}
+/*显示form表单*/
+.table_win{width: 480px;background-color:#fff;position: absolute;left: 50%;top:50px;margin-left: -240px;border:1px solid #ccc;
+	display: none;padding-bottom: 30px}
+.table_win p{height:40px;line-height: 40px;background-color: #3570cc;font-size: 16px;padding-left: 16px;color:#fff;margin-bottom: 20px}
+.table_win p span{font-size: 14px;line-height: 40px;float: right; width: 30px;cursor: pointer;margin-bottom: 20px;}
+.table_win .form_box{height: 40px;padding-left: 30px;padding-top: 10px;}
+.table_win .form_box span{float: left;height: 30px;line-height:30px;font-size: 14px;margin-right:16px;width:120px;text-align: right;}
+.table_win .form_box select{width: 232px;height: 28px;border:1px solid #ccc;}
+.table_win .form_box input[type=text]{width: 220px;height: 28px;border:1px solid #ccc;padding-left: 10px}
+.table_win .form_box input[type=submit]{width: 100px;height: 28px;background-color:#3570cc;color:#fff;border:none;float: left;margin-left:130px;margin-top: 20px;cursor: pointer;}
+.table_win .form_box input[type=button]{width: 100px;height: 28px;background-color:#3570cc;color:#fff;border:none;float: left;margin-left:10px;margin-top: 20px;cursor: pointer;}
+.table_win .form_box input[type=radio]{float: left;margin-top:10px;margin-left: 10px}
+.table_win .form_box label{float: left;margin-top:4px;margin-left: 6px}
+.table_win .form_add_box{height: 140px;clear: both;padding-left: 30px;padding-top: 10px;}
+.table_win .form_add_box input[type=file]{display: none;}
+.table_win .form_add_box span{float: left;height: 30px;line-height:30px;font-size: 14px;margin-right:16px;width:120px;text-align: right;}
+.table_win .form_add_box img{width: 120px;height: 120px;float: left;}
+.table_win .win_map{height: 240px;clear: both;}
+/*删除*/
+.judge_win{width:400px;height:150px;background-color:#fff;position: fixed;left: 50%;top: 150px;margin-left: -240px;
+margin-top: -100px;border-bottom:1px solid #ddd;display: none;overflow: hidden;}
+.judge_win p{height:40px;line-height: 40px;background-color: #3570cc;font-size: 16px;padding-left: 16px;color:#fff;margin-bottom: 20px}
+.judge_win p span{font-size: 14px;line-height: 40px;float: right; width: 30px;cursor: pointer;margin-bottom: 20px;}
+.judge_win h1{height: 40px;line-height: 40px;font-size: 16px;text-align: center;letter-spacing: 2px;font-weight:300;color:#333;}
+.judge_win .judge_btn{height: 40px;padding-left: 100px}
+.judge_win .judge_btn h2{width:80px;height: 28px;background-color:#3570cc;color:#fff;float: left;margin-right: 40px;font-size: 16px;line-height: 28px;text-align: center;font-weight: normal;margin-top:8px;cursor:pointer;}
+

@@ -1,0 +1,44 @@
+/*设备信息*/
+.equipment_massage{width: 100%;height: auto;margin: 0 auto;position: relative;}
+.equiptop{height: 35px;}
+.equip_main{width: 95%;height: 30px;margin: 0 auto;}
+.equip_info_add{width: 200px;height: 30px;float: right;margin:0 auto;}
+.equip_info{width: 90px;height: 25px;margin: 0 auto;padding-top: 3px;border-radius: 2px;text-align: center;float: left;background: #3570cc;}
+.equip_info a{font-size: 15px;color: #fff;}
+.equip_add{width: 90px;height: 25px;margin: 0 auto;padding-top: 3px;border-radius: 2px;text-align: center;float: right;background: #3570cc;}
+.equip_add a{font-size: 15px;color: #fff;}
+/*设备详情搜索*/
+.details{border-bottom: 3px solid #3570cc;height: 55px;}
+.equip_details{width: 100%;height: 30px;margin: 15px auto;}
+.equip_details_search{width: 300px;height: 30px;margin: 0 auto;float:left;}
+.equip_details_search label{font-size: 15px;color: #515151;}
+.equip_details_search input[type="text"]{width: 150px;height: 25px;margin: 0 auto;}
+.equip_details_but{width: 120px;height: 30px;text-align: center;margin: 0 auto;float:left;}
+.dbuton{width: 80px;}
+.equip_details_but input[type="submit"]{width: 70px;height: 28px;margin: 0 auto;background: #3570cc;color: #fff;border: 0;cursor: pointer;}
+.equip_details_but input[type="button"]{width: 80px;height: 28px;margin: 0 auto;background: #3570cc;color: #fff;border: 0;cursor: pointer;}
+.equip_table_ID{width: 95%;height: 20px;margin: 20px auto;}
+.equip_table_ID p{font-size: 15px;color: #515151;margin: 0 20px auto;}
+
+.equip_table{width: 95%;height: auto;margin: 0 auto;}
+.equip_list{width: 80px;height: 25px;text-align: left;margin: 0 25px auto;border-radius: 2px;background: #3570cc;float: left;}
+.equip_list a{position: absolute;margin: -5px 14px auto;font-size: 13px;color: #fff;}
+.eqbox{margin: 0 auto;float: none;}
+.equip_delete{width: 50px;height: 25px;text-align: left;margin: 0 -5px auto;border-radius: 2px;float: left;background: #3570cc;}
+.equip_delete a{position: absolute;margin: -5px 12px auto;font-size: 13px;color: #fff;}
+.debox{float: none;margin:0 auto ;}
+
+.opert{width: 200px;}
+.equip_page_export{width: 95%;height: 75px;margin: 0 auto;}
+.epuip_export{width: 50%;height: 50px;margin: 0 auto;float: left;}
+.export{width: 75px;height: 25px;margin: 10px 25px auto;float: left;padding-top: 4px;border-radius: 2px;cursor: pointer;font-size: 15px;color: #fff;text-align:center;background: #3570cc;}
+.equip_page{width: 43%;height: 50px;margin: 0 auto;float: left;}
+.pagebox_Jump{width: 7%;height: 50px;float: left;}
+.pagebox_Jump input{width: 25px;height: 10px;margin: 24px -10px auto;text-align: center;color:#515151;position: absolute;}
+.pagebox_Jump a{margin: 22px 25px auto;font-size: 13px;color:#515151;position: absolute;}
+.equipment_massage hr{width:95%;height: 2px;background: #eee;border: 0;}
+/*设备部署信息*/
+.equip_deploy{width: 100%;height: 500px;margin: 0 auto;}
+.equip_deploy_msg{width: 95%;height: 350px;margin: 30px auto;}
+.equip_deploy_map{width: 55%;height: 350px;margin: 0 auto;float: left;}
+.equip_deploy_columnar{width: 40%;height: 350px;margin: 0 auto;float: right;}

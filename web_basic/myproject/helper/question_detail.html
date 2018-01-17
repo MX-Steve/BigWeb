@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>helper后台管理系统-题库录入</title>
+	<link rel="stylesheet" href="css/common.css">
+	<style>
+		.container{
+			width:100%;height:100%;
+			padding:15px 35px;
+		}	
+		.title{
+			text-align:center;
+		}
+		.subtitle{
+			text-align:right;
+		}
+		.detail{
+			height:35px;
+			width:100%;
+			background:#ddd;
+			color:#666;
+			border-radius:5px;
+			line-height:35px;
+			text-align:center;
+		}	
+		.detail span{
+			color:#333;
+			font-weight:bold;
+		}
+		.add_box{
+			height:80%;
+			width:100%;
+			background:#eee;
+			margin-top:5px;
+			padding:15px;
+			position:relative;
+		}
+		.row{
+			min-height:50px;
+			margin-bottom:25px;
+		}
+		.col-left{
+			height:50px;
+			width:25%;
+			float:left;
+			text-align:center;
+			font-size:18px;
+		}
+		.col-right{
+			height:50px;
+			width:75%;
+			float:left;
+		}
+		.col-right textarea{
+			width:100%;
+			height:50px;
+			border:0;outline:0;
+			padding:15px;
+			font-size:16px;
+		}
+		.col-right input{
+			width:85%;
+			height:30px;
+			border:0;outline:0;
+			padding:15px;
+			font-size:16px;
+		}
+		.row button{
+			height:35px;
+			width:300px;
+			position:absolute;
+			bottom:20px;
+			left:50%;
+			margin-left:-150px;
+			color:#fff;
+			background:#333;
+			border:0;outline:0;
+			font-size:18px;
+			border-radius:10px;
+			cursor:pointer;
+		}
+		.row button:hover{
+			background:#000;
+			font-weight:bold;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1 class="title"></h1>
+		<h3 class="subtitle"></h3>
+		<div class="detail">
+			该课程总共 <span class="level">5</span> 个阶段，当前阶段共有 <span class="count">39</span> 题
+		</div>
+		<div class="add_box">
+			<form>
+				<div class="row">
+					<div class="col-left">
+						题目
+					</div>
+					<div class="col-right">
+						<textarea name="" id="pname"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-left">
+						答案
+					</div>
+					<div class="col-right">
+						<textarea name="" id="answer"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-left">
+						关键词
+					</div>
+					<div class="col-right">
+						<textarea placeholder="每个关键词以 ; 结尾" name="" id="key"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-left">
+						时间
+					</div>
+					<div class="col-right">
+						<input id="ptime" type="number">
+						<span>分钟</span>
+					</div>
+				</div>
+				<div class="row">
+					<button id="add_question">添&nbsp;&nbsp;&nbsp;&nbsp;加</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script>
+		var url = location.href;
+		var strParams = url.split("?")[1];
+		var cource = strParams.split("&")[0].split("=")[1];
+		var level = strParams.split("&")[1].split("=")[1];
+		$.ajax({
+			url:"data/getCourceMsg.php",
+			type:"get",
+			data:{cource:cource,level:level},
+			success:function(data){
+				console.log(data);
+				$(".title").html(data.cname);
+				$(".subtitle").html("第"+data.level+"阶段："+data.lname);
+				$(".level").html(data.count);
+				$(".count").html(data.question_count);
+			},
+			error:function(){alert("网络错误，请检查!")}
+		});
+
+		$("#add_question").click(e=>{
+			e.preventDefault();
+			var pname = $("#pname").val();
+			var answer = $("#answer").val();
+			var key = $("#key").val();
+			var ptime = $("#ptime").val();
+			var cid = cource;
+			var lid = level;
+			console.log(pname,answer,key,ptime,cid,lid);
+			$.ajax({
+				url:"data/question_add.php",
+				type:"get",
+				data:{pname,answer,key,ptime,cid,lid},
+				success:function(data){
+					if(data.code>0){
+						alert("题目添加成功!");
+						$("#pname").val("");
+						$("#answer").val('');
+						$("#key").val('');
+						$("#ptime").val('');
+					}
+				},
+				error:function(){alert("网络错误，请检查!")}
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>helper</title>
+	<link rel="stylesheet" href="css/common.css">
+	<style>
+		.container{
+			width:100%;
+			height:100%;
+			background:#000 url(img/index/qinglong.gif) no-repeat 0px 15px;
+			background-size:cover;
+		}
+		.box{
+			padding:50px;
+			width:100%;
+			height:100%;
+			background:rgba(0,0,0,0.7);
+			position:relative;
+		}	
+		.box h1{
+			text-align:center;
+			color:rgba(255,255,255,.7);
+			background:rgba(0,0,0,.5);
+			padding:5px;
+			border-radius:15px;
+			cursor:pointer;
+		}
+		.box h1:hover{
+			color:rgba(255,255,255,.9);
+			background:rgba(0,0,0,.7);
+		}
+		.box .level{
+			height:300px;
+			width:300px;
+			background:#ccc;
+			position:absolute;
+			right:50px;
+			top:110px;
+			border-radius:15px;
+			box-shadow:0 0 35px #eee;
+			cursor:pointer;
+			padding:15px;
+		}
+		.box .level:hover{
+			background:#eee;
+			box-shadow:0 0 35px #fff;
+		}
+		.box .level:hover .detail,.box .level:hover .detail01{
+			background:#eee;
+		}
+		.uname{
+			height:35px;
+			line-height:35px;
+			padding:0 15px;
+			position:relative;
+			border-bottom:2px solid #ddd;
+			margin-bottom:15px;
+		}
+		.uname span{
+			color:#333;
+			font-size:18px;
+			font-weight:bold;
+		}
+		.uname .avatar{
+			position:absolute;
+			border-radius:5px;
+			padding:0 15px;
+			right:15px;
+			top:0px;		
+		}
+		/*小白*/
+		.uname .avatar.xiaobai{
+			color:#fff;
+			background:#000;
+		}
+		/*青铜*/
+		.uname .avatar.qingtong{
+			color:#000;
+			background:#CFB276;
+		}
+		/*白银*/
+		.uname .avatar.baiyin{
+			color:#000;
+			background:#B8BAB9;
+		}
+		/*黄金*/
+		.uname .avatar.huangjin{
+			color:#000;
+			background:#FFDD48;
+		}
+		/*钻石*/
+		.uname .avatar.zuanshi{
+			color:#000;
+			background:#EDC1E0;
+		}
+		.level .detail{
+			margin-top:30px;
+			width:100%;
+			height:200px;
+			padding:15px;
+			position:absolute;
+			top:40px;left:0;
+			z-index:1;
+			background:#ccc;
+		}
+		.level .detail div{
+			border:1px solid #ddd;
+			background:#eee;
+			height:20%;
+			position:absolute;
+			left:50%;
+			border-top-left-radius:15px;	
+			border-top-right-radius:15px;	
+			line-height:40px;
+			text-align:center;
+		}
+		.level .detail div:hover{
+			border:1px solid #999;
+		}
+		.level .detail div.step01{
+			top:0;
+			width:80px;
+			margin-left:-40px;
+		}
+		.level .detail div.step02{
+			top:40px;
+			width:110px;
+			margin-left:-55px;
+		}
+		.level .detail div.step03{
+			top:80px;
+			width:140px;
+			margin-left:-70px;
+		}
+		.level .detail div.step04{
+			top:120px;
+			width:170px;
+			margin-left:-85px;
+		}
+		.level .detail div.step05{
+			top:160px;
+			width:200px;
+			margin-left:-100px;
+		}
+		.level .detail .finish{
+			background:#000;
+			color:#fff;
+			font-weight:bold;
+			font-size:16px;
+		}
+		.level .detail .pno{
+			position:absolute;
+			right:0px;
+			top:-10px;
+			z-index:10;
+			border:1px solid #666;
+			border-radius:15px;
+			padding:5px 15px;
+			width:80px;
+			cursor:pointer;
+		}
+		.level .detail .pno:hover{
+			color:#fff;
+			background:#000;
+		}
+		/*排行*/
+		.level .detail01{
+			margin-top:30px;
+			width:100%;
+			height:200px;
+			padding:15px;
+			position:absolute;
+			top:40px;left:0;
+			z-index:2;
+			background:#ccc;
+		}
+		.level .detail01 .shadow{
+			position:absolute;
+			top:25px;
+			left:0;
+			width:100%;
+
+		}
+		.level .detail01 .shadow li{
+			height:35px;
+			text-align:center;
+			line-height:35px;
+			color:#fff;
+		}
+		.level .detail01 .person{
+			position:absolute;
+			right:0px;
+			top:-10px;
+			z-index:10;
+			border:1px solid #666;
+			border-radius:15px;
+			padding:5px 15px;
+			cursor:pointer;
+			width:80px;
+			text-align:center;
+		}
+		.level .detail01 .person:hover{
+			color:#fff;
+			background:#000;
+		}
+		#ta{
+			/*宽、高、定位、边框、外边距*/
+			width:600px;
+			height:600px;
+			position:relative;
+			margin-left:200px;
+			/*视距*/
+			perspective: 1200px;
+			transform:rotateY(0deg);
+			opacity:0;
+			width:0px;
+		}
+		/*一楼*/
+		#ta .floor1{
+			width:500px;
+			height:100px;
+			position:absolute;
+			bottom:50px;
+			left:50px;
+			/*3d样式*/
+			transform-style:preserve-3d;
+			transform: rotateY(0deg);
+		}
+		#ta .floor1 .forward,
+		#ta .floor1 .back,
+		#ta .floor1 .left,
+		#ta .floor1 .right{
+			width:500px;height:100px;
+			position:absolute;
+			background:url(img/index/zhuan.jpg);
+		}
+		#ta .floor1 .forward{
+			transform:translate3d(0px,0px,250px);
+		}
+		#ta .floor1 .forward img{
+			position:absolute;
+			bottom:5px;left:50%;
+			margin-left:-16px;
+		}
+		#ta .floor1 .back{
+			transform:translate3d(0px,0px,-250px);
+		}
+		#ta .floor1 .left{
+			transform:rotateY(90deg) translate3d(0px,0px,-250px);
+		}
+		#ta .floor1 .right{
+			transform:rotateY(90deg) translate3d(0px,0px,250px);
+		}
+		#ta .floor1 .up,
+		#ta .floor1 .down{
+			width:500px;height:500px;
+			position:absolute;
+			background:#878785;
+		}
+		#ta .floor1 .up{
+			transform:rotateX(-90deg) translate3d(0px,0px,-250px);
+		}
+		#ta .floor1 .down{
+			transform:rotateX(90deg) translate3d(0px,0px,150px);
+		}
+		/*二楼*/
+		#ta .floor2{
+			width:400px;
+			height:100px;
+			position:absolute;
+			bottom:150px;
+			left:100px;
+			/*3d样式*/
+			transform-style:preserve-3d;
+			transform:translate3d(0,0,0px) rotateY(0deg);
+		}
+		#ta .floor2 .forward,
+		#ta .floor2 .back,
+		#ta .floor2 .left,
+		#ta .floor2 .right{
+			width:400px;height:100px;
+			position:absolute;
+			background:url(img/index/qingtong.jpg);
+		}
+		#ta .floor2 .forward{
+			transform:translate3d(0px,0px,200px);
+		}
+		#ta .floor2 .forward img{
+			position:absolute;
+			bottom:5px;left:50%;
+			margin-left:-16px;
+		}
+		#ta .floor2 .back{
+			transform:translate3d(0px,0px,-200px);
+		}
+		#ta .floor2 .left{
+			transform:rotateY(90deg) translate3d(0px,0px,-200px);
+		}
+		#ta .floor2 .right{
+			transform:rotateY(90deg) translate3d(0px,0px,200px);
+		}
+		#ta .floor2 .up,
+		#ta .floor2 .down{
+			width:400px;height:400px;
+			position:absolute;
+			background:#878785;
+		}
+		#ta .floor2 .up{
+			transform:rotateX(90deg) translate3d(0px,0px,200px);
+		}
+		#ta .floor2 .down{
+			transform:rotateX(90deg) translate3d(0px,0px,100px);
+		}
+		/*第三楼*/
+		#ta .floor3{
+			width:300px;
+			height:100px;
+			position:absolute;
+			bottom:250px;
+			left:150px;
+			/*3d样式*/
+			transform-style:preserve-3d;
+			transform:translate3d(0,0,0px) rotateY(0deg);
+		}
+		#ta .floor3 .forward,
+		#ta .floor3 .back,
+		#ta .floor3 .left,
+		#ta .floor3 .right{
+			width:300px;height:100px;
+			position:absolute;
+			background:url(img/index/baiyinqiang.jpg);
+		}
+		#ta .floor3 .forward{
+			transform:translate3d(0px,0px,150px);
+		}
+		#ta .floor3 .forward img{
+			position:absolute;
+			bottom:5px;left:50%;
+			margin-left:-16px;
+		}
+		#ta .floor3 .back{
+			transform:translate3d(0px,0px,-150px);
+		}
+		#ta .floor3 .left{
+			transform:rotateY(90deg) translate3d(0px,0px,-150px);
+		}
+		#ta .floor3 .right{
+			transform:rotateY(90deg) translate3d(0px,0px,150px);
+		}
+		#ta .floor3 .up,
+		#ta .floor3 .down{
+			width:300px;height:300px;
+			position:absolute;
+			background:#878785;
+		}
+		#ta .floor3 .up{
+			transform:rotateX(90deg) translate3d(0px,0px,150px);
+		}
+		#ta .floor3 .down{
+			transform:rotateX(90deg) translate3d(0px,0px,50px);
+		}
+		/*第四楼*/
+		#ta .floor4{
+			width:200px;
+			height:100px;
+			position:absolute;
+			bottom:350px;
+			left:200px;
+			/*3d样式*/
+			transform-style:preserve-3d;
+			transform:translate3d(0,0,0px) rotateY(0deg);
+		}
+		#ta .floor4 .forward,
+		#ta .floor4 .back,
+		#ta .floor4 .left,
+		#ta .floor4 .right{
+			width:200px;height:100px;
+			position:absolute;
+			background:url(img/index/huangjinqiang.jpg);
+		}
+		#ta .floor4 .forward{
+			transform:translate3d(0px,0px,100px);
+		}
+		#ta .floor4 .forward img{
+			position:absolute;
+			bottom:5px;left:50%;
+			margin-left:-16px;
+		}
+		#ta .floor4 .back{
+			transform:translate3d(0px,0px,-100px);
+		}
+		#ta .floor4 .left{
+			transform:rotateY(90deg) translate3d(0px,0px,-100px);
+		}
+		#ta .floor4 .right{
+			transform:rotateY(90deg) translate3d(0px,0px,100px);
+		}
+		#ta .floor4 .up,
+		#ta .floor4 .down{
+			width:200px;height:200px;
+			position:absolute;
+			background:#878785;
+		}
+		#ta .floor4 .up{
+			transform:rotateX(90deg) translate3d(0px,0px,100px);
+		}
+		#ta .floor4 .down{
+			transform:rotateX(90deg) translate3d(0px,0px,0px);
+		}
+		/*第五楼*/
+		#ta .floor5{
+			width:100px;
+			height:100px;
+			position:absolute;
+			bottom:450px;
+			left:250px;
+			/*3d样式*/
+			transform-style:preserve-3d;
+			transform:translate3d(0,0,0px) rotateY(0deg);
+		}
+		#ta .floor5 .forward,
+		#ta .floor5 .back,
+		#ta .floor5 .left,
+		#ta .floor5 .right{
+			width:100px;height:100px;
+			position:absolute;
+			background:url(img/index/zuanshiqiang.jpg);
+		}
+		#ta .floor5 .forward{
+			transform:translate3d(0px,0px,50px);
+		}
+		#ta .floor5 .forward img{
+			position:absolute;
+			bottom:5px;left:50%;
+			margin-left:-37px;
+		}
+		#ta .floor5 .back{
+			transform:translate3d(0px,0px,-50px);
+		}
+		#ta .floor5 .left{
+			transform:rotateY(90deg) translate3d(0px,0px,-50px);
+		}
+		#ta .floor5 .right{
+			transform:rotateY(90deg) translate3d(0px,0px,50px);
+		}
+		#ta .floor5 .up,
+		#ta .floor5 .down{
+			width:100px;height:100px;
+			position:absolute;
+			background:#878785;
+		}
+		#ta .floor5 .up{
+			transform:rotateX(90deg) translate3d(0px,0px,50px);
+		}
+		#ta .floor5 .down{
+			transform:rotateX(90deg) translate3d(0px,0px,-50px);
+		}
+		/*提示框*/
+		.alert{
+			position:fixed;
+			width:300px;
+			height:300px;
+			top:50%;left:50%;
+			margin-top:-150px;
+			margin-left:-150px;
+			z-index:100;
+			background:#fff;
+			border-radius:15px;
+			box-shadow:10px 10px 25px #999;
+			text-align:center;
+			display:none;
+		}
+		.alert h1{
+			margin:25px 0;
+			color:#333;
+			text-shadow:2px 2px #666;
+			font-family:"微软雅黑";
+		}
+		.alert button{
+			width:80px;
+			height:35px;
+			position:absolute;
+			bottom:25px;
+			border:0;outline:0;
+			background:#ddd;
+			border-radius:10px;
+			font-size:18px;
+			color:#999;
+			cursor:pointer;
+		}
+		.alert button:hover,.alert button.hover{
+			color:#222;
+			background:#999;
+		}
+		.alert button.ok{
+			left:25px;
+		}
+		.alert button.no{
+			right:25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box">
+			<h1>九界塔</h1>
+			<div class="level">
+				<div class="uname">
+					<span id="uname"></span>
+					<div class="avatar xiaobai">小白</div>	
+				</div>
+				<div class="detail">
+					<span class="pno" id="pno">区排行</span>
+					<div class="step01">钻石</div>
+					<div class="step02">黄金</div>
+					<div class="step03">白银</div>
+					<div class="step04">青铜</div>
+					<div class="step05 finish">小白</div>
+				</div>
+				<div class="detail01">
+					<span class="person" id="person">个人</span>
+					<h3 id="direction" style="position:absolute;top:-3px;left:10px;color:#006699">web前端方向区排名</h3>
+					<ul class="shadow" id="shadow">
+						<li style="background:rgba(0,0,0,.3);color:rgba(255,255,255,.3)">
+						</li>
+						<li style="background:rgba(0,0,0,.6);color:rgba(255,255,255,.6)">
+						</li>
+						<li style="background:rgba(0,0,0,.9);color:rgba(255,255,255,.9)">
+						</li>
+						<li style="background:rgba(0,0,0,.6);color:rgba(255,255,255,.6)">
+						</li>
+						<li style="background:rgba(0,0,0,.3);color:rgba(255,255,255,.3)">
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="ta">
+				<div class="show" style="width:600px;height:600px;transform:rotateY(0deg);transform-style:preserve-3d;">
+					<div class="floor floor1">
+						<div class="up"></div>
+						<div class="down"></div>
+						<div class="forward">
+							<img id="mumen" src="img/index/mumen.jpg" alt="">
+						</div>
+						<div class="back"></div>
+						<div class="left"></div>
+						<div class="right"></div>
+					</div>
+					<div class="floor floor2">
+						<div class="up"></div>
+						<div class="down"></div>
+						<div class="forward">
+							<img src="img/index/qingtongmen.jpg" alt="">
+						</div>
+						<div class="back"></div>
+						<div class="left"></div>
+						<div class="right"></div>
+					</div>
+					<div class="floor floor3">
+						<div class="up"></div>
+						<div class="down"></div>
+						<div class="forward">
+							<img src="img/index/baiyinmen.jpg" alt="">
+						</div>
+						<div class="back"></div>
+						<div class="left"></div>
+						<div class="right"></div>
+					</div>
+					<div class="floor floor4">
+						<div class="up"></div>
+						<div class="down"></div>
+						<div class="forward">
+							<img id="mumen" src="img/index/huangjinmen.jpg" alt="">
+						</div>
+						<div class="back"></div>
+						<div class="left"></div>
+						<div class="right"></div>
+					</div>
+					<div class="floor floor5">
+						<div class="up"></div>
+						<div class="down"></div>
+						<div class="forward">
+							<img id="mumen" src="img/index/zuanshimen.jpg" alt="">
+						</div>
+						<div class="back"></div>
+						<div class="left"></div>
+						<div class="right"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="alert">
+			<h1>确定开始闯关？</h1>
+			<img id='sure' src="img/index/wenhao.jpg" alt="">
+			<h3 style="display:none" id="result"></h3>
+			<button class="ok">确定</button>
+			<button class="no">退缩</button>
+		</div>
+	</div>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script>
+		var uid = location.href.split("?")[1].split("=")[1];
+		$.ajax({
+			type:"get",
+			url:"data/userNameAndCourceName.php?uid="+uid,
+			success:function(data){
+				$("#uname").html(data.uname+"《"+data.cname+"》");
+				$("#direction").html(data.cname+" 方向排名");
+				var cid = data.cid;
+				$.ajax({
+					url:"data/getScores.php",
+					type:"get",
+					data:{cid:cid},
+					success:function(data){
+						var list = data.data;
+						//用户排名整理
+						var chengji = [];
+						for(var i=0;i<list.length;i++){
+							var stu = list[i];
+							if(chengji.indexOf(stu.score)==-1){
+								chengji.push(stu.score);
+							}
+							list[i].level = chengji.length;
+						}
+						//用户排行榜
+						var shadow = $("#shadow");
+						var lis = shadow.find("li");
+						var count = list.length;
+						for(var i=0;i<list.length;i++){
+							if(uid==list[i].uid){
+								var s = list[i].score;
+								if(s<=50){
+									$(".avatar")
+										.html("小白")
+										.attr("class","avatar xiaobai");
+									$(".step05").addClass("finish");
+								}else if(s<=200){
+									$(".avatar")
+										.html("青铜")
+										.attr("class","avatar qingtong");
+										$(".step05").addClass("finish");
+										$(".step04").addClass("finish");
+								}else if(s<=500){
+									$(".avatar")
+										.html("白银")
+										.attr("class","avatar baiyin");
+										$(".step05").addClass("finish");
+										$(".step04").addClass("finish");
+										$(".step03").addClass("finish");
+								}else if(s<=1000){
+									$(".avatar")
+										.html("黄金")
+										.attr("class","avatar huangjin");
+										$(".step05").addClass("finish");
+										$(".step04").addClass("finish");
+										$(".step03").addClass("finish");
+										$(".step02").addClass("finish");
+								}else{
+									$(".avatar")
+										.html("钻石")
+										.attr("class","avatar zuanshi");
+										$(".step05").addClass("finish");
+										$(".step04").addClass("finish");
+										$(".step03").addClass("finish");
+										$(".step02").addClass("finish");
+										$(".step01").addClass("finish");
+								}
+							}
+						}
+						for(let n=0;n<lis.length;n++){
+							
+							var i = n;
+							setInterval(()=>{
+								lis[n].innerHTML= `<span>用户名：${list[i].uname} </span>,总分：${list[i].score}，<span style="color:red;">排名：${list[i].level}</span>`;
+								i++;
+								if(i>=count){
+									i=0;
+								}
+
+							},1500);
+						}
+					},
+					error:function(){alert("网络错误，请检查！");}
+				});
+			},
+			error:function(){
+				alert("网络错误，请检查!");
+			}
+		});
+		
+
+
+		$("#person").click(function(){
+			$(this).css("zIndex",0);
+			$(".detail01").css("zIndex",0);
+			$(".detail").css("zIndex",1);
+		});
+		$("#pno").click(function(){
+			$(this).css("zIndex",0);
+
+			$(".detail01").css("zIndex",1);
+			$(".detail").css("zIndex",0);
+		});
+		//九界塔出现
+		setTimeout(function(){
+			var myOpacity = parseFloat($("#ta").css("opacity"));
+			var t = setInterval(function(){
+				
+				myOpacity +=0.005;
+  			$("#ta").css("opacity",myOpacity);
+				if(myOpacity >=1){
+					clearInterval(t);
+					t = null;				
+				}
+			},50);
+		},1500);
+		//九界塔自动旋转
+		var n = 0;
+		var timer = setInterval(()=>{
+				n+=1;
+				$("#ta").find(".floor").css("transform", "rotateY("+n+"deg)");
+		},100);
+		$("#ta").hover(
+			function(){
+				clearInterval(timer);
+				timer = null;
+			},
+			function(){
+				timer = setInterval(()=>{
+						n+=1;
+						$("#ta").find(".floor").css("transform", "rotateY("+n+"deg)");
+				},100);
+			}
+		);
+		//点击等级，九界塔停止转动
+		$(".xiaobai").click(function(){
+			clearInterval(timer);
+			timer = null;
+			$("#ta").find(".floor").css("transform", "rotateY("+0+"deg)");
+		});
+		//开始闯关
+		//第一层
+		$("#mumen").click(function(){
+			$(".alert").css("display","block");
+		});
+		$("button.ok").mouseenter(function(){
+			$("#sure").attr("src","img/index/zanshang.jpg");
+			$(this).addClass("hover").siblings().removeClass("hover");
+		}).click(function(){
+			$("#result").css("display","block");
+			$("#sure").attr("src","");
+			count = 5;
+			var timer01 = setInterval(function(){
+				$("#result").html(count+"秒钟到达战场");
+				count--;
+				if(count<=0){
+					clearInterval(timer01);
+					timer01 = null;
+					location.href="step01.html?uid="+uid;
+				}
+			},1000);
+		});
+		$("button.no").mouseenter(function(){
+			$("#sure").attr("src","img/index/bishi.jpg");
+			$(this).addClass("hover").siblings().removeClass("hover");
+		}).click(function(){
+			$(".alert").css("display","none");
+		});
+	</script>
+</body>
+</html>

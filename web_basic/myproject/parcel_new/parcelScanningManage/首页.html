@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <link rel="stylesheet" type="text/css" href="css/common.css">
+	    <link rel="stylesheet" type="text/css" href="css/mian.css">
+	    <link rel="stylesheet" type="text/css" href="css/table_mian.css">
+	    <link rel="stylesheet" type="text/css" href="js/theme/default/laydate.css">
+	    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=TctTVkBukEdVc80cEc6RaoX2Sj8sR7zm"></script>
+	    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	    <script type="text/javascript" src="js/table.js"></script>
+	    <script type="text/javascript" src="js/page.js"></script>
+	    <script type="text/javascript" src="js/laydate.js"></script>
+	</head>
+	<body>
+		<!--
+        	作者：523776426@qq.com
+        	时间：2017-12-21
+        	描述：快速导航
+        -->
+		<div class="navigation_fast">
+    		<div class="navigation_fast_title">
+    			<p>快速导航</p>
+    		</div>
+    		<div class="navigation_fast_content">
+    			<ul>
+    				<li>
+    					<div class="content_work" id="dataQuery">
+    						<img src="img/shuju.png"/><p>数据查询</p>
+    					</div>	
+    				</li>
+    				<li>
+    					<div class="content_work guanlian" id="dataRelation">
+    						<img src="img/guanlian.png"/><p>数据关联</p>
+    					</div>
+    				</li>
+    				<li>
+    					<div class="content_work guanli" id="dataManage">
+    						<img src="img/guanli.png"/><p>数据管理</p>
+    					</div>
+    				</li>
+    			</ul>
+    		</div>
+    		<hr/>
+    	</div>
+    	<!--
+        	作者：523776426@qq.com
+        	时间：2017-12-21
+        	描述：设备信息
+        -->
+        <div class="equipment_massage" style="margin-top: 45px;">
+        	<div class="navigation_fast_title equiptop">
+    			<p>设备信息</p>
+    		</div>
+    		<div class="equip_main">
+    			<div class="equip_info_add">
+    				<div class="equip_info"><a href="javascript:void(0)">设备列表</a></div>
+    				<div class="equip_add"><a href="javascript:void(0)">添加设备</a></div>
+    			</div>
+    		</div>
+    		<div class="equip_table">
+    			<table class="table_box" id="table_box" cellpadding="2" cellspacing="1">
+    				<tr>
+    					<th><input type="checkbox" id="checkTable"/>&nbsp;全选</th>
+    					<th>设备名称</th>
+    					<th>设备ID</th>
+    					<th>型号</th>
+    					<th>位置</th>
+    					<th>装备时间</th>
+    					<th>在线状态</th>
+    					<th>更新时间</th>
+    					<th>操作</th>
+    				</tr>
+    				<tr>
+    					<td><input type="checkbox"/></td>
+    					<td>设备名称</td>
+    					<td>设备ID</td>
+    					<td>型号</td>
+    					<td>位置</td>
+    					<td>装备时间</td>
+    					<td>在线状态</td>
+    					<td>更新时间</td>
+    					<td class="opert">
+    						<div class="equip_list"><a href="设备详情.html">查看详情</a></div>
+    						<div class="equip_delete"><a href="javascript:void(0)">删除</a></div>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td><input type="checkbox"/></td>
+    					<td>设备名称</td>
+    					<td>设备ID</td>
+    					<td>型号</td>
+    					<td>位置</td>
+    					<td>装备时间</td>
+    					<td>在线状态</td>
+    					<td>更新时间</td>
+    					<td class="opert">
+    						<div class="equip_list"><a href="设备详情.html">查看详情</a></div>
+    						<div class="equip_delete"><a href="javascript:void(0)">删除</a></div>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td><input type="checkbox"/></td>
+    					<td>设备名称</td>
+    					<td>设备ID</td>
+    					<td>型号</td>
+    					<td>位置</td>
+    					<td>装备时间</td>
+    					<td>在线状态</td>
+    					<td>更新时间</td>
+    					<td class="opert">
+    						<div class="equip_list"><a href="设备详情.html">查看详情</a></div>
+    						<div class="equip_delete"><a href="javascript:void(0)">删除</a></div>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td><input type="checkbox"/></td>
+    					<td>设备名称</td>
+    					<td>设备ID</td>
+    					<td>型号</td>
+    					<td>位置</td>
+    					<td>装备时间</td>
+    					<td>在线状态</td>
+    					<td>更新时间</td>
+    					<td class="opert">
+    						<div class="equip_list"><a href="设备详情.html">查看详情</a></div>
+    						<div class="equip_delete"><a href="javascript:void(0)">删除</a></div>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td><input type="checkbox"/></td>
+    					<td>设备名称</td>
+    					<td>设备ID</td>
+    					<td>型号</td>
+    					<td>位置</td>
+    					<td>装备时间</td>
+    					<td>在线状态</td>
+    					<td>更新时间</td>
+    					<td class="opert">
+    						<div class="equip_list"><a href="设备详情.html">查看详情</a></div>
+    						<div class="equip_delete"><a href="javascript:void(0)">删除</a></div>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td><input type="checkbox"/></td>
+    					<td>设备名称</td>
+    					<td>设备ID</td>
+    					<td>型号</td>
+    					<td>位置</td>
+    					<td>装备时间</td>
+    					<td>在线状态</td>
+    					<td>更新时间</td>
+    					<td class="opert">
+    						<div class="equip_list"><a href="设备详情.html">查看详情</a></div>
+    						<div class="equip_delete"><a href="javascript:void(0)">删除</a></div>
+    					</td>
+    				</tr>
+    			</table>
+    		</div>
+        	<div class="equip_page_export">
+        		<div class="epuip_export">
+        			<div class="export"><p>导出</p></div>
+        		</div>
+        		<div class="equip_page">
+        			<div class="page">
+        				<div class="pagebox" id = 'controllerPage'></div>
+        			</div>
+        		</div>
+        		<div class="pagebox_Jump">
+    					<input type="text" value=""/>
+    					<a href="javascript:void(0)">GO</a>
+				</div>
+        	</div>
+        	<hr/>
+        </div>
+        <!--
+        	作者：523776426@qq.com
+        	时间：2017-12-22
+        	描述：设备部署信息
+        -->
+        <div class="equip_deploy">
+        	<div class="navigation_fast_title equiptop">
+    			<p>设备部署信息</p>
+    		</div>
+    		<div class="equip_deploy_msg">
+    			<div class="equip_deploy_map" id="bmap"></div>
+    			<div class="equip_deploy_columnar" id="columnar"></div>
+    		</div>
+        </div>
+        <!--
+        	作者：523776426@qq.com
+        	时间：2017-12-24
+        	描述：显示增删改查
+        -->
+        <form class="table_win" action="" method = "post">
+			<p>设备信息<span id = "close_table_win">X</span></p>
+			<div class="form_box">
+				<span>设备名称</span>
+				<input type="text" name=""  required="required" oninvalid="setCustomValidity('请填写该条信息')" oninput="setCustomValidity('')"/>
+			</div>
+			<div class="form_box">
+				<span>设备ID</span>
+				<input type="text" name=""  required="required" oninvalid="setCustomValidity('请填写该条信息')" oninput="setCustomValidity('')"/>
+			</div>
+			<div class="form_box">
+				<span>安装位置</span>
+			</div>
+			<div class="form_box">
+				<span>省</span>
+				<select name="">
+						<option value="">请选择省</option>
+				</select>
+			</div>
+			<div class="form_box">
+				<span>市</span>
+				<select name="">
+						<option value="">请选择市</option>
+				</select>
+			</div>
+			<div class="form_box">
+				<span>区</span>
+				<select name="">
+						<option value="">请选择区</option>
+				</select>
+			</div>
+			<div class="form_box">
+				<span>详细地址</span>
+				<input type="text" name="" required="required" oninvalid="setCustomValidity('请填写该条信息')" oninput="setCustomValidity('')"/>
+			</div>
+			<div class="form_box">
+				<span>装备时间</span>
+				<input type="text" name="" id="test11" placeholder="年/月/日"/>
+			</div>
+			<div class="form_box">
+				<input type="submit" value="保存">
+			</div>
+		</form>	
+		<!--
+        	作者：523776426@qq.com
+        	时间：2017-12-24
+        	描述：删除
+        -->
+        <div class="judge_win">
+			<p>信息<span class = "close_judge_win">X</span></p>
+			<h1>确定要删除该条信息吗？</h1>
+			<div class="judge_btn">
+				<h2 class = "sure_delete_judge_win">确定</h2>
+				<h2 class = "close_judge_win">取消</h2>
+			</div>
+		</div>
+        <!--
+        	作者：523776426@qq.com
+        	时间：2017-12-24
+        	描述：底部
+        -->
+        <div class="layui-footer footer">
+        	<p>版权所有&nbsp;&nbsp;©2017-2020包裹扫描系统,并保留所有权利</p>
+        </div>
+	</body>
+<!--echart分布图-->
+<script type="text/javascript" src="js/main.min.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/bmap.min.js"></script>
+<!--map地图-->
+<script type="text/javascript" src="js/map.js"></script>
+<!--柱形图图-->
+<script type="text/javascript" src="js/columnar.js"></script>
+<!--js分页-->
+<script type="text/javascript">
+	$(function() {
+		var carNum = 100;
+		var curpage = 8;
+		carNum = Math.ceil(carNum/10);
+		page({
+			id:'controllerPage',
+			nowNum: curpage,
+			allNum: carNum
+		});
+	});
+</script>
+<!--
+	作者：523776426@qq.com
+	时间：2018-01-02
+	描述：时间范围
+-->
+<script type="text/javascript">
+	//执行一个laydate实例
+	laydate.render({
+	  elem: '#test11' //指定元素
+	  ,format: 'yyyy年MM月dd日'
+	});
+</script>
+<!--
+	作者：523776426@qq.com
+	时间：2018-01-02
+	描述：跳转
+-->
+<script type="text/javascript">
+	$("#dataQuery").click(function(){
+		location.href = "数据查询.html";
+	});
+	$("#dataRelation").click(function(){
+		location.href = "数据关联.html";
+	});
+	$("#dataManage").click(function(){
+		location.href = "数据管理.html";
+	});
+</script>
+</html>
+

@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>helper后台管理系统-用户管理</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/back_user.css">
+	<style>
+		/*删除*/
+		.alert_del{
+			width:500px;
+			height:0px;
+			overflow:hidden;
+			background:#fff;
+			position:absolute;
+			top:50%;left:50%;
+			margin-top:-200px;
+			margin-left:-250px;
+		}
+		.msg_body .footer{
+			height:45px;
+			position:absolute;
+			bottom:0;left:0;right:0;
+			background:#eee;
+		}
+		.msg_body .footer button{
+			width:45%;
+			margin:0 10px;
+			height:100%;
+			background:#e4393c;
+			color:#fff;
+			font-size:18px;
+			outline:0;
+		}
+		/*添加*/
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="userList">
+				用户列表
+			</div>
+			<div class="userAdd" id='add'>
+				添加用户
+			</div>
+		</div>
+		<div class="body">
+			<table class='userTable'>
+				<thead>
+					<tr>
+						<th>用户名</th>
+						<th>角色</th>
+						<th>注册时间</th>
+						<th>操作者</th>
+						<th>操作时间</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+					<tr>
+						<td class="user">admin</td>
+						<td class="role" data-value='1'>超级管理员</td>
+						<td>2017-09-13</td>
+						<td>admin</td>
+						<td>2017-12-29</td>
+						<td>
+							<button class="modify">修改</button>
+							<button class="del">删除</button>
+						</td>
+					</tr>
+					<tr>
+						<td>admin</td>
+						<td>超级管理员</td>
+						<td>2017-09-13</td>
+						<td>admin</td>
+						<td>2017-12-29</td>
+						<td>
+							<button class="modify">修改</button>
+							<button class="del">删除</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!--添加 -->
+		<div class="alert_add">
+			<div class="msg_header">
+				用户信息
+				<span class="close">X</span>
+			</div>
+			<div class="msg_body">
+				<form>
+					<div class="row">
+						<div class="col-left">用户名</div>
+						<div class="col-right">
+							<input id="uname" type="text">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-left">密码</div>
+						<div class="col-right">
+							<input id="upwd" type="password">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-left">确认密码</div>
+						<div class="col-right">
+							<input id="reupwd" type="password">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-left">角色</div>
+						<div class="col-right">
+							<select name="" id="role">
+								<option value="0">======请选择======</option>
+								<option value="1">超级管理员</option>
+								<option value="2">普通管理员</option>
+								<option value="3">普通用户</option>
+							</select>
+						</div>
+					</div>
+					<div class="row btn_save">
+						保存
+					</div>
+				</form>
+			</div>
+		</div>
+		<!--修改 -->
+		<div class="alert_modify">
+			<div class="msg_header">
+				用户信息
+				<span class="close">X</span>
+			</div>
+			<div class="msg_body">
+				<form>
+					<div class="row">
+						<div class="col-left">用户名</div>
+						<div class="col-right">
+							<input id="uname_modify" type="text">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-left">密码</div>
+						<div class="col-right">
+							<input id="upwd_modify" type="password">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-left">确认密码</div>
+						<div class="col-right">
+							<input id="reupwd_modify" type="password">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-left">角色</div>
+						<div class="col-right">
+							<select name="" id="role_modify">
+								<option value="0">======请选择======</option>
+								<option value="1">超级管理员</option>
+								<option value="2">普通管理员</option>
+								<option value="3">普通用户</option>
+							</select>
+						</div>
+					</div>
+					<div class="row btn_save_modify">
+						保存
+					</div>
+				</form>
+			</div>
+		</div>
+		<!--删除 -->
+		<div class="alert_del">
+				<div class="msg_header" style="color:#fff;background:#e4393a;">
+					删除信息
+					<span class="close_del">X</span>
+				</div>
+				<div class="msg_body">
+					<div id="user_id" style="font-size:24px;font-weight:bold;color:#f00;text-align:center;height:100%;margin-top:100px;">
+					</div>
+					<div class="footer">
+						<button class="btn_delete">删除</button>
+						<button class="btn_close">取消</button>
+					</div>
+				</div>
+			</div>
+	</div>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script>
+		//拼接表格
+		$.ajax({
+			url:"data/userList.php",
+			type:"get",
+			success:function(data){
+				var html = "";
+				for(var i=0;i<data.length;i++){
+					var user = data[i];
+					var time = user.reg_time;
+					date = (new Date(parseInt(time))).toLocaleDateString();
+					dateTime = (new Date(parseInt(time))).toLocaleString();
+					html += `
+						<tr>
+							<td class="user">${user.uname}</td>
+							<td class="role" data-value='1'>${(user.role==2)?"超级管理员":((user.role==1)?"普通管理员":"普通用户")}</td>
+							<td>${date}</td>
+							<td>admin</td>
+							<td>${dateTime}</td>
+							<td>
+								<button class="modify" data-uid="${user.uid}">修改</button>
+								<button class="del" data-uid="${user.uid}">删除</button>
+							</td>
+						</tr>
+					`;
+				}
+				$("#tbody").html(html);
+
+			},
+			error:function(){alert("网络错误，请检查！");}
+		});
+		//添加按钮用户
+		$("#add").click(function(){
+			$("#uname").val('');
+			$("#upwd").val('');
+			$("#reupwd").val('');
+			$("#role").val(0);
+			var h = 0;
+			var timer = setInterval(function(){
+				$(".alert_add").css("height",h);
+				h+=5;
+				if(h>=400){
+					clearInterval(timer);
+					timer=null;
+				}
+			},10);
+		});
+		//添加用户
+		$(".btn_save").click(function(){
+			var uname = $("#uname").val();
+			var upwd = $("#upwd").val();
+			var role = $("#role").val();
+			var time = new Date();
+			time = time.getTime();
+			console.log(time);
+			role = (role==3)?0:(role==2?1:(role==1?2:-1));
+			if(role==-1){
+				alert("用户角色必须选择！");
+				return;
+			}
+			$.ajax({
+				url:"data/register.php",
+				type:"get",
+				data:{uname:uname,upwd:upwd,role:role,reg_time:time},
+				success:function(data){
+					if(data.code>0){
+						alert(data.msg);
+						history.go(0);
+					}else{
+						alert(data.msg);
+					}
+				}
+			});
+		});
+		//关闭弹框
+		$(".close").click(function(){
+			var h = 400;
+			var timer = setInterval(()=>{
+				$(this).parent().parent().css("height",h);
+				h-=5;
+				if(h<0){
+					clearInterval(timer);
+					timer=null;
+				}
+			},10);
+		});
+		//删除x按钮关闭
+		$(".close_del").click(function(){
+			var h = 350;
+			var timer = setInterval(function(){
+				$(".alert_del").css("height",h);
+				h-=5;
+				if(h<0){
+					clearInterval(timer);
+					timer=null;
+				}
+			},10);
+		});
+		//删除按钮关闭
+		$(".btn_close").click(function(){
+				var h = 300;
+				var timer = setInterval(()=>{
+					$(this).parent().parent().parent().css("height",h);
+					h-=5;
+					if(h<0){
+						clearInterval(timer);
+						timer=null;
+					}
+				},10);
+		});
+		//修改用户信息
+		$("#tbody").on("click",".modify",function(){
+			var userName = $(this).parent().siblings('.user');
+			$("#uname_modify").attr("disabled",true);
+			$("#uname_modify").val(userName.html());
+			var uid = $(this).data('uid');
+			$('.btn_save_modify').attr("save_uid",uid);
+			$.ajax({
+				url:"data/getUserPassword.php",
+				type:"get",
+				data:{uid:uid},
+				success:function(data){
+					$("#upwd_modify").val(data.upwd);
+					$("#reupwd_modify").val(data.upwd);
+					var role = data.role==0?3:(data.role==1?2:1);
+					$("#role_modify").val(role);
+					if(role==1){
+						alert("超级管理员不能删除或修改自己");
+						return;
+					}
+					var h = 0;
+					var timer = setInterval(function(){
+						$(".alert_modify").css("height",h);
+						h+=5;
+						if(h>=400){
+							clearInterval(timer);
+							timer=null;
+						}
+					},10);
+				},
+				error:function(){
+					alert("网络错误，请检查");
+				}
+			});
+		});
+		//修改中保存按钮点击
+		$(".btn_save_modify").click(function(){
+			var uid = $(this).attr("save_uid");
+			var upwd = $("#upwd_modify").val();
+			var role = $("#role_modify").val();
+			role = (role==3)?0:(role==2?1:(role==1?2:-1));
+			if(role==-1){
+				alert("用户角色必须选择！");
+				return;
+			}
+			$.ajax({
+				url:"data/back_user_modify.php",
+				type:"get",
+				data:{uid:uid,upwd:upwd,role:role},
+				success:function(data){
+					if(data.code>0){
+						alert(data.msg);
+						history.go(0);
+					}else{
+						alert(data.msg);
+					}
+				}
+			});
+		});
+		//表格中删除用户信息按钮
+		$("#tbody").on("click",".del",function(){
+			var role = $(this).parent().siblings('.role').html();
+			var user = $(this).parent().siblings('.user').html();
+			var uid = $(this).data('uid');
+			$(".btn_delete").attr("myUid",uid);
+			if(role=="超级管理员"){
+				alert("超级管理员无法删除或修改自己");
+				return;
+			}
+			$("#user_id").html("您确定要删除 "+role+" : "+user+" 吗？");
+			var h = 0;
+			var timer = setInterval(function(){
+				$(".alert_del").css("height",h);
+				h+=5;
+				if(h>=350){
+					clearInterval(timer);
+					timer=null;
+				}
+			},10);
+		});
+		//弹出框中删除信息按钮
+		$(".btn_delete").click(function(){
+			var uid = $(this).attr('myUid');
+			console.log(uid);
+			$.ajax({
+				url:"data/back_user_delete.php",
+				type:"get",
+				data:{uid:uid},
+				success:function(data){
+					if(data.code>0){
+						history.go(0);
+					}
+				},
+				error:function(){alert("网络错误，请检查！")}
+			});
+		});
+	</script>
+</body>
+</html>	

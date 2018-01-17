@@ -1,0 +1,340 @@
+	<!doctype html>
+	<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 , user-scalable=no">
+		<title>待做列表</title>
+		<style>
+			*,*::before,*::after{box-sizing:border-box;}
+			html{
+				font-family:"SimHei",
+				font-size:14px;
+				color:#333;
+			}
+			html,body,a,ul,ol,li,dl,dd,dt,table,h1,h2,h3,h4,h5,h6{
+				margin:0;padding:0;
+				text-decoration:none;
+				list-style:none;
+			}
+			.lf{float:left;}
+			.rf{float:right;}
+			.clear{clear:both;}
+
+			.container{
+				position:fixed;
+				top:0;left:0;right:0;bottom:0;
+				overflow-y:scroll;
+			}
+			.footer{
+				position:fixed;
+				width:100%;
+				height:45px;
+				bottom:0;
+				z-index:10000;
+			}
+			.footer>div{
+				width:50%;
+				height:100%;
+				float:left;
+				color:#223B6F;
+				line-height:45px;
+				text-align:center;
+				font-size:24px;
+				cursor:pointer;
+			}
+			.footer>.add{
+				background:#9DDB76;
+			}
+			.footer>.show{
+				background:#12C1F3;
+			}
+			.add_box,.show_box{
+				top:0;
+				width:100%;
+				bottom:45px;
+			}
+			.add_box{
+				position:fixed;
+				background:#A0D2A0;
+				z-index:0;
+			}
+			.add_box h2{
+				margin:10px 0;
+				text-align:center;
+			}
+			.show_box{
+				position:fixed;
+				overflow-y:scroll;
+				background:#509DB2;
+				z-index:0;
+			}
+			.show_box h2{
+				margin:10px 0;
+				text-align:center;
+			}
+			.ulList{
+				margin:20px auto;
+				width:90%;
+				min-height:20%;
+				background:#52CFF2;
+				box-shadow:2px 2px #ddd;
+				padding:20px 0;
+			}
+			.ulList li{
+				width:100%;
+				height:45px;
+				line-height:45px;
+				padding:0 15px;
+				border-bottom:2px solid #999;
+				color:#fff;
+				background:rgba(0,0,0,.5);
+				position:relative;
+			}
+			.ulList li button{
+				position:absolute;
+				height:35px;
+				top:5px;
+				border-radius:5px;
+				background:rgba(0,0,0,0.4);
+				border:0;
+				outline:0;
+				color:#fff;
+			}
+			.ulList li button:hover{
+				background:rgba(0,0,0,0.7);
+				font-weight:bold;
+			}
+			.ulList li .remove{
+				right:10px;
+			}
+			.ulList li .finished{
+				right:60px;
+			}
+			.undotitle,.havedonetitle{
+				margin-left:20px;
+				position:relative;
+			}
+			.undotitle span,.havedonetitle span{
+				position:absolute;
+				height:45px;
+				line-height:45px;
+				top:0;
+				right:15px;
+			}
+			.congratulation{
+				height:150px;
+				width:300px;
+				position:fixed;
+				top:50%;
+				left:50%;
+				margin-left:-150px;
+				margin-top:-75px;
+				background:#92CA92;
+				z-index:1000;
+				line-height:150px;
+				font-size:24px;
+				color:#f00;
+				padding:5px;
+				border-radius:8px;
+				box-shadow:5px 5px #4BCC60;
+				display:none;
+			}
+			#haveDoneUlList li{
+				color:#BFE5B2 !important;
+				background:rgba(0,0,0,0.3);
+				position:relative;
+			}
+			#haveDoneUlList li span{
+				position:absolute;
+				right:15px;top:5px;
+				width:35px;
+				height:35px;
+				border-radius:17px;
+				line-height:35px;
+				text-align:center;
+				background:rgba(0,0,0,.5);
+			}
+			.result{
+				position:fixed;
+				top:0;left:0;right:0;bottom:45px;
+				color:#fff;
+				text-align:center;
+				font-size:24px;
+				font-weight:bold;
+				z-index:100;
+				background:url(img/shamo.jpg) 0 0 no-repeat;
+				background-size:cover;
+				display:none;
+			}
+			.result h1{
+				height:2em;width:300px;
+				line-height:2em;
+				position:absolute;
+				top:50%;left:50%;
+				margin-top:-22px;
+				margin-left:-150px;
+			}
+			#clear{
+				background:rgba(0,0,0,.5);
+				color:#fff;
+				padding:5px 20px;
+				border-radius:15px;
+				border:0;
+				outline:0;
+				cursor:pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="add_box" id='add_box'>
+				<h2>添加事项</h2>	
+				<div class="content">
+					<textarea id="todo" cols="30" rows="3" style="background:#ddd;font-size:16px;width:100%;line-height:24px;padding:30px 50px;"></textarea>	
+					<br>
+					<button style="width:100%;padding:10px 30px;" id='add_btn'>添加到任务列表</button>
+				</div>
+			</div>
+			<div class="show_box" id='show_box'>
+				<h2>事项列表</h2>
+				<h3 class='undotitle'>未完成事项 <span id='undoCount'>0</span></h3>
+				<ul class='ulList' id='unDoUlList'>
+				</ul>
+				<h3 class='havedonetitle'>已经完成事项 <button id='clear'>清空</button> <span id='doCount'>0</span></h3>
+				<ul class='ulList' id='haveDoneUlList'>
+				</ul>
+			</div>
+			<footer class="footer">
+				<div class="add" id='add'>添加</div>
+				<div class="show" id='show'>展示</div>
+			</footer>
+		</div>
+		<div class="congratulation" id="congratulation">
+			恭喜您，完成了一项任务！
+		</div>
+		<div class="result" id='result'>
+			<h1>恭喜您，完成了当天任务！</h1>
+		</div>
+		<script>
+			//未完成列表
+			function showUnDone(){
+				var str = localStorage.getItem('list');
+				if(str == undefined){
+					return;
+				}else{
+					var list = str.split(',');
+					if(list.length>1){
+						var html = '';
+							for(var i=1;i<list.length;i++){
+								var item = list[i];
+								html += "<li>";
+								html += "		<span>"+i+".&nbsp;</span>";
+								html += "		<span>"+item+"</span>";
+								html += "		<button class='remove' index="+i+">删除</button>";
+								html += "		<button class='finished' index="+i+">完成</button>";
+								html += "	</li>";
+							}
+							unDoUlList.innerHTML = html;
+							undoCount.innerHTML = list.length-1;
+							//删除按钮事件
+							var btn_removes = document.getElementsByClassName('remove');
+							for(var i=0;i<btn_removes.length;i++){
+								var btn = btn_removes[i];
+								btn.onclick = function(){
+									var num = this.getAttribute('index');
+									if(confirm("确定要删除第"+num+"条任务吗？")){
+										this.parentNode.parentNode.removeChild(this.parentNode);
+										var list = localStorage['list'].split(',');
+										list.splice(num,1);
+										localStorage['list'] = list;	
+										undoCount.innerHTML = list.length-1;
+										showUnDone();
+									}
+								}
+							}
+							//完成按钮事件
+							var btn_finished = document.getElementsByClassName('finished');
+							for(var i=0;i<btn_finished.length;i++){
+								var btn = btn_finished[i];
+								btn.onclick = function(){
+									var num = this.getAttribute('index');
+									if(confirm("你已经完成了第"+num+"条任务吗？")){
+										congratulation.style.display='block';
+										
+										setTimeout(function(){
+											var list = localStorage['list'].split(",");
+											undoCount.innerHTML = list.length-2;
+											congratulation.style.display='none';
+											this.parentNode.parentNode.removeChild(this.parentNode);
+											var list = localStorage['list'].split(',');
+											var item = list.splice(num,1);
+											localStorage['list'] = list;
+											var list_finished = localStorage['list_finished'];
+											list_finished = list_finished +","+item[0];
+											localStorage['list_finished'] = list_finished;	
+											//doCount.innerHTML = list_finished.length-1;
+											showHaveDone();
+											showUnDone();
+										}.bind(this),2000);
+										
+									}
+								}
+							}
+					}else{
+							result.style.display='block';
+							localStorage['list']='';
+							localStorage['list_finished']='';
+					}
+				}
+				
+			}
+			//完成列表
+			function showHaveDone(){
+				var str = localStorage['list_finished'];
+				if(str != undefined){					
+					var aaa = localStorage['list_finished'].split(',');
+					doCount.innerHTML = aaa.length-1;
+					var html = '';
+					for(var i=1;i<aaa.length;i++){
+						var item = aaa[i];
+						html += "<li><b>"+i+".&nbsp;</b>"+item+"<span>OK</span></li>";
+					}
+					haveDoneUlList.innerHTML = html;
+				}
+			}
+			showUnDone();
+			showHaveDone();
+			//切换到添加页面
+			add.onclick = function(){
+				add_box.style.zIndex = 1;
+				show_box.style.zIndex = 0;
+				result.style.display='none';
+			}
+			//切换到查看事项页面
+			show.onclick = function(){
+				showHaveDone();
+				add_box.style.zIndex = 0;
+				show_box.style.zIndex = 1;
+				showUnDone();
+				
+			}
+			
+			//添加页面中添加按钮点击处理
+			add_btn.onclick = function(){
+				var str = localStorage['list'];
+				str = str +","+todo.value;
+				localStorage['list']=str;
+				alert("添加成功");
+				todo.value='';
+			}
+			
+		
+			//清空已经完成任务
+			clear.onclick = function(){
+				localStorage['list_finished']='';
+				history.go(0);
+			}
+		</script>
+	</body>
+	</html>

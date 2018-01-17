@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>helper后台管理系统-题库管理</title>
+	<link rel="stylesheet" href="css/common.css">
+	<style>
+		.container{
+			height:100%;
+			width:100%;
+			position:relative;
+			background:#fee;
+		}	
+		.header{
+			height:50px;
+			position:relative;
+		}
+		.header>div{
+			background:#3570CC;
+			padding:5px 15px;
+			color:#fff;
+			float:right;
+			margin:10px 15px;
+			cursor:pointer;
+			border-radius:5px;
+		}
+		.body{
+			position:absolute;
+			right:0;left:0;bottom:0;top:50px;
+		}
+		.questionTable{
+			width:80%;
+			margin:0 auto;
+		}
+		.questionTable thead{
+			background:#3570CC;
+			color:#fff;
+		}
+		.questionTable th{
+			padding:5px 20px;
+		}
+		.questionTable td{
+			background:#fff;
+			text-align:center;
+			padding:5px;
+		}
+		.questionTable td button{
+			background:#3570CC;
+			width:48%;
+			color:#fff;
+			outline:0;
+			border:0;
+			padding:5px 10px;
+			border-radius:5px;
+			cursor:pointer;
+		}
+		.questionTable tbody tr:nth-child(2n) td{
+			background:#E5EFF8;
+		}
+		/*删除*/
+		.alert_del{
+			width:500px;
+			height:0px;
+			overflow:hidden;
+			background:#fff;
+			position:absolute;
+			top:50%;left:50%;
+			margin-top:-200px;
+			margin-left:-250px;
+		}
+		/*查看详情*/
+		.alert_detail{
+			width:500px;
+			height:0px;
+			overflow:hidden;
+			background:#fff;
+			position:absolute;
+			top:50%;left:50%;
+			margin-top:-200px;
+			margin-left:-250px;
+		}
+		/*添加题库*/
+		.alert_add{
+			width:500px;
+			height:0px;
+			overflow:hidden;
+			background:#fff;
+			position:absolute;
+			top:50%;left:50%;
+			margin-top:-200px;
+			margin-left:-250px;
+		}
+		.msg_header{
+			height:45px;
+			color:#fff;
+			position:absolute;
+			top:0;left:0;right:0;
+			background:#3570CC;
+			line-height:45px;
+			padding:0 15px;
+		}
+		.msg_header span{
+			float:right;
+			cursor:pointer;
+		}
+		.msg_body{
+			position:absolute;
+			top:45px;
+			left:0;right:0;bottom:0;
+		}
+		.msg_body .row{
+			width:80%;
+			height:45px;
+			margin:15px auto;
+			color:#333;
+			line-height:45px;
+		}
+		.msg_body .row .col-left{
+			width:30%;height:100%;
+			text-align:right;
+			float:left;
+		}
+		.msg_body .row .col-right{
+			width:70%;height:100%;
+			float:left;
+			padding:0 15px;
+		}
+		.msg_body .row .col-right input{
+			outline:0;
+			border:1px solid #ddd;
+			height:80%;
+			width:100%;
+			background:transparent;
+			padding:0 15px;
+		}
+		.msg_body .row .col-right select{
+			width:100%;
+			height:80%;
+		}
+		.btn_add{
+			text-align:center;
+			background:#3570CC;
+			color:#fff !important;
+			border-radius:5px;
+			cursor:pointer;
+		}
+		.msg_body .footer{
+			height:45px;
+			position:absolute;
+			bottom:0;left:0;right:0;
+			background:#eee;
+		}
+		.msg_body .footer button{
+			width:45%;
+			margin:0 10px;
+			height:100%;
+			background:#e4393c;
+			color:#fff;
+			font-size:18px;
+			outline:0;
+		}
+	</style>
+</head>
+<body>
+		<div class="container">
+			<div class="header">
+				<div class="questionList">
+					题库列表
+				</div>
+				<div class="userAdd" id='add'>
+					添加题库
+				</div>
+			</div>
+			<div class="body">
+				<table class='questionTable'>
+					<thead>
+						<tr>
+							<th>课程方向</th>
+							<th>课程阶段</th>
+							<th>创建时间</th>
+							<th>操作者</th>
+							<th>操作时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody id="tbody01">
+					</tbody>
+				</table>
+			</div>
+			<div class="alert_add">
+				<div class="msg_header">
+					题库信息
+					<span class="close">X</span>
+				</div>
+				<div class="msg_body">
+					<form>
+						<div class="row">
+							<div class="col-left">课程方向</div>
+							<div class="col-right">
+								<select name="" id="cource">
+									<option value="0">======请选择======</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-left">等级</div>
+							<div class="col-right">
+								<select name="" id="level">
+									<option value="0">======请选择======</option>
+								</select>
+							</div>
+						</div>
+						<div class="row btn_add">
+							进入课程
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="alert_detail">
+				<div class="msg_header">
+					题库信息
+					<span class="close">X</span>
+				</div>
+				<div class="msg_body">
+					<form>
+						<div class="row">
+							<div class="col-left">课程方向</div>
+							<div class="col-right detail_cname" style="font-size:18px;color:#000;font-weight:bold;">
+								Web
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-left">等级</div>
+							<div class="col-right detail_level" 
+							style="font-size:18px;color:#000;font-weight:bold;">
+								5个阶段
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-left">题库总数</div>
+							<div class="col-right detail_count" style="font-size:18px;color:#000;font-weight:bold;">
+								502个题目
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="alert_del">
+				<div class="msg_header" style="color:#fff;background:#e4393a;">
+					删除信息
+					<span class="close">X</span>
+				</div>
+				<div class="msg_body">
+					<div id="cource_id" myCid='1'  style="font-size:24px;font-weight:bold;color:#f00;text-align:center;height:100%;margin-top:100px;">
+						您确定要删除 web 课程吗？
+					</div>
+					<div class="footer">
+						<button class="btn_delete">删除</button>
+						<button class="btn_close">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.2.1.js"></script>
+		<script>
+			//弹出框
+			$("#tbody01").on('click','.detail',function(){
+				var h = 0;
+				var cname = $(this).parent().siblings('.cname').html();
+				var level = $(this).parent().siblings('.level').html();
+				var cid = $(this).parent().siblings(".cname").data('cid');
+
+				$.ajax({
+					type:"get",
+					url:"data/question.php",
+					data:{cid:cid},
+					success:function(data){
+						var count = 0;
+						if(data.length!=0){
+							count = data.length;
+						}
+						$(".detail_count").html(count+"个题目");
+					},
+					error:function(){alert("网络错误，请检查!");}
+				});
+				var timer = setInterval(()=>{
+					$(".detail_cname").html(cname);
+					$(".detail_level").html(level+"个阶段");
+					$(".alert_detail").css("height",h);
+					h+=5;
+					if(h>=300){
+						clearInterval(timer);
+						timer=null;
+					}
+				},10);
+			});
+			$("#tbody01").on('click','.del',function(){
+				var h = 0;
+				var cname = $(this).parent().siblings('.cname').html();
+				var cid = $(this).parent().siblings(".cname").data('cid');
+				var timer = setInterval(function(){
+					$(".alert_del").css("height",h);
+					$("#cource_id").html("您确定要删除 《 "+cname+" 》 课程吗？");
+					h+=5;
+					if(h>=300){
+						$("#cource_id").attr('myCid',cid);
+						clearInterval(timer);
+						timer=null;
+					}
+				},10);
+			});
+			$("#add").click(function(){
+				var h = 0;
+				var timer = setInterval(function(){
+					$(".alert_add").css("height",h);
+					h+=5;
+					if(h>=300){
+						clearInterval(timer);
+						timer=null;
+					}
+				},10);
+			});
+			//跳转到详情
+			$(".btn_add").click(function(){
+				var cource = $("#cource").val();
+				var level = $("#level").val();
+				if(cource==0 || level==0){
+					alert("必须选择课程和阶级才能进入!");
+					return;
+				}
+				location.href="question_detail.html?cource="+cource+"&level="+level;
+			});
+			$(".close").click(function(){
+				var h = 300;
+				var timer = setInterval(()=>{
+					$(this).parent().parent().css("height",h);
+					h-=5;
+					if(h<0){
+						clearInterval(timer);
+						timer=null;
+					}
+				},10);
+			});
+			$(".btn_close").click(function(){
+				var h = 300;
+				var timer = setInterval(()=>{
+					$(this).parent().parent().parent().css("height",h);
+					h-=5;
+					if(h<0){
+						clearInterval(timer);
+						timer=null;
+					}
+				},10);
+			});
+			$(".btn_delete").click(function(){
+				var cid = $("#cource_id").attr('myCid');
+				$.ajax({
+					url:"data/back_question_delete.php",
+					type:"get",
+					data:{cid:cid},
+					success:(data)=>{
+						if(data.code>0){
+							alert("删除成功!");
+							var h = 300;
+							var timer = setInterval(()=>{
+								$(this).parent().parent().parent().css("height",h);
+								history.go(0);
+								h-=5;
+								if(h<0){
+									clearInterval(timer);
+									timer=null;
+								}
+							},10);
+						}else{
+							alert("删除失败!");
+						}
+					},
+					error:function(){
+						alert("网络错误，请检查!");
+					}
+				});
+			});
+			//课程类型
+			$.ajax({
+				url:"data/back_question_cource.php",
+				type:"get",
+				success:function(data){
+					var cources = data;
+					var html = '<option value="0">======请选择======</option>';
+					for(var i=0;i<cources.length;i++){
+
+						var cource = cources[i];
+						html += `
+							<option value="${cource.cid}">${cource.cname}</option>
+						`;
+					}
+					$("#cource").html(html);
+				},
+				error(){alert("网络错误，请检查!")}
+			});
+			
+			$("#cource").change(function(){
+				var cid = $(this).val();
+				//var level = levels[cid-1];
+				$.ajax({
+					url:"data/back_question_level.php",
+					type:"get",
+					data:{cid:cid},
+					success:function(data){
+						var levels = data;
+						var html = '<option value="0">======请选择======</option>';
+						for(var i=0;i<levels.length;i++){
+							var l = levels[i];
+							html += `
+									<option value="${l.lid}">${l.lname}</option>
+								`;
+						}
+						$("#level").html(html);
+					},
+					error:function(){alert("网络错误，请检查!")}
+				});
+				
+			});
+			//table中tbody的拼接
+			$.ajax({
+				url:"data/back_question_body.php",
+				type:"get",
+				success:function(data){
+					var html = '';
+					var cources = data.data;
+					var users = data.users;
+					for(var i=0;i<cources.length;i++){
+						var cource = cources[i];
+						var date = new Date(parseInt(cource.build_time));
+						date = date.toLocaleDateString();
+						var option_time = (new Date(parseInt(cource.option_time))).toLocaleString();
+						html +=`
+								<tr>
+									<td class="cname" data-cid="${cource.cid}">${cource.cname}</td>
+									<td class="level" data-value='1'>${cource.level}</td>
+									<td>${date}</td>
+									<td>${users[i].uname}</td>
+									<td>${option_time}</td>
+									<td>
+										<button class="detail" data-cid="${i}">查看详情</button>
+										<button class="del">删除</button>
+									</td>
+								</tr>
+						`;
+						
+					}
+					$("#tbody01").html(html);
+				},
+				error:function(){
+					alert("网络错误，请检查!");
+				}
+			});
+			
+
+		</script>
+</body>
+</html>

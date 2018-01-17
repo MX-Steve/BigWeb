@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <link rel="stylesheet" type="text/css" href="css/common.css">
+	    <link rel="stylesheet" type="text/css" href="css/mian.css">
+	    <link rel="stylesheet" type="text/css" href="css/table_mian.css">
+	    <link rel="stylesheet" type="text/css" href="js/theme/default/laydate.css">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	    <script type="text/javascript" src="js/table.js"></script>
+	    <script type="text/javascript" src="js/page.js"></script>
+	    <script type="text/javascript" src="js/laydate.js"></script>
+	    <style>
+			.win_show_img{width: 400px;height: 400px;background-color:#fff;position: absolute;left: 20px;top:100px;border:14px solid #fff;display: none;z-index: 2000;overflow: hidden;}
+			.win_show_img img{width: 400px;height: 400px;}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				$('#tableBox').find('img').hover(function() {
+					var _this = $(this);
+					var dom_this = _this[0];
+					var add_distance = 50;
+					var top = _this.offset().top - add_distance * 3;
+					var left = _this.offset().left + add_distance;
+					$('.win_show_img').find('img').attr('src', _this.attr('src'));
+					$('.win_show_img').css({'left':left + 'px','top': top + 'px'});
+					$('.win_show_img').show(300);
+				}, function() {
+					$('.win_show_img').hide(300);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="win_show_img" style="display: none;">
+			<img src="img/banner.jpg">
+		</div>
+		<!--
+        	作者：523776426@qq.com
+        	时间：2017-12-29
+        	描述：设备详情
+        -->
+        <div class="equipment_massage">
+        	<div class="navigation_fast_title equiptop">
+    			<p>设备详情</p>
+    		</div>
+    		<div class="equip_main details">
+    			<div class="equip_details">
+	    			<form action="" method="post">
+		    			<div class="equip_details_search">
+		    				<label>设备ID:&nbsp;&nbsp;</label><input type="text" name=""/>
+		    			</div>
+		    			<div class="equip_details_search">
+		    				<label>时间范围:&nbsp;&nbsp;</label><input type="text" style="width: 220px;" id="test16" name=""/>
+		    			</div>
+		    			<div class="equip_details_but">
+		    				<input type="submit" value="搜索"/>
+		    			</div>
+	    			</form>
+	    			<div class="equip_details_but dbuton">
+	    				<input type="button" value="高级搜索"/>
+	    			</div>
+    			</div>
+    		</div>
+    		<div class="equip_table_ID"><p>设备ID:XXXXXXXXXXX</p></div>
+    		<div class="equip_table" style="margin-top: -25px;">
+    			<table class="table_box" id="tableBox" cellpadding="2" cellspacing="1">
+    				<tr>
+    					<th>更新时间</th>
+    					<th>条纹码、二维码信息</th>
+    					<th>X射线扫描信息</th>
+    					<th>操作</th>
+    				</tr>
+    				<tr>
+    					<td>2017-4-2 10:30:25</td>
+    					<td>
+    						<table class="table_box calbox" id="calbox" cellpadding="2" cellspacing="1">
+    						<tr>
+    							<td style="width: 250px;border-right: 1px solid #DDDDDD;">25454365435</td>
+    							<td style="border-right: 1px solid #DDDDDD;">
+    								<img src="img/banner.jpg" />
+    							</td>
+    							<td>
+    								<div class="equip_list eqbox"><a href="条码二维码_查看详情.html">查看详情</a></div>
+    							</td>
+    						</tr>
+    						</table>
+    					</td>
+    					<td>
+    						<table class="table_box calbox" id="calbox" cellpadding="2" cellspacing="1">
+	    						<tr>
+	    							<td style="width: 250px;border-right: 1px solid #DDDDDD;">25454365435</td>
+	    							<td style="border-right: 1px solid #DDDDDD;">
+	    								<img src="img/banner.jpg" />
+	    							</td>
+	    							<td>
+	    								<div class="equip_list eqbox"><a href="X射线扫描信息.html">查看详情</a></div>
+	    							</td>
+	    						</tr>
+    						</table>
+    					</td>
+    					<td style="width: 100px;">
+    						<div class="equip_delete debox"><a href="javascript:void(0)">删除</a></div>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>2017-4-2 10:30:25</td>
+    					<td>
+    						<table class="table_box calbox" id="calbox" cellpadding="2" cellspacing="1">
+    						<tr>
+    							<td style="width: 250px;border-right: 1px solid #DDDDDD;">25454365435</td>
+    							<td style="border-right: 1px solid #DDDDDD;">
+    								<img src="img/banner.jpg" />
+    							</td>
+    							<td>
+    								<div class="equip_list eqbox"><a href="javascript:void(0)">查看详情</a></div>
+    							</td>
+    						</tr>
+    						</table>
+    					</td>
+    					<td>
+    						<table class="table_box calbox" id="calbox" cellpadding="2" cellspacing="1">
+	    						<tr>
+	    							<td style="width: 250px;border-right: 1px solid #DDDDDD;">25454365435</td>
+	    							<td style="border-right: 1px solid #DDDDDD;">
+	    								<img src="img/banner.jpg" />
+	    							</td>
+	    							<td>
+	    								<div class="equip_list eqbox"><a href="javascript:void(0)">查看详情</a></div>
+	    							</td>
+	    						</tr>
+    						</table>
+    					</td>
+    					<td style="width: 100px;">
+    						<div class="equip_delete debox"><a href="javascript:void(0)">删除</a></div>
+    					</td>
+    				</tr>
+    			</table>
+    		</div>
+        
+	</body>
+<!--
+	作者：523776426@qq.com
+	时间：2017-12-29
+	描述：选择时间范围
+-->
+<script type="text/javascript">
+	laydate.render({
+	  elem: '#test16'
+	  ,range: '到'
+	  ,format: 'yyyy年M月d日'
+	}); 
+</script>
+</html>

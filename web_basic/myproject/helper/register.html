@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>helper</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/login.css">
+
+</head>
+<body>
+	<div class="con1">
+		<div class="con2">
+			<div class="con3">
+				<div class="con4">
+					<div class="con5">
+						<h1 class="title">战界</h1>
+						<form>
+							<div class="group">
+								<label for="uname">用户名</label>
+								<input type="text" id="uname" placeholder="请输入用户名">
+								<span class="pic">
+									<img src="img/login/user.png" alt="">
+								</span>
+							</div>
+							<div class="group">
+								<label for="upwd">密 &nbsp; 码</label>
+								<input type="password" id="upwd" placeholder="请输入密码">
+								<span class="pic">
+									<img src="img/login/pwd.png" alt="">
+								</span>
+							</div>
+							<div class="group">
+								<label for="reupwd">确认密码</label>
+								<input type="password" id="reupwd" placeholder="请确认密码">
+								<span class="pic">
+									<img src="img/login/pwd.png" alt="">
+								</span>
+							</div>
+							<div class="group">
+								<label for="cource">课程选择</label>
+								<select style="width:70%;margin-top:5px;border-radius:5%;padding:3px 15px;color:#666;" name="cource" id="cource">
+									
+								</select>
+							</div>
+							<div class="group">
+								<button type="button" id="btn_reg">注 &nbsp;  &nbsp;  &nbsp; 册</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script>
+		$.ajax({
+			url:"data/back_question_cource.php",
+			type:"get",
+			success:function(data){
+				var html = "<option value='0'>==== 请选择课程 ====</option>";
+				for(var i=0;i<data.length;i++){
+					var item = data[i];
+					html +=`
+						<option value="${item.cid}">${item.cname}</option>
+					`;
+				}
+				$("#cource").html(html);
+			},
+			error:function(){alert("网络错误，请检查！");}
+		});
+		$("#btn_reg").click(function(e){
+			e.preventDefault();
+			var uname = $("#uname").val();
+			var upwd = $("#upwd").val();
+			var reg_time = new Date();
+			var cource = $("#cource").val();
+			if(cource=='0'){
+				alert("必须选择一门课程！");
+				return;
+			}
+			$.ajax({
+				type:"POST",
+				data:{uname:uname,upwd:upwd,reg_time:reg_time.getTime()},
+				url:"data/register.php",
+				success:function(data){
+					if(data.code>0){
+						var uid = data.uid;
+						$.ajax({
+							url:"data/back_question_answer_result.php",
+							type:"get",
+							data:{uid:uid,score:0,cid:cource},
+							success:function(data){
+								if(data.code>0){
+									location.href = "login.html";								
+								}
+							},
+							error:function(){alert("网络错误，请检查!");}
+						});
+						
+					}else{
+						alert(data.msg);
+					}
+				},
+				error:function(){
+					alert("网络错误，请检查");
+				}
+			});
+		});
+		$("#uname").blur(function(){
+			var uname = $("#uname").val();
+			if(uname==''){
+				alert("用户名不能为空！");
+				return;
+			}
+			$.ajax({
+				type:"POST",
+				data:{uname:uname},
+				url:"data/checkUname.php",
+				success:function(data){
+					
+					if(data.code==-1){
+						alert("用户名已存在");
+					}
+				},
+				error:function(){
+					alert("网络错误，请检查");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

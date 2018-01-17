@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>包裹扫描系统</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css">
+		<script type="text/javascript" src = "js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src = "js/time_until.js"></script>
+		<script type="text/javascript" src="js/menu.js"></script>
+	</head>
+	<body>
+		
+		<!--
+        	作者：523776426@qq.com
+        	时间：2017-12-20
+        	描述：头部
+        -->
+        <div class="parcel_scanning_top">
+        	<div class="top_banner">
+    			<i></i>
+    			<p>
+    				<span>包裹扫描系统&nbsp;</span>
+    				<span>PARCEL&nbsp;&nbsp;SCANNING&nbsp;&nbsp;SYSTEM</span>
+    			</p>
+    		</div>
+    		<div class="top_content">
+    			<p>
+					<span>超级管理员,欢迎!</span>
+	    			<span id = "now_date"></span>
+	    			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<i></i><span>退出</span>
+    			</p>
+    		</div>
+        </div>
+        <!--
+        	作者：523776426@qq.com
+        	时间：2017-12-20
+        	描述：页面内容
+        -->
+        <div class="parcel_scanning_content">
+        	
+        	<!--
+            	作者：523776426@qq.com
+            	时间：2017-12-20
+            	描述：主菜单栏
+            -->
+        	<div class="parcel_scanning_menu">
+        		<div style="width: 100%;height: 10px;margin: 0 auto;"></div>
+        		<div class="menu_box" id="menu">
+        			<p><img src="img/guanglian.png"/><span>设备管理</span></p>
+        			<ul cur="1">
+        				<li><a href="javascript:void(0);" to_url = "设备管理_设备列表.html">设备列表</a></li>
+        			</ul>
+        		</div>
+        		<div class="menu_box" id="menu">
+        			<p><img src="img/yonghu.png"/><span>用户管理</span></p>
+        			<ul cur="2">
+        				<li><a href="javascript:void(0);" to_url = "用户管理_用户列表.html">用户列表</a></li>
+        			</ul>
+        		</div>
+        		<div class="menu_box" id="menu">
+        			<p><img src="img/tongji.png"/><span>系统管理</span></p>
+        			<ul cur="3">
+        				<li><a href="javascript:void(0);" to_url = "系统管理.html">系统管理</a></li>
+        			</ul>
+        		</div>
+        	</div>
+        	<!--
+            	作者：523776426@qq.com
+            	时间：2017-12-20
+            	描述：导航栏
+            -->
+        	<div class="parcel_scanning_navigation">
+            	<div class="navigation">
+	            	<p id="navigation">
+	            		<span>首页</span>
+	            		<span id="menu_two"></span>
+	            		<span id="menu_last"></span>
+	            	</p>
+            	</div>
+            </div>
+        	<!--
+            	作者：523776426@qq.com
+            	时间：2017-12-20
+            	描述：内容
+           -->
+            <div class="parcel_scanning_iframe">
+            	<iframe id="main_iframe" width = "100%" height = "100%" src="首页.html"  frameborder="no" scrolling="yes"></iframe>
+            </div>
+        </div>
+	</body>
+	
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>helper</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/login.css">
+
+</head>
+<body>
+	<div class="con1">
+		<div class="con2">
+			<div class="con3">
+				<div class="con4">
+					<div class="con5">
+						<h1 class="title">战界</h1>
+						<form>
+							<div class="group">
+								<label for="uname">用户名</label>
+								<input type="text" id="uname" placeholder="请输入用户名">
+								<span class="pic">
+									<img src="img/login/user.png" alt="">
+								</span>
+							</div>
+							<div class="group">
+								<label for="upwd">密 &nbsp; 码</label>
+								<input type="password" id="upwd" placeholder="请输入密码">
+								<span class="pic">
+									<img src="img/login/pwd.png" alt="">
+								</span>
+							</div>
+							<div class="group">
+								<button type="button" id="btn_login">登 &nbsp;  &nbsp;  &nbsp; 录</button>
+								<a href="register.html">没有账号？去注册</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script>
+		$("#btn_login").click(function(e){
+			e.preventDefault();
+			var uname = $("#uname").val();
+			var upwd = $("#upwd").val();
+			$.ajax({
+				type:"POST",
+				data:{uname:uname,upwd:upwd},
+				url:"data/login.php",
+				success:function(data){
+					if(data.code>0){
+						var uid = data.uid;
+						var role = data.role;
+						var uname = data.uname;
+						if(role == 2){
+							alert("欢迎超级管理员 <"+uname+"> 登录，正在前往后台");
+							if(confirm("==前往题库后台？==\n点否则去用户后台")){
+								location.href="back_question.html";						
+							}else{
+								location.href="back_user.html";
+							}
+						}else if(role == 1){
+							alert("欢迎普通管理员 <"+uname+"> 登录，正在前往题库后台");
+							location.href="back_question.html";
+						}else{
+							location.href="index_01.html?uid="+uid;					
+						}
+					}else{
+						alert("用户名或者密码错误");
+					}
+				},
+				error:function(){
+					alert("网络错误，请检查");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

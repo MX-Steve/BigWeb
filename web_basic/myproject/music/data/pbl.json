@@ -1,0 +1,23 @@
+[
+	{
+		"num":1,
+		"src":"mp3/womenbuyiyang.mp3",
+		"img":"img/singer/dazhuang.jpg",
+		"musicName":"我们不一样",
+		"name":"大壮"
+	},
+	{
+		"num":2,
+		"src":"mp3/wangshisuifeng.mp3",
+		"img":"img/singer/qiqin.jpg",
+		"musicName":"往事随风",
+		"name":"齐秦"
+	},
+	{
+		"num":3,
+		"src":"mp3/houlai.mp3",
+		"img":"img/singer/liyukun.jpg",
+		"musicName":"后来",
+		"name":"李昱锟"
+	}
+]

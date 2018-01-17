@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css">
+	    <link rel="stylesheet" type="text/css" href="css/mian.css">
+	    <link rel="stylesheet" type="text/css" href="css/table_mian.css">
+	    <link rel="stylesheet" type="text/css" href="js/theme/default/laydate.css">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	    <script type="text/javascript" src="js/table.js"></script>
+	    <script type="text/javascript" src="js/page.js"></script>
+	    <script type="text/javascript" src="js/laydate.js"></script>
+	    <style>
+			.win_show_img{width: 400px;height: 400px;background-color:#fff;position: absolute;left: 20px;top:100px;border:14px solid #fff;display: none;z-index: 2000;overflow: hidden;}
+			.win_show_img img{width: 400px;height: 400px;}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				$('#table_box').find('img').hover(function() {
+					var _this = $(this);
+					var dom_this = _this[0];
+					var add_distance = 50;
+					var top = _this.offset().top - add_distance * 3;
+					var left = _this.offset().left + add_distance;
+					$('.win_show_img').find('img').attr('src', _this.attr('src'));
+					$('.win_show_img').css({'left':left + 'px','top': top + 'px'});
+					$('.win_show_img').show(300);
+				}, function() {
+					$('.win_show_img').hide(300);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="win_show_img" style="display: none;">
+			<img src="img/banner.jpg">
+		</div>
+		<!--
+        	作者：523776426@qq.com
+        	时间：2018-01-02
+        	描述：条码二维码详情
+        -->
+        <div class="equipment_massage">
+        	<div class="navigation_fast_title equiptop">
+    			<p>条形码包裹信息</p>
+    		</div>
+    		<div class="equip_main details">
+    			<div class="equip_details">
+	    			<form action="" method="post">
+		    			<div class="equip_details_search">
+		    				<label>设备ID:&nbsp;&nbsp;</label><input type="text" name=""/>
+		    			</div>
+		    			<div class="equip_details_search">
+		    				<label>时间范围:&nbsp;&nbsp;</label><input type="text" style="width: 220px;" id="test16" name=""/>
+		    			</div>
+		    			<div class="equip_details_but">
+		    				<input type="submit" value="搜索"/>
+		    			</div>
+	    			</form>
+	    			<div class="equip_details_but dbuton">
+	    				<input type="button" value="高级搜索"/>
+	    			</div>
+    			</div>
+    		</div>
+    		<div class="equip_table">
+    			<table class="table_box" id="table_box" cellpadding="2" cellspacing="1">
+    				<tr>
+    					<th>时间</th>
+    					<th>透视图片</th>
+    					<th>背散图片</th>
+    					<th>操作日志</th>
+    					<th>维修记录</th>
+    					<th>扫描时间</th>
+    					<th>备注</th>
+    					<th>其他信息</th>
+    				</tr>
+    				<tr>
+    					<td>时间</td>
+    					<td><img src="img/banner.jpg"></td>
+    					<td><img src="img/banner.jpg"></td>
+    					<td>操作日志</td>
+    					<td>维修记录</td>
+    					<td>扫描时间</td>
+    					<td>备注</td>
+    					<td>其他信息</td>
+    				</tr>
+    			</table>
+    		</div>
+    		<!--
+            	作者：523776426@qq.com
+            	时间：2018-01-02
+            	描述：分页
+            -->
+            <div class="equip_page_export" style="margin-top:-20px;">
+        		<div class="epuip_export"></div>
+        		<div class="equip_page">
+        			<div class="page">
+        				<div class="pagebox" id = 'controllerPage'></div>
+        			</div>
+        		</div>
+        		<div class="pagebox_Jump">
+    					<input type="text" value=""/>
+    					<a href="javascript:void(0)">GO</a>
+				</div>
+        	</div>
+		</div>
+	</body>
+<!--js分页-->
+<script type="text/javascript">
+	$(function() {
+		var carNum = 100;
+		var curpage = 1;
+		carNum = Math.ceil(carNum/10);
+		page({
+			id:'controllerPage',
+			nowNum: curpage,
+			allNum: carNum
+		});
+	});
+</script>
+<!--
+	作者：523776426@qq.com
+	时间：2018-01-02
+	描述：选择时间范围
+-->
+<script type="text/javascript">
+	laydate.render({
+	  elem: '#test16'
+	  ,range: '到'
+	  ,format: 'yyyy年M月d日'
+	}); 
+</script>
+</html>

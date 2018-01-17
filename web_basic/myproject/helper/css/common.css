@@ -1,0 +1,15 @@
+body {margin:0px;font-family: "微软雅黑", Arial, Helvetica, sans-serif;}
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, textarea, iframe, table, th, td {margin: 0;padding: 0;list-style-type: none;}
+a:link {font-family: "微软雅黑", Arial, Helvetica, sans-serif;text-decoration: none;}
+a:visited {font-family: "微软雅黑", Arial, Helvetica, sans-serif;text-decoration: none;}
+a:hover {font-family: "微软雅黑", Arial, Helvetica, sans-serif;text-decoration: none;}
+input, button, textarea, select {  font-family: "微软雅黑", Verdana, Arial, Helvetica, sans-serif; }
+button {-webkit-appearance: none;}
+a:hover{text-decoration: none;}
+input{outline:none;}
+select{outline:none;}
+textarea{outline:none;}
+img{border:none;}
+*{box-sizing:border-box;}
+
+html,body{height: 100%;width: 100%;}

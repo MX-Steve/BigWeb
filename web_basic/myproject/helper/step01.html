@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第一战场</title>
+	<link rel="stylesheet" href="css/common.css">
+	<style>
+		body{
+			background:url('img/index/wutian.jpg') no-repeat;
+			background-size:cover;
+		}
+		.box{
+			width:500px;		
+			height:500px;
+			position:fixed;
+			top:50%;left:50%;
+			margin-left:-250px;
+			margin-top:-250px;
+			border:1px solid #999;
+			border-radius:5px;
+			background:rgba(0,0,0,.5);
+		}
+		.box h1{
+			text-align:center;
+			margin:25px 0;
+		}
+		.box .question{
+			width:100%;
+			height:100px;
+			border:1px solid grey;
+			margin-bottom:25px;
+			padding:15px;
+		}
+		.box .answer{
+			width:100%;
+			height:200px;
+			border:1px solid grey;
+			padding:15px;
+			font-size:16px;
+			line-height:32px;
+		}
+		.box .submit{
+			width:80px;
+			height:30px;
+			background:#ddd;
+			border-radius:5px;
+			position:absolute;
+			top:386px;right:0px;
+			text-align:center;
+			color:#666;
+			font-family:"SimHei";
+			line-height:30px;
+			cursor:pointer;
+		}
+		.box .submit:hover{
+			color:#333;
+			background:#999;
+		}
+		.progress{
+			position:absolute;
+			width:500px;
+			height:30px;
+			bottom:25px;
+			left:50%;
+			margin-left:-250px;
+			background:#ddd;
+			border-radius:5px;
+		}
+		.progress .inner{
+			width:0px;
+			height:30px;
+			position:absolute;
+			top:0;left:0;
+			border-radius:5px;
+			background:#f00;
+		}
+		.info{
+			height:25px;
+			width:500px;
+			position:absolute;
+			bottom:0;
+			border-radius:5px;
+			text-align:center;
+			color:#f00;
+			font-size:18px;
+			line-height:25px;
+			font-weight:bold;
+		}
+	</style>
+</head>
+<body>
+<!-- 	<h1>欢迎来到第一战场</h1> -->
+<div class="box">
+	<h1 id="pid">第1题</h1>
+	<div class="question"></div>
+	<textarea class="answer"></textarea>
+	<div class="submit" pno='1'>提 &nbsp; 交</div>
+	<div class="progress">
+		<div class="inner"></div>
+	</div>
+	<div class="info"></div>
+</div>
+
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+	var uid = location.href.split("?")[1].split("=")[1];
+	//进度条与数据切换
+	var myWidth = parseInt($(".inner").css("width"));
+	var cid=1,lid=1;
+	var count = 0;
+	$.ajax({
+		url:"data/back_question_list.php",
+		type:"get",
+		data:{cid:cid,lid:lid},
+		success:function(data){
+
+			var list = data;
+			function change(pid,pname,ptime){
+				$(".inner").css("width",0);
+				$(".info").html("0.00%");
+				$("#pid").html("第 "+pid+" 题");
+				$(".submit").attr("pno",pid);
+				$(".question").html(pname);
+				var t1 = setInterval(function(){
+					myWidth+=5;
+					var r = 0.2*myWidth;
+					$(".info").html(r.toFixed(2) +" %");
+					$(".inner").css("width",myWidth);
+					if(r>=100){
+						myWidth = 500;r=100;
+						$(".info").html(r.toFixed(2) +" %");
+						$(".answer").val("");
+						clearInterval(t1);
+						t1=null;
+						myWidth = 0;r=0;
+						count++;
+						if(count<list.length){
+							change(list[count].pid,list[count].pname,list[count].ptime);
+						}else{
+							alert("本期闯关结束");
+							location.href= "success.html";
+						}
+					}
+				},ptime*600);
+			}
+			change(list[count].pid,list[count].pname,list[count].ptime);
+			
+			//通过正则进行评分
+			var score = 0;
+			var countList = [];
+			$(".submit").click(function(){
+				alert('ok');
+				var pno = $(this).attr("pno");
+				var str = $(".answer").val();
+				var key = list[pno-1].key;
+				var arr = key.split(";");
+				var result = 0;
+				for(var i=0;i<arr.length;i++){
+					var a = new RegExp(arr[i]);
+					if(a.test(str)){
+						result++;
+					};
+				}
+				var r = parseFloat(((result/arr.length)*100).toFixed(2));
+
+				countList[pno-1]=r;
+				if(pno == list.length){
+					console.log("答题结束");
+					var s = 0;
+					for(var i=0;i<countList.length;i++){
+						var c = countList[i];
+						s+=parseFloat(c);
+						console.log(s);
+					}
+					console.log(s);
+					$.ajax({
+						url:"data/back_question_answer_result.php",
+						type:"get",
+						data:{score:s,uid:uid,cid:cid},
+						success:function(data){
+							console.log(data);
+						},
+						error:function(){
+							alert("网络错误，请检查！");
+						}
+					});
+				}
+				
+			});
+
+		},
+		error:function(){alert("网络错误，请检查！");}
+	});
+
+	
+
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+*,*::before,*::after{box-sizing:border-box;}
+html{
+	font-family:"SimHei",
+	font-size:14px;
+	color:#333;
+}
+html,body,a,ul,ol,li,dl,dd,dt,table,h1,h2,h3,h4,h5,h6{
+	margin:0;padding:0;
+	text-decoration:none;
+	list-style:none;
+}
+.lf{float:left;}
+.rf{float:right;}
+.clear{clear:both;}

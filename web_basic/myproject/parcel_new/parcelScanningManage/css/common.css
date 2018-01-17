@@ -1,0 +1,105 @@
+body {margin:0px;font-family: "微软雅黑", Arial, Helvetica, sans-serif;}
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, textarea, iframe, table, th, td {margin: 0;padding: 0;list-style-type: none;}
+a:link {font-family: "微软雅黑", Arial, Helvetica, sans-serif;text-decoration: none;}
+a:visited {font-family: "微软雅黑", Arial, Helvetica, sans-serif;text-decoration: none;}
+a:hover {font-family: "微软雅黑", Arial, Helvetica, sans-serif;text-decoration: none;}
+input, button, textarea, select {  font-family: "微软雅黑", Verdana, Arial, Helvetica, sans-serif; }
+button {-webkit-appearance: none;}
+a:hover{text-decoration: none;}
+input{outline:none;}
+select{outline:none;}
+textarea{outline:none;}
+img{border:none;}
+
+
+html,body{height: 100%;width: 100%;}
+.parcel_scanning_content{clear: both;position: relative;height:calc(100% - 99px);}
+/*头部样式*/
+.parcel_scanning_top{width: 100%;height: 93px;position: relative;margin:0 auto;overflow: hidden;background:url(../img/top.png) no-repeat;}
+.top_banner{width: 50%;height: 93px;margin: 0 auto;float: left;}
+.top_banner i{width: 35px;height: 35px;background: url(../img/banner.png) no-repeat;position: absolute;margin: 40px 30px auto;}
+.top_banner p{color: #fff;margin: 45px 80px auto;}
+.top_banner p span:nth-child(1){font-size: 23px;font-weight: 600;}
+.top_banner p span:nth-child(2){font-size: 15px;}
+.top_content{width: 670px;height: 93px;margin: 0 auto;float: right;text-align: center;}
+.top_content p{font-size: 15px;color: #fff;margin:45px auto;}
+.top_content p span:nth-child(1){margin:0 auto;}
+.top_content p span:nth-child(2){margin:0 40px auto;}
+.top_content p span:nth-child(3){margin:0 40px auto;}
+.top_content p i{width: 20px;height: 20px;margin: 0 -25px auto;background: url(../img/goout.png) no-repeat;position: absolute;}
+/*菜单样式*/
+.parcel_scanning_menu{width:210px;height:100%;background-color:#e5eff8;margin:0 auto;float: left;}
+.menu_box{width: 210px;height: auto;margin: 0 auto;clear: both;}
+.menu_box p{height: 50px;padding-left: 25px;line-height: 50px;font-size:15px;font-weight:600;color:#000;position: relative;cursor:pointer;}
+.menu_box p img{width:20px;height: 20px;float: left;margin-top:14px;margin-right:5px}
+.menu_box ul{width: 100%;height: 100%;margin:0 auto;display: none;overflow: hidden;}
+.menu_box ul li{width: 100%;height:27px;text-align: center;padding-top: 5px;}
+.menu_box ul li a{color: #000;font-size:14px;}
+/*导航*/
+.parcel_scanning_navigation{width: calc(100% - 210px);height: 70px;margin: 0 auto;float: left;}
+.navigation{width: 100%;height: 45px;margin: 0 auto;}
+.navigation p{margin: 13px 25px auto;}
+.navigation p span{font-size: 13px;color: #555;}
+/*快速导航*/
+.navigation_fast{width: 100%;height:auto;margin: 0 auto;}
+.navigation_fast_title{width: 100%;height:58px;margin: 0 auto;}
+.navigation_fast_title p{height: 21px;margin:0 35px auto;font-size:15px;font-weight:600;border-left: 3px solid #f47d21;padding-top:0;padding-left:10px;}
+.navigation_fast_content{width: 100%;height: 175px;margin: 0 auto;}
+.navigation_fast_content ul{width: 100%;height: 130px;margin: 0 auto;}
+.navigation_fast_content ul li{width: 33.33%;height: 130px;margin: 0 auto;float: left;}
+.content_work{width: 270px;height: 130px;margin: 0 auto;background: #198df0;border-radius: 3px;cursor: pointer;}
+.guanlian{background-color: #37ca7a;}
+.guanli{background-color: #f49f4c;}
+.content_work img{width: 100px;height: 80px;margin: 25px 30px auto;position: absolute;}
+.content_work p{font-size: 22px;color: #FFFFFF;margin:0 auto;margin:0 auto;padding-top:55px;margin-right: 35px;text-align: right;}
+.navigation_fast hr{width:95%;height: 2px;background: #eee;border: 0;}
+/*跳转页面*/
+.parcel_scanning_iframe{width: calc(100% - 210px);height:calc(100% - 70px);margin: 0 auto;float: left;}
+
+/*底部*/
+.footer{width: 100%;height: 30px;margin: 0 auto;text-align: center;background: #fff;}
+.footer p{font-size: 14px;color: #515151;margin: 7px auto;}
+/*分页*/
+.page{height:40px;margin:20px auto;clear: both;}
+.page .pagebox{height: 40px;float:right;}
+.page a{float: left;font-size: 14px;text-align: center;color:#515151;margin-right:15px;}
+.page .prePage{width: 20px;height:26px;}
+.page .firstPage{width: 48px;}
+.pagebox{margin-left:234px;}
+.page a:hover{color:#3570cc;}
+.page .curpage{color:#3570cc;}
+.page .curpage:hover{}
+.page .numPage:hover{color: #515151;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

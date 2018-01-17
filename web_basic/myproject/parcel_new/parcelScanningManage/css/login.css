@@ -1,0 +1,101 @@
+*{margin:0;padding:0;}
+body{
+	width:100%;
+	height:100%;
+	position:fixed;
+}
+.top{
+	width:100%;
+	background:linear-gradient(to bottom,#336bc6,#4794E2);
+	height:150px;
+	color:#ddd;
+	text-align:center;
+}
+.top-content{
+	position:relative;
+	left:210px;
+	height:47px;
+	padding-top:100px;
+}
+.top-content img{
+	width:32px;
+	height:30px;
+}
+.top-content span{
+	font-size:20px;
+	font-weight:bold;
+	color:#fff;
+	position:relative;
+	top:-6px;
+	margin-left:3px;
+}
+.top-content span:last-child{
+    font-size:10px;
+	margin-left:15px;
+	opacity:0.7;
+}
+.middle{
+	min-width:1400px;
+	height:255px;
+	position:relative;
+}
+.baoguo,.middle form{
+	float:left;
+	height:255px;
+}
+.baoguo{
+	width:48%;
+}
+.middle .line{
+	float:left;
+	width:2px;
+	height:160px;
+	margin-top:57px;
+	background-color:#E6EFF5;
+}
+.middle form{
+	width:552px;
+	margin-left:72px;
+}
+.baoguo img{
+	width:389px;
+	height:292px;
+	position:absolute;
+	left:22%;
+	top:0;
+	margin: 0 auto;
+}
+.bottom{
+    width:100%;
+	height:calc(100% - 405px);
+	background:linear-gradient(to top,#336bc6,#4794E2);
+}
+form .uname{
+	margin-top:67px;
+}
+form .upwd{
+	margin-top:12px;
+	-webkit-appearance:none;
+}
+form .my-btn{
+	margin-top:16px;
+    background-color:#3670CF;
+	color:#fff;
+	cursor:pointer;
+}
+form input{
+	height:35px;
+	width:247px;
+	border:none;
+	
+}
+form input.uname,input.upwd{
+	background-color:#E1E7ED;
+	box-sizing:border-box;
+	padding-left:10px;
+}
+form img{
+	position:relative;
+	left:-34px;
+	top:5px;
+}

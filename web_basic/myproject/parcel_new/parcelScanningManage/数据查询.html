@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css">
+	    <link rel="stylesheet" type="text/css" href="js/theme/default/laydate.css">
+	    <link rel="stylesheet" type="text/css" href="css/mian.css">
+	    <link rel="stylesheet" type="text/css" href="css/table_mian.css">
+	    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	    <script type="text/javascript" src="js/table.js"></script>
+	    <script type="text/javascript" src="js/page.js"></script>
+	    <script type="text/javascript" src="js/laydate.js"></script>
+	</head>
+	<body>
+		<!--
+        	作者：523776426@qq.com
+        	时间：2018-01-02
+        	描述：数据查询
+        -->
+        <div class="equipment_massage">
+        	<div class="navigation_fast_title equiptop">
+    			<p>设备信息</p>
+    		</div>
+    		<div class="equip_main details">
+    			<div class="equip_details">
+	    			<form action="" method="post">
+		    			<div class="equip_details_search">
+		    				<label>单号:&nbsp;&nbsp;</label><input type="text" name=""/>
+		    			</div>
+		    			<div class="equip_details_search">
+		    				<label>设备名称:&nbsp;&nbsp;</label><input type="text" name=""/>
+		    			</div>
+		    			<div class="equip_details_search">
+		    				<label>时间范围:&nbsp;&nbsp;</label><input type="text" style="width: 220px;" id="test16" name=""/>
+		    			</div>
+		    			<div class="equip_details_but">
+		    				<input type="submit" value="搜索"/>
+		    			</div>
+	    			</form>
+	    			<div class="equip_details_but dbuton">
+	    				<input type="button" value="高级搜索"/>
+	    			</div>
+    			</div>
+    		</div>
+    		<div class="equip_table">
+    			<table class="table_box" id="table_box" cellpadding="2" cellspacing="1">
+    				<tr>
+    					<th>设备ID</th>
+    					<th>设备名称</th>
+    					<th>型号</th>
+    					<th>位置</th>
+    					<th>装备时间</th>
+    					<th>在线状态</th>
+    					<th>更新时间</th>
+    				</tr>
+    				<tr>
+    					<td>设备ID</td>
+    					<td>设备名称</td>
+    					<td>型号</td>
+    					<td>位置</td>
+    					<td>装备时间</td>
+    					<td>在线状态</td>
+    					<td>更新时间</td>
+    				</tr>
+    			</table>
+    		</div>
+    		<!--
+            	作者：523776426@qq.com
+            	时间：2018-01-02
+            	描述：分页
+            -->
+            <div class="equip_page_export" style="margin-top:-20px;">
+        		<div class="epuip_export"></div>
+        		<div class="equip_page">
+        			<div class="page">
+        				<div class="pagebox" id = 'controllerPage'></div>
+        			</div>
+        		</div>
+        		<div class="pagebox_Jump">
+    					<input type="text" value=""/>
+    					<a href="javascript:void(0)">GO</a>
+				</div>
+        	</div>
+		</div>
+	</body>
+<!--js分页-->
+<script type="text/javascript">
+	$(function() {
+		var carNum = 100;
+		var curpage = 1;
+		carNum = Math.ceil(carNum/10);
+		page({
+			id:'controllerPage',
+			nowNum: curpage,
+			allNum: carNum
+		});
+	});
+</script>
+<!--
+	作者：523776426@qq.com
+	时间：2018-01-02
+	描述：选择时间范围
+-->
+<script type="text/javascript">
+	laydate.render({
+	  elem: '#test16'
+	  ,range: '到'
+	  ,format: 'yyyy年M月d日'
+	}); 
+</script>
+</html>
