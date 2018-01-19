@@ -1,0 +1,153 @@
+微信开发
+
+	Day01 - 微信公众号的开发
+	Day02/03 - 微信小程序的开发
+
+微信公众号的开发
+
+一、编辑模式
+1. 官网：https://mp.weixin.qq.com
+2. MP = Media Platform 媒体平台
+3. 新媒体
+	3.1 博客
+	3.2 微博 twitter
+	3.3 微信
+	3.4 直播平台
+4. 传统媒体
+	4.1 报纸
+	4.2 杂志
+	4.3 收音机
+	4.4 电视机
+5. 自媒体
+6. 微信公众平台的分类
+	6.1 服务号
+	6.2 订阅号
+	6.3 小程序
+7. 注册个人订阅号
+	7.1 首页-立即注册
+	7.2 选择订阅号
+	7.3 填写注册表单，输入验证码，提交
+	7.4 确认选择订阅号
+	7.5 个人主体信息登记
+	7.6 填写账号相关信息
+	7.7 进入公众号管理页面
+8. 设置-公众号设置
+9. 图标素材 https://iconfinder.com
+10. 功能 - 自动回复
+	10.1 关键词回复
+	10.2 收到消息回复
+	10.3 被关注回复
+11. 功能 - 自定义菜单
+	11.1 一级菜单
+	11.2 二级菜单
+12. 功能 - 投票管理
+13. 投票发布的入口
+	管理 - 素材管理 - 新建图文素材 - 投票
+14. 管理 - 素材管理
+	14.1 图片素材 https://unsplash.com/
+	14.2 图文消息
+	14.3 图片
+	14.4 语音
+	14.5 视频
+15. 管理 - 消息管理
+16. 管理 - 用户管理
+
+二、开发模式
+17. 编辑模式和开发模式只能使用一种
+18. 开发模式可以在编辑模式的基础上实现如智能回复，提供更好的用户体验，以及一些自动化的处理
+19. 新建一个项目 wechat-1708N
+20. 把 wechat.zip 解压缩到 wechat-1708N 下
+		wechat-1708N/
+				node_modules
+				package.json
+21. 使用 Express 搭建一个简单的服务器
+	21.1 安装 Express，npm i -S express
+	21.2 创建文件 app.js
+	21.3 编辑 app.js
+					a. const express = require('express');
+					b. let app = new express();
+					c. app.listen(3000);
+22. 运行，在 wechat-1708N/ 下
+	22.1 node app 或 node app.js，以后代码修改了，需要关闭并再次启动（Ctrl+C，Y）
+	22.2 使用 supervisor
+	22.3 作用：supervisor 自动监听服务器端代码的变化，会自动重启服务
+	22.4 需要全局安装：npm i -g supervisor
+	22.5 命令运行：supervisor app 或 supervisor app.js
+	22.6 运行任何命令可以配置在 package.json 的 scripts 中
+    "start": "supervisor app"
+		执行时，只需要输入 npm [run] start 
+		[] 代表可选项
+24. 浏览器测试结果
+25. 引入 wechat
+26. 创建常量 config 配置项
+		const config = {
+				token: '',
+				appid: '',
+				encodingAESKey: ''
+		};
+27. 进入微信公众号管理平台
+		开发-基本配置
+			获取 Appid
+		开发-基本配置-启用-修改配置
+			输入 Token
+			生成 EncodingAESKey
+28. 复制这 3 个值到 config 中
+29. 修改 app.js
+		app.use(express.query());
+		app.use('/', wechat(config, (req, res, next) => {
+
+		}));
+30. 运行 ngrok，输入：ngrok http 3000
+		Forwarding                    http://b38384fe.ngrok.io -> localhost:3000
+		Forwarding                    https://b38384fe.ngrok.io -> localhost:3000
+
+		隧道服务软件
+
+31. 复制 http 或 https 地址到公众平台，填写到 URL 处
+32. 提交，提交成功
+33. 项目的目录结构：
+		wechat-1708N
+				node_modules
+						express
+						wechat
+						...
+				app.js
+				package.json
+				
+34. 关注用户向订阅号发送消息，消息的所有内容被封装为 req.weixin 这个对象
+35. 回复使用：res.reply('');
+36. 回复文本消息
+		res.reply('文本消息');
+37. 回复图文消息
+		res.reply([{
+			title: '',
+			description: '',
+			picurl: '',
+			url: '',
+		}]);
+
+38. 回复音频消息?
+		res.reply({
+			type: 'music',
+			content: {
+				title: '',
+				description: '',
+				musicUrl: ''
+			}
+		});
+
+39. 微信公众号的聊天机器人
+40. 安装并引入 mysql 模块，创建数据库连接池
+		执行：npm i -S mysql
+		const mysql = require('mysql');
+		pool = mysql.createPool({user:'root'});
+41. 建库建表
+		db.message
+				id: int pk
+				question: text nn
+				answer: text nn
+42. 添加样本数据
+43. 根据用户发送的消息进行模糊查询
+44. 把查询结果发送给用户 res.reply('');
+
+45. 练习：根据用询问的某地当天天气，请求天气 API，查询天气，发送结果给用户
