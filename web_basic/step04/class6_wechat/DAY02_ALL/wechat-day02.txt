@@ -1,0 +1,98 @@
+Day02 微信小程序开发
+
+一、根据用询问的某地当天天气，请求天气 API，查询天气，发送结果给用户
+
+1. 用户输入的模式：城市 空格 天气
+2. 服务器端获取这个服务信息
+3. 根据城市名称请求第三方服务器，获取天气信息
+4. 把天气信息返回给用户
+5. 寻找一个提供天气信息的第三方 API
+6. https://www.heweather.com/
+7. 获取实时天气 API，拼接 key
+	 https://free-api.heweather.com/s6/weather/now?key=用户key&location=城市名
+	 填入地址栏，测试
+8. 发起 HTTP 请求
+	8.1 引入核心模块 https
+	8.2 使用 https 发起 get 请求
+			https.get(url, (req, res) => {
+				req.on('data', data => {
+					console.log(JSON.parse(data.toString()));
+				})
+			});
+9. 接收返回的 JSON 数据
+10. 解析 JSON，提取需要的信息
+11. 返回给用户天气信息
+12. 针对各种错误情况做处理
+
+二、微信小程序开发
+1. 内置在微信中一种应用，开发使用基本 Web 技术
+2. 不需要独立安装应用，在微信里可以直接打开使用
+3. 注册小程序开发账号，邮箱
+4. 微信公众号平台 https://mp.weixin.qq.com
+5. 安装、打开微信开发者工具
+6. 选择小程序项目
+7. 选择项目目录
+8. 填写AppID：公众平台-设置-开发设置-开发者ID
+9. 填写项目名称
+10. Error：
+		2 not found
+		编译 .wxss 文件错误...
+
+		C:\Users\web-01\AppData\Local\微信web开发者工具\User Data\WeappVendor\
+
+		wcc.exe
+		wcsx.exe
+
+		文件-删掉
+11. 项目目录结构
+		demo-project
+			文件：
+			app.js JavaScript 文件，小程序的业务逻辑
+			app.json JSON 文件，小程序的项目配置文件
+			app.wxss 类似 CSS 文件，小程序的公共样式表文件
+			project.config.json JSON 文件 项目工具配置
+			目录：
+			pages 项目的所有页面的目录
+					一个页面目录
+					index
+							* index.js JavaScript 文件 当前页的逻辑
+							* index.wxml 类似 HTML 文件 当前页的内容结构
+							index.wxss 类似 CSS 文件，当前页的样式表文件
+							index.json JSON 文件，当前页的配置文件
+12. 创建一个新的页面
+	12.1 新建一个目录
+	12.2 新建一个 JS 文件
+	12.3 新建一个 WXML 文件
+	12.4 在 app.json 中注册这个页面
+	12.5 快速的创建页面：新建目录-新建页面
+	12.6 快速的创建页面：直接修改 app.json 文件
+			 添加："pages/text/text"，保存	
+13. 导航 navigator
+	13.1 <navigator>
+	13.2 url='../view/view'
+	13.4 open-type='redirect'
+14. 基本视图 view
+	14.1 hover-class
+	14.2 hover-start-time
+	14.3 hover-stay-time
+15. 数据绑定
+		{{变量名}}
+		JS 中
+		Page({
+			data: {
+				变量名: '一个值'
+			}
+		});
+16. 按钮的事件触发
+		<button bindtap="调用的函数名">
+		JS 中
+		Page({
+			调用的函数名: function() {
+				//...
+			}
+		});
+	
+17. 练习：实现 ip 地址查询
+	17.1 视图：text input button
+	17.2 API：http://ip.taobao.com/
+	17.3 HTTP 请求：https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html#wxrequestobject
