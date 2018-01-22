@@ -1,0 +1,15 @@
+<!--pages/button/button.wxml-->
+<text>pages/button/button.wxml</text>
+<view>
+  <button type="primary">primary</button>
+  <button type='default'>default</button>
+
+  <button type="primary" loading='true'>primary loading</button>
+  <button type='default' loading='true'>default loading</button>
+
+  <button type='warn' disabled='true'>default loading</button>
+
+  <button type="primary" size="mini">primary</button>
+  <button type='default' size="mini">default</button>
+  <button type="warn" size="mini">warn</button>
+</view>

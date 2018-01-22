@@ -1,0 +1,7 @@
+/* pages/button/button.wxss */
+button{
+  margin-bottom:30px;
+}
+view{
+  padding:50px;
+}

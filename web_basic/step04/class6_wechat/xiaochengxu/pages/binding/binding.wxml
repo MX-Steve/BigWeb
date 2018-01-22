@@ -1,0 +1,5 @@
+<!--pages/binding/binding.wxml-->
+
+<text>{{text}}</text>
+<input placeholder='输入框' bindinput="modifyText"></input>
+<button type="primary" bindtap="changeText">button</button>

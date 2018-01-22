@@ -1,0 +1,7 @@
+<!--pages/icon/icon.wxml-->
+<text>pages/icon/icon.wxml</text>
+<icon type="success" size="100"></icon>
+<icon type="info" size="100"></icon>
+<icon type="warn" size="100"></icon>
+<icon type="warn" color="#c9c9c9" size="100"></icon>
+<icon type="waiting" size="100"></icon>

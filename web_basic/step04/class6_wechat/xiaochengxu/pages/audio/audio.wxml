@@ -1,0 +1,5 @@
+<!--pages/audio/audio.wxml-->
+<text>pages/audio/audio.wxml</text>
+<view>
+  <audio></audio>
+</view>

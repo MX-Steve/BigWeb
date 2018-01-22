@@ -1,0 +1,9 @@
+<!--pages/input/input.wxml-->
+<text>pages/input/input.wxml</text>
+<view>
+  <input placeholder='default input'></input>
+  <input auto-focus="true" placeholder='auto-focus input'></input>
+  <input type="digit" placeholder='digit'></input>
+  <input type="number" placeholder='number'></input>
+  <input type="idcard" placeholder='idcard'></input>
+</view>

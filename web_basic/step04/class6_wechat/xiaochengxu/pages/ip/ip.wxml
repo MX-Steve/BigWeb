@@ -1,0 +1,4 @@
+<!--pages/ip/ip.wxml-->
+<text>{{city}}</text>
+<input type="text" placeholder='输入ip地址' bindinput='setIp'></input>
+<button bindtap='getCity'>查询</button>

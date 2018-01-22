@@ -1,0 +1,5 @@
+/* pages/input/input.wxss */
+view{padding:50px;}
+input{
+  margin-bottom:30px;
+}
