@@ -1,0 +1,5 @@
+/* pages/icon/icon.wxss */
+
+icon {
+  display: block;
+}

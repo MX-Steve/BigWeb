@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <navigator url='../view/view' open-type='redirect'><button type='default'>view 示例</button></navigator>
+  <navigator url='../text/text' open-type='redirect'><button type='default'>text 示例</button></navigator>
+  <navigator url='../icon/icon' open-type='redirect'><button type='default'>icon 示例</button></navigator>
+  <navigator url='../button/button' open-type='redirect'><button type='default'>button 示例</button></navigator>
+  <navigator url='../input/input' open-type='redirect'><button type='default'>input 示例</button></navigator>
+    <navigator url='../binding/binding' open-type='redirect'><button type='default'>数据绑定 示例</button></navigator>
+        <navigator url='../audio/audio' open-type='redirect'><button type='default'>音频 示例</button></navigator>
+        <navigator url='../ip/ip' open-type='redirect'><button type='default'>IP 示例</button></navigator>        
+</view>

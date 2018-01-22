@@ -1,0 +1,187 @@
+Day03 微信小程序
+
+一、实现 ip 地址查询所在地理位置
+1. 视图：text input button
+2. 创建页面 ip，首页链接到 IP 页面	
+3. 在 IP 页面添加视图 text input button
+4. 为 input 和 button 添加事件
+5. 在页面逻辑 JS 文件中定义事件处理函数
+6. 完成 setIp 函数
+	 data: {
+			ip: ''
+	 },
+	 this.setData({ip: event.detail.value});
+7. 完成 getCity 函数
+
+8. API：http://ip.taobao.com/
+	 请求字符串 url
+	 http://ip.taobao.com/service/getIpInfo.php?ip=[ip地址字串]
+
+9. HTTP 请求
+	 wx.request({
+			url: '',
+			success: function(){
+				// ...
+			}
+	 });
+8. 小程序中请求第三方 API 时，需要进行服务器配置
+	 微信公众平台-设置-开发设置-服务器域名-request合法域名
+9. 测试阶段，微信开发者工具-详情-不校验安全域名...-勾选
+10. 获取 JSON 数据，提取需要的信息并显示
+		var city = req.data.data.city;
+		var page = this;
+		this.setData({city: city});
+
+二、地图示例小程序
+11. 创建新页面 map，作为首页
+12. map 页面中创建视图 <map>
+13. 调整样式，map 占据全屏
+		map {
+			width: 100%;
+			height: 100vh;
+		}
+
+14. SynctaxError: Unexpected token <  网络问题
+15. longitude 经度 [-180,180]
+		latitude 纬度 [-90,90]
+		scale 缩放级别 [5,18]
+		markers 标记点
+		[
+			{
+				longitude: 116.0,
+				latitude: 40.0,
+				iconPath: ''
+			},
+			{//...}
+		]
+16. 获取用户当前的地理位置信息，在声明周期函数 onLoad 中：
+		onLoad: function(options) {
+			wx.getLocation({
+				var page = this;
+				suceess: function(res) {
+					this.setData({
+						longitude: res.longitude,
+						latitude: res.latitude,
+						markers: [
+							{
+								longitude: res.longitude,
+								latitude: res.latitude,
+								iconPath: '/resources/img/pin.png',
+								width: 24,
+								height: 32
+							}
+						]
+					});
+				}
+			});
+		}
+
+17. map 中绑定事件 regionChange
+		<map bindregionchange='regionChange'></map>
+18. map.js 中定义函数 regionChange
+		regionChange: function() {
+			cosole.log('change...');
+		}
+
+19. 在 map 上画多边形线
+		<map polyline='{{polyline}}'>
+		map.js
+		data: {
+			polyline: [
+				{
+					points:[
+						{
+							longitude: 116.0,
+							latituude: 40.0
+						},
+						{...},
+						{...}
+					],
+					color: '#',
+					width: 1
+				},
+				{...}
+			]
+		}
+
+20. map 中的 controls 控制组件
+		<map controls={{controls}}>
+		map.js
+		controls: [
+			{
+				id: 1,
+				position: {
+					left: 100,
+					top: 300,
+					width: 50,
+					height: 50
+				},
+				iconPath: '/resources/...',
+				clickable: true
+			}
+		]
+
+21. controls 点击事件触发
+			<map bindcontroltap='controlTap'>
+			map.js
+			controlTap: function(event) {
+				switch(event.controlId) {
+					case 1:
+						// do somthing...
+						// markers
+						break;
+					default:
+						break;
+				}
+			}
+
+22. 获取用户的手机系统信息 wx.getSystemInfo
+		wx.getSystemInfo(
+			var page = this;
+			success: function(res) {
+				var width = res.windowWidth;
+				var height = res.windowHeight;
+
+				page.setData({
+					controls:[
+						{
+							id: 1,
+							postion: [
+								left: (width - 50)/2,
+								top: height - 100,
+								width: 50,
+								height: 50
+							],
+							iconPath: '/resources/...',
+							clickable: true
+						}
+					]
+				});
+			}
+		);
+
+23. 模拟用户的位置移动，点击按钮时，地图中心重新定位
+		controlTap: function(e) {
+			switch(e.controlId) {
+				case 1: 
+					this.setData({
+						longitude: this.data.longitude + 0.2,
+						latitude: this.data.latitude,
+						markers: [
+							{
+								longitude: this.data.longitude + 0.2,
+								latitude: this.data.latitude,
+								iconPath: '/resources/...',
+								with: 24,
+								height: 32
+							}
+						]
+						});
+					break;
+				default:
+					break;
+			}
+		}
+
+
+	24. 练习：实现小程序的运动轨迹问题

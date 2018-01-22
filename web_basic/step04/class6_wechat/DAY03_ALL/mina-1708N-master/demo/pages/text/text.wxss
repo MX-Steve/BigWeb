@@ -1,0 +1,7 @@
+/* pages/text/text.wxss */
+
+.test{
+  display: block;
+  font-size: 30px;
+  color: #369; 
+}

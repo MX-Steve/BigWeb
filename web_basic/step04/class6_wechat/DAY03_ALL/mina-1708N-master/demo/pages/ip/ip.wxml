@@ -1,0 +1,3 @@
+<text>{{city}}</text>
+<input placeholder='请输入 IP 地址' bindinput='setIp'></input>
+<button bindtap='getCity'>查询</button>

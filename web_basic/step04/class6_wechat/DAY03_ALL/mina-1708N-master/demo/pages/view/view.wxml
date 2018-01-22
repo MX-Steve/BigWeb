@@ -1,0 +1,7 @@
+<!--pages/view/view.wxml-->
+<text>pages/view/view.wxml</text>
+<view class='container'>
+  <view class='flex-view red'>view 1</view>
+  <view class='flex-view green' hover-class='border'>view 2</view>
+  <view class='flex-view blue' hover-class='border' hover-start-time='1000' hover-stay-time='5000'>view 3</view>
+</view>

@@ -1,0 +1,3 @@
+<!--pages/text/text.wxml-->
+<text>pages/text/text.wxml</text>
+<text class='test'>text...文本。。。</text>
