@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>myproject</title>
+	<style>
+		.dropdown{
+			border:1px solid #ddd;
+			box-shadow:2px 2px 2px #eee;
+			padding:5px 10px;
+			width:200px;
+		}
+		.dropdown>:first-child{
+			color:red;
+		}
+		.dropdown>:last-child{
+			list-style:none;
+			line-height:24px;
+			padding:0;
+			overflow:hidden;
+			opacity:0;
+			height:0;
+			transition:all 0.5s linear;
+		}
+		.dropdown:hover>:last-child{
+			height:200px;
+			opacity:1;
+		}
+	</style>
+</head>
+<body>
+<!-- 	下拉列表部分 -->
+<div class="dropdown">
+	<div class="drop-btn">
+		菜品
+	</div>
+	<ul>
+		<li>鱼香肉丝1</li>
+		<li>鱼香肉丝2</li>
+		<li>鱼香肉丝3</li>
+		<li>鱼香肉丝4</li>
+	</ul>
+</div>
+</body>
+</html>
